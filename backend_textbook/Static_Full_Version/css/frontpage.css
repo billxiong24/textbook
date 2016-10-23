@@ -14,6 +14,9 @@ body {
   text-align: left;
   margin-top: -7px;
 }
+.current-listings{
+  font-size: 18px;
+}
 .navbar{
   background-color: #FAFAFA;
   margin-bottom: -30px;
@@ -39,9 +42,8 @@ body {
   display: table;
   border-collapse: separate;
   margin: auto;
-  margin-right: 8%;
   margin-top: 10px;
-  width: 90%;
+  width: 100%;
 }
 .input-group.btn{
   margin: auto;
@@ -100,17 +102,6 @@ body {
 .m-t a, .m-t a span, .m-t a i{
   border-color: #001A57;
   color: #001A57;
-}
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
-.open .dropdown-toggle.btn-primary,
-.btn-primary:active:focus,
-.btn-primary:active:hover,
-.btn-primary.active:hover,
-.btn-primary.active:focus{
-  background-color: white !important;
 }
 
 .overriding{
@@ -369,24 +360,18 @@ input[type="text"]{
   background-color: transparent;
 }
 .foobar{
-  background-color: #FAFAFA;
+  /*background-color: #FAFAFA;*/
   display: block;
   width: 70%;
   height: 200px;
-  padding-top: 30px;
   margin-top: 20px;
   margin-left: 0px;
-  color: #001A57;
-  letter-spacing: 2px;
-  font-family: Helvetica;
-  font-size: 14px;
   text-align: center;
-  border: solid #E3E3E3 1px;
+  /*border: solid #E3E3E3 1px;*/
 }
 .widget-wrapper{
   text-align: left;
-  margin-top: 100px;
-  margin-bottom: 200px;
+  margin-top: 10px;
   font-size: 15px;
 }
 .recommend{
@@ -536,4 +521,14 @@ body .nav > li a:focus {
 }
 .modal{
   border: none;
+}
+.expose {
+    position:relative;
+}
+
+#overlay {
+    background:rgba(0,0,0,0.5);
+    display:none;
+    width:100%; height:100%;
+    position:absolute; top:0; left:0; z-index:99998;
 }
