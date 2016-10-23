@@ -170,39 +170,43 @@
         
             
         <div class="right" style="min-width: 170px">
-                <div class="ibox">
-                    <div class="ibox-content mailbox-content">
-                        <div class="file-manager">
-                            <div class="space-25"></div>
-                            <h5 style="color: black">My Info</h5>
-                            <ul class="folder-list m-b-md" style="padding: 0">
-                                <li><a href="mailbox.html"> <!-- <i class="fa fa-inbox "></i> --> Books Sold <span class="label label-warning pull-right">16</span> </a></li>
-                                <li><a href="mailbox.html"> <!-- <i class="fa fa-envelope-o"> </i>--> Total Earned<span class="label label-warning pull-right">$120.00</span> </a></li>
-                                <li><a href="mailbox.html"> <!-- <i class="fa fa-certificate"></i> --> Books Bought<span class="label label-danger pull-right">7</span> </a></li>
-                                <li><a href="mailbox.html"> <!-- <i class="fa fa-file-text-o"></i> --> Total Paid<span class="label label-danger pull-right">$34.00</span></a></li>
-                                <li><a href="mailbox.html"> <!-- <i class="fa fa-trash-o"></i> --> Profit<span class="label label-success pull-right">$86.00</span> </a></li>
-                            </ul>
-                            <div class="space-25"></div>
-                            <h5 style="color: black">Current Listings</h5>
-                            <ul class="folder-list m-b-md" style="padding: 0">
-                                <li><a href="mailbox.html"> <!-- <i class="fa fa-inbox "></i> --> Fundamentals of...<span class="label label-warning pull-right">S</span> </a></li>
-                                <li><a href="mailbox.html"> <!-- <i class="fa fa-envelope-o"> </i>-->Linear Algebra ...<span class="label label-warning pull-right">S</span> </a></li>
-                                <li><a href="mailbox.html"> <!-- <i class="fa fa-certificate"></i> --> Introduction to Co...<span class="label label-danger pull-right">B</span> </a></li>
-                            </ul>
-                            <a id="listing" class="listing btn btn-block compose-mail" href="data.html">See Details</a>
-                            <div class="space-25"></div>
-                            <!-- <h5>Categories</h5>
-                            <ul class="category-list" style="padding: 0">
-                                <li><a href="#"> <i class="fa fa-circle text-navy"></i> Work </a></li>
-                                <li><a href="#"> <i class="fa fa-circle text-danger"></i> Documents</a></li>
-                                <li><a href="#"> <i class="fa fa-circle text-primary"></i> Social</a></li>
-                                <li><a href="#"> <i class="fa fa-circle text-info"></i> Advertising</a></li>
-                                <li><a href="#"> <i class="fa fa-circle text-warning"></i> Clients</a></li>
-                            </ul> -->
+                <div class="col-lg-11 left">
+                        <div class="widget-head-color-box profile-bg p-lg text-center">
+                            <div class="m-b-md" style="color: #242424">
+                            <h2 class="font-bold no-margins" style="color: #242424">
+                                William Xiong
+                            </h2>
+                                <small>Duke University</small>
+                            </div>
+                            <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
+                            <div style="color: #242424; font-size: 11px;">
+                                <span>Electrical Engineering/Computer Science</span>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                        <div class="widget-text-box info-bg" >
+                            <ul class="list-unstyled m-t-md">
+                            <li>
+                                <span class="fa fa-envelope m-r-xs"></span>
+                                <label>Email:</label>
+                                mike@mail.com
+                            </li>
+                            <li>
+                                <span class="fa fa-home m-r-xs"></span>
+                                <label>Address:</label>
+                                Street 200, Avenue 10
+                            </li>
+                            <li>
+                                <span class="fa fa-phone m-r-xs"></span>
+                                <label>Contact:</label>
+                                (+121) 678 3462
+                            </li>
+                        </ul>
 
+                            <div class="text-right">
+                                <a class="btn btn-xs btn-primary">Update</a>
+                            </div>
+                        </div>
+                </div>
         </div>
         <div class="foobar float-e-margins text-center animated fadeInDown">
                 <div style="margin-bottom: 20px;">Welcome, William!</div>
@@ -218,10 +222,79 @@
                     </div>
 
                 </form>
+
+                <div class="animated fadeInDown widget-wrapper">
+                 <div class="col-lg-13">
+                    <div class="widget listing-bg p-xl">
+                                <h2 style="text-align: center; color: #242424">
+                                    Current Listings
+                                </h2>
+                        <ul class="list-unstyled m-t-md">
+                            <li>
+                                <span class="fa fa-envelope m-r-xs"></span>
+                                <label>Email:</label>
+                                mike@mail.com
+                            </li>
+                            <li>
+                                <span class="fa fa-home m-r-xs"></span>
+                                <label>Address:</label>
+                                Street 200, Avenue 10
+                            </li>
+                            <li>
+                                <span class="fa fa-phone m-r-xs"></span>
+                                <label>Contact:</label>
+                                (+121) 678 3462
+                            </li>
+                        </ul>
+
+                    </div>
+         <div class="col-lg-4">
+                <div class="widget style1 bought-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-shopping-cart fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span> Bought </span>
+                            <h2 class="font-bold">260</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="widget style1 bought-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-book fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span> Sold </span>
+                            <h2 class="font-bold">12</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         <div class="col-lg-4">
+                <div class="widget style1 bought-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-dollar fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span> Profit </span>
+                            <h2 class="font-bold">12</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div>
                 
         </div>
 
-        <div class="recommend rec-message">
+        <div class="padding"></div>
+
+      <!--   <div class="recommend rec-message">
             <span>Recommendations for you</span>
         </div>
         <div class="recommend animated fadeInRight">
@@ -322,7 +395,7 @@
                     </div>
                 </div>
             </div>
-
+ -->
 
 
 

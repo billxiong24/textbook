@@ -7,6 +7,4 @@ if(isset($_POST['bookID'])){
     
 }
 
-
-
 ?>

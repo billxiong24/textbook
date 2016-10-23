@@ -6,6 +6,7 @@ date_default_timezone_set('America/New_York');
 function addBook($isbn,$title,$publish_date,$authors,$cover_url,$course_name,$course_num,$book_condition,$notes,$price){
     global $connection;
     
+    //NICE preventing sql injections :)
     $isbn = mysql_real_escape_string($isbn);
     $title = mysql_real_escape_string($title);
     $publish_date = mysql_real_escape_string($publish_date);

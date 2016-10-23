@@ -10,7 +10,7 @@ body {
 }
 
 .row{
-  border-bottom: solid #E3E3E3 1px;
+  /*border-bottom: solid #E3E3E3 1px;*/
   text-align: left;
   margin-top: -7px;
 }
@@ -47,16 +47,7 @@ body {
   margin: auto;
   align: center;
 }
-.foobar .input-group-btn .search-logo{
-  background-color: #FAFAFA;
-  color: #001A57;
-  font-family: sans-serif;
-  letter-spacing: 5px;
-  font-size: 12px;
-}
-.foobar .input-group-btn .search-logo:focus{
-  outline: 0;
-}
+
 .modal .btn-primary{
   background-color: #001A57;
   color: white;
@@ -230,16 +221,25 @@ input[type="text"]{
 .nav-second-level > li:hover{
   background-color: #F1F1F1 !important;
 }
+.profile{
+  background-color: #001A57;
+}
 .right{
-  width: 20%;
+  margin-top: 10px;
+  width: 30%;
   position: absolute;  
   right: 0;
-  margin-right: 5px;
 }
+.left{
+  margin-left: 40px !important;
+}
+
 .classes{
   background-color: #F5F5F5;
 }
+.lazur-bg{
 
+}
 .notif{
   background-color: #8B475D;
   color: white;
@@ -288,7 +288,7 @@ input[type="text"]{
   font-weight: 300;
 }
 .logo{
-  border-bottom: solid #E3E3E3 1px;
+  /*border-bottom: solid #E3E3E3 1px;*/
   padding-top: 7px;
   width: 100%;
   height: 50px;
@@ -354,6 +354,20 @@ input[type="text"]{
 .side-notif{
   margin-top: 2px;
 }
+.listing-bg{
+  background-color: #FAFAFA;
+  color: #242424;
+}
+.info-bg{
+  background-color: #FAFAFA !important;
+}
+.profile-bg{
+  background-color: #FAFAFA !important;
+}
+.bought-bg{
+  border: solid #3D0057 1px;
+  background-color: transparent;
+}
 .foobar{
   background-color: #FAFAFA;
   display: block;
@@ -361,11 +375,19 @@ input[type="text"]{
   height: 200px;
   padding-top: 30px;
   margin-top: 20px;
-  margin-left: 40px;
+  margin-left: 0px;
   color: #001A57;
-  letter-spacing: 4px;
+  letter-spacing: 2px;
+  font-family: Helvetica;
+  font-size: 14px;
   text-align: center;
   border: solid #E3E3E3 1px;
+}
+.widget-wrapper{
+  text-align: left;
+  margin-top: 100px;
+  margin-bottom: 200px;
+  font-size: 15px;
 }
 .recommend{
   width: 72%;
@@ -374,11 +396,11 @@ input[type="text"]{
 }
 .rec-message{
   color: #494949;
-  margin-top: 30px;
+  margin-top: 200px;
   padding-top: 40px;
   padding-left: 14px;
   font-size: 20px;
-  border-top: solid #C2C2C2 1px;
+ /* border-top: solid #C2C2C2 1px;*/
 }
 .product-price{
   background-color: #CD6512;
@@ -457,7 +479,7 @@ h2{
   padding-left: 20px;
   padding-right: 20px;
   color: #E8E8E8;
-  background-color: #6E7B8B;
+  background-color: #001A57;
   margin-top: 20px;
   border: solid #E3E3E3 1px;
 }

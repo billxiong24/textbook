@@ -15,8 +15,4 @@ if(isset($_POST['bookID'])){
     echo $info;
     
 }
-
-
-
-
 ?>
