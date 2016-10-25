@@ -100,8 +100,19 @@ body {
 }
 
 .m-t a, .m-t a span, .m-t a i{
-  border-color: #001A57;
   color: #001A57;
+}
+.buy a{
+  padding: 2px 4px 2px 4px;
+  border-radius: 3px;
+  border: solid #001A57 1px;
+}
+.buy a:hover,
+.buy a i:hover{
+  padding: 2px 4px 2px 4px;
+  border-radius: 3px;
+  background-color: #001A57;
+  color:white;
 }
 .product-price{
   text-align: center;

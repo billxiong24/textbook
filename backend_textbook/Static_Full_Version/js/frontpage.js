@@ -104,7 +104,7 @@
     function maxFooBar(){
         $('.foobar').css("margin-top", "20px");
         $('.foobar').css("width", "72%");
-        $('.foobar').css("margin-left", "40px");
+        $('.foobar').css("margin-left", "0px");
     }
     function minRecs(){
         //$('.recommend').show();
