@@ -8,6 +8,7 @@ if(isset($_POST['search'])){
     if (array_key_exists('error',$response)){
         $return_array = array("isbn"=>"","title"=>"","date"=>"","authors"=>"","cover"=>"");   
     }
+    
     else {
         $isbn = $response['items'][0]['volumeInfo']['industryIdentifiers'][0]['identifier'];
         $title = $response['items'][0]['volumeInfo']['title'];
@@ -28,8 +29,6 @@ if(isset($_POST['search'])){
         $return_array= array("isbn"=>$isbn,"title"=>$title,"date"=>$date,"authors"=>$authorString,"cover"=>$cover);
     }
     echo json_encode($return_array);
-    
-       
 }
 
 

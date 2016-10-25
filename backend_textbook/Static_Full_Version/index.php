@@ -11,8 +11,6 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
     header('Location: dashboard_4_home.html');
 }
 
-
-
 ?>
 
     <!DOCTYPE html>
