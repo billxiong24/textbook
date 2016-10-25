@@ -41,18 +41,18 @@ $account = accountOverview($_SESSION['username']);
                         <div class="navbar-collapse collapse" id="navbar">
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a aria-expanded="false" role="button" href="home.php"> Home</a>
+                                    <a aria-expanded="false" role="button" href="home.php"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
                                 </li>
                                 <li>
-                                    <a aria-expanded="false" role="button" href="sell_integrated.php"> Sell</a>
+                                    <a aria-expanded="false" role="button" href="sell_integrated.php"><i class="fa fa-tag" aria-hidden="true"></i>Sell</a>
                                 </li>
 
                                 <li>
-                                    <a aria-expanded="false" role="button" href="myAccount.php"> My Account</a>
+                                    <a aria-expanded="false" role="button" href="myAccount.php"><i class="fa fa-bars" aria-hidden="true"></i>My Account</a>
                                 </li>
                                 <li class="dropdown">
                                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                Notifications
+                                <i class="fa fa-bell-o" aria-hidden="true"></i>Notifications
                             </a>
                                     <ul class="dropdown-menu dropdown-alerts" style="width: 300%">
                                         <li>
@@ -94,7 +94,7 @@ $account = accountOverview($_SESSION['username']);
                                 </li>
                                 <li>
                                     <a href="auth.html">
-                                Log out
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>Log out
                                 </a>
                                 </li>
 
@@ -106,9 +106,79 @@ $account = accountOverview($_SESSION['username']);
                     <div class="title col-lg-15"><span>Account History</span></div>
                     <div class="wrapper wrapper-content ecommerce">
                         <div class="row">
-                            <div class="purchase col-lg-2"></div>
-                            <div class="col-lg-8">
+                            <div class="col-md-4">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5>Profit</h5>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <h1 class="no-margins">
+                                            <?php if($account['profit'] < 0){
+                                                echo '-$'.abs($account['profit']);   
+                                            }
+                                            else{
+                                                echo '$'.$account['profit'];
+                                            }
+                                            ?></h1>
+                                        <div class="font-bold text-success">Total Profit</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5>Sold</h5>
+                                    </div>
+                                    <div class="ibox-content">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h1 class="no-margins">$<?php echo $account['books_sold'];?></h1>
+                                                <div class="font-bold text-navy">Amount Sold</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h1 class="no-margins"><?php echo $account['money_made'];?></h1>
+                                                <div class="font-bold text-navy">Number Sold</div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5>Bought</h5>
+                                    </div>
+                                    <div class="ibox-content">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h1 class="no-margins">$<?php echo $account['spent'];?></h1>
+                                                <div class="font-bold text-navy">Amount Bought</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h1 class="no-margins"><?php echo $account['books_bought'];?></h1>
+                                                <div class="font-bold text-navy">Number Bought</div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                            <!--
+                            <div class="col-lg-15">
                                 <div class="col-lg-8 purchase">AT A GLANCE</div>
+                                
+                                
                                 <div class="ibox">
                                     <div class="ibox-content">
 
@@ -118,7 +188,7 @@ $account = accountOverview($_SESSION['username']);
 
                                                     <th data-toggle="true" data-sort-ignore="true"></th>
 
-                                                    <!--    <th data-hide="phone,tablet" >Quantity</th> -->
+                                                        <th data-hide="phone,tablet" >Quantity</th> 
                                                     <th data-sort-ignore="true"></th>
                                                 </tr>
                                             </thead>
@@ -135,7 +205,7 @@ $account = accountOverview($_SESSION['username']);
                                                     <td></td>
                                                     <td></td>
                                                     <td>
-                                                        <span class="label label-warning pull-right"><?php echo $account['books_bought'];?></span>
+                                                        <span class="label label-warning pull-right"><?php //echo $account['books_bought'];?></span>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -150,7 +220,7 @@ $account = accountOverview($_SESSION['username']);
                                                     <td></td>
                                                     <td></td>
                                                     <td>
-                                                        <span class="label label-warning pull-right">$<?php echo $account['spent'];?></span>
+                                                        <span class="label label-warning pull-right">$<?php //echo $account['spent'];?></span>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -165,7 +235,7 @@ $account = accountOverview($_SESSION['username']);
                                                     <td></td>
                                                     <td></td>
                                                     <td>
-                                                        <span class="label label-danger pull-right"><?php echo $account['books_sold'];?></span>
+                                                        <span class="label label-danger pull-right"><?php //echo //$account['books_sold'];?></span>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -180,7 +250,7 @@ $account = accountOverview($_SESSION['username']);
                                                     <td></td>
                                                     <td></td>
                                                     <td>
-                                                        <span class="label label-danger pull-right">$<?php echo $account['money_made'];?></span>
+                                                        <span class="label label-danger pull-right">$<?php //echo $account['money_made'];?></span>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -195,7 +265,7 @@ $account = accountOverview($_SESSION['username']);
                                                     <td></td>
                                                     <td></td>
                                                     <td>
-                                                        <span class="label label-success pull-right">$<?php echo $account['profit'];?></span>
+                                                        <span class="label label-success pull-right">$<?php //echo $account['profit'];?></span>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -204,10 +274,11 @@ $account = accountOverview($_SESSION['username']);
                                     </div>
                                 </div>
                             </div>
+-->
                         </div>
                         <div class="row">
                             <div class="purchase col-lg-2"></div>
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
                                 <div class="col-lg-8 purchase">SELL HISTORY</div>
                                 <div class="ibox">
                                     <div class="ibox-content">
@@ -262,7 +333,7 @@ $account = accountOverview($_SESSION['username']);
                         <div class="row">
                             <div class="purchase col-lg-2" style="margin-top: 5px;"></div>
 
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
                                 <div class="col-lg-8 purchase">PURCHASE HISTORY</div>
                                 <div class="ibox tab">
                                     <div class="ibox-content">
