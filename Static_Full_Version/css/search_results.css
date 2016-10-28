@@ -12,7 +12,6 @@ body {
 .logo-align{
   /*border-bottom: solid #E3E3E3 1px;*/
   text-align: left;
-  margin-top: -7px;
 }
 .navbar{
   background-color: #FAFAFA;
@@ -218,11 +217,6 @@ input[type="text"]{
 .drop-notif{
   padding-left: 30px;
 }
-.divider{
-  padding-left: 30px;
-  padding-bottom: 15px;
-  opacity: 0.5;
-}
 .nav-header{
   padding-left: 33px;
   background-color: #001A57;
@@ -261,11 +255,12 @@ input[type="text"]{
 }
 .logo{
   /*border-bottom: solid #E3E3E3 1px;*/
-  padding-top: 7px;
+  padding-top: 5px;
   width: 100%;
-  height: 50px;
+  height: 51px;
   font-weight: 50;
-  background-color: transparent;
+  background-color: #001A57;
+  opacity: 0.9;
   font-size: 25px;
   font-family: Garamond;
   letter-spacing: 2px;
@@ -279,7 +274,7 @@ input[type="text"]{
   letter-spacing: 4px;
 }
 .logo a{
-  color: #001A57;
+  color: white;
 }
 .navbar-collapse{
   padding-top: 8px;
@@ -299,6 +294,7 @@ input[type="text"]{
   color: #424242;
   background-color: #F5F5F5;
 }
+
 .misc{
   display: inline-block;
   float:right; 
@@ -478,7 +474,9 @@ body .navbar-brand {
   margin-right: 20px;
 }
 .navbar-static-top{
-  background-color: transparent;
+  height: 51px;
+  background-color: #001A57;
+  opacity: 0.9;
 }
 .nav > li a{
   font-weight: normal;
@@ -487,7 +485,11 @@ body .navbar-brand {
 body .nav > li a:hover,
 body .nav > li a:focus {
   background: transparent;
-  color: #001A57 !important;
+  color: #D1D1D1 !important;
+}
+body .nav > li a{
+  background: transparent;
+  color: white !important;
 }
 .dropdown-toggle{
   background: transparent;

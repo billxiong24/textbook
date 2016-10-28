@@ -2,7 +2,7 @@
 include './php/functions.php';
 session_start();
 
-if (isset($_POST['first_name'])){ // add users once they add their information in the create account modal
+if (isset($_POST['first_name'])){ // add users once they add their information in the create account lmodal
     
     $first_name = trim($_POST['first_name']);
     $last_name = trim($_POST['last_name']);
@@ -163,7 +163,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
             }
             else {
 
-                echo "<script> window.location.href = 'dashboard_4_home.html'; </script>";
+                
 
             }
 

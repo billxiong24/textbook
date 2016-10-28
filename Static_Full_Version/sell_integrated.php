@@ -206,7 +206,7 @@ if(!isset($_SESSION['username'])){
                                 Sell A Book
                             </h2>
                                         <p>
-                                            This example show how to use Steps with jQuery Validation plugin.
+                                            Want to sell your book? It's easy- just follow the steps below. 
                                         </p>
 
                                         <section>

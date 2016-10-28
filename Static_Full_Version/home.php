@@ -1,3 +1,12 @@
+<?php
+include "./php/functions.php";
+session_start();
+if(!isset($_SESSION['username'])){
+    header('Location: index.php');
+}
+$account = accountOverview($_SESSION['username']);
+$user = getUser($_SESSION['username']);
+?>
 <!DOCTYPE html>
 <html>
 
@@ -21,7 +30,7 @@
 <body class="top-navigation">
     <div id="wrapper">
         <div id="page-wrapper">
-            <? include 'navbar.php'; ?>
+            <?php include 'navbar.php'; ?>
 
             <!--
             <div class="row wrapper border-bottom white-bg page-heading">
@@ -37,7 +46,7 @@
                 <div class="row content">
                     <div class="col-lg-3">
                         <div class="widget ibox-content text-center">
-                            <h1>Nicki Smith</h1>
+                            <h1><?php echo $user['name']; ?></h1>
                             <div class="m-b-sm">
                                 <img alt="image" class="img-circle" src="img/a8.jpg">
                             </div>
@@ -45,15 +54,15 @@
                                 <li>
                                     <span class="fa fa-envelope m-r-xs"></span>
                                     <label>Email:</label>
-                                    mike@mail.com
+                                    <?php echo $user['email']; ?>
                                 </li>
                                 <li>
                                     <span class="fa fa-phone m-r-xs"></span>
                                     <label>Contact:</label>
-                                    (+121) 678 3462
+                                    <?php echo $user['phone_num']; ?>
                                 </li>
-                                <li>
-
+                                <li class="pull-right">
+                                   <a class="btn btn-xs btn-white"><i class="fa fa-pencil-square"></i> Update </a>
                                 </li>
                             </ul>
                         </div>
@@ -90,11 +99,11 @@
                         <div class="widget style1 bought-bg">
                             <div class="row">
                                 <div class="col-xs-4">
-                                    <i class="fa fa-cloud fa-5x"></i>
+                                    <i class="fa fa-dollar fa-5x"></i>
                                 </div>
                                 <div class="col-xs-8 text-right">
-                                    <span> Today degrees </span>
-                                    <h2 class="font-bold" style="color: #001A57;">26'C</h2>
+                                    <span> Total Profit </span>
+                                    <h2 class="font-bold" style="color: #001A57;"><?php echo $account['profit'];?></h2>
                                 </div>
                             </div>
                         </div>
@@ -103,11 +112,11 @@
                         <div class="widget style1 bought-bg">
                             <div class="row">
                                 <div class="col-xs-4">
-                                    <i class="fa fa-envelope-o fa-5x"></i>
+                                    <i class="fa fa-book fa-5x"></i>
                                 </div>
                                 <div class="col-xs-8 text-right">
-                                    <span> New messages </span>
-                                    <h2 class="font-bold"  style="color: #001A57;">260</h2>
+                                    <span> Books Sold </span>
+                                    <h2 class="font-bold"  style="color: #001A57;"><?php echo $account['books_sold'];?></h2>
                                 </div> 
                             </div>
                         </div>
@@ -116,11 +125,11 @@
                         <div class="widget style1 bought-bg">
                             <div class="row">
                                 <div class="col-xs-4">
-                                    <i class="fa fa-music fa-5x"></i>
+                                    <i class="fa fa-shopping-cart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-8 text-right">
-                                    <span> New albums </span>
-                                    <h2 class="font-bold"  style="color: #001A57;">12</h2>
+                                    <span> Books Bought</span>
+                                    <h2 class="font-bold"  style="color: #001A57;"><?php echo $account['books_bought'];?></h2>
                                 </div>
                             </div>
                         </div>

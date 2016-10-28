@@ -46,19 +46,6 @@
             }
         });
     });
-
-    $(".first").click(function(){
-        window.location = "home.html";
-    });
-    $(".second").click(function(){
-        window.location = "home.html";
-    })
-    $(".third").click(function(){
-        window.location = "data.html"
-    });
-    $(".fourth").click(function(){
-        window.location = "auth.html";
-    });
     function mobile(mobileCheck){
         $('.navbar-header').addClass('mobileRight');
         if($('.navbar-header').find('a').length < 1){

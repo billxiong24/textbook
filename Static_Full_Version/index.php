@@ -163,7 +163,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
             }
             else {
 
-                echo "<script> window.location.href = 'dashboard_4_home.html'; </script>";
+                echo "<script> window.location.href = 'home.php'; </script>";
 
             }
 

@@ -19,11 +19,13 @@ echo '
                                 </li>
 
                                 <li>
-                                    <a aria-expanded="false" role="button" href="myAccount.php"><i class="fa fa-bars" aria-hidden="true"></i>My Account</a>
+                                    <a aria-expanded="false" role="button" href="myAccount.php"><i class="fa fa-user" aria-hidden="true"></i>My Account</a>
                                 </li>
                                 <li id="readNotifications" class="dropdown">
                                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                        <i class="fa fa-bell"></i> <span id="unreadNotifications" class="label label-primary"></span> Notifications
+
+                                        <i class="fa fa-bell"></i> <span id="unreadNotifications" class="label label-primary"></span> 
+                                        Notifications
                                     </a>
                                     <ul id="notifications" class="dropdown-menu dropdown-alerts" style="width: 300%">
 

@@ -1,11 +1,58 @@
 <?php
-include "./php/functions.php";
-session_start();
-if(!isset($_SESSION['username'])){
-    header('Location: index.php');
+//include "./php/functions.php";
+$connection = mysqli_connect('localhost','root','bill1313','textbook');
+function search ($search, $connection){
+    $search = strtolower($search);
+    $search = mysqli_real_escape_string($search);
+    $searchTerms = explode(' ', $search);
+    $simpleWords = ['the','a','an','of','and','for','is'];
+    foreach ($simpleWords as $word){  // removes all the simple words that may exist in many book titles, but not relevent to the book the user is searching
+        $keys = array_keys($searchTerms,$word);
+        foreach($keys as $location){
+            unset($searchTerms[$location]);     
+        }
+            
+    }
+            
+        
+        
+    $search1 = ''; // each search variable is to create a search string for every word from the user separated by a space to be searched in a column. the five search variables are for searching five columns for every space separated word from the user
+    $search2 = '';
+    $search3 = '';
+    $search4 = '';
+    $search5 = '';
+    foreach ($searchTerms as $current){
+        $searchTerm = '%'.$current.'%';
+        $search1 = $search1 . "isbn LIKE '$current' OR ";  // does not look for number in isbn, but only for exact match isbn
+        $search2 = $search2 . "title LIKE '$searchTerm' OR ";
+        $search3 = $search3 . "authors LIKE '$searchTerm' OR "; 
+        $search4 = $search4 . "course_name LIKE '$searchTerm' OR ";
+        $search5 = $search5 . "course_num LIKE '$searchTerm' OR ";
+    }
+    
+    $search1 = substr($search1, 0, -4);
+    $search2 = substr($search2, 0, -4);
+    $search3 = substr($search3, 0, -4);
+    $search4 = substr($search4, 0, -4);
+    $search5 = substr($search5, 0, -4);
+    
+    $query = "SELECT * FROM books WHERE $search1 OR $search2 OR $search3 OR $search4 OR $search5 ORDER BY price ASC";
+    //$search = '%'.$search.'%';
+//    $query = "SELECT * FROM books WHERE isbn LIKE '$search' OR title LIKE '$search' OR authors LIKE '$search' OR course_name LIKE '$search' OR course_num LIKE '$search' ORDER BY price ASC";
+    $result = mysqli_query($connection,$query);
+    if(!$result){
+        die('Query Failed' . mysqli_error($connection));
+    }
+    $books = array();
+    while($row = mysqli_fetch_assoc($result)){
+        array_push($books, $row);
+        
+    }  
+    return $books;
 }
+
 if (isset($_POST['search'])){
-    $result = search($_POST['search']);
+    $result = search($_POST['search'], $connection);
 }
 else {
     $result = array();
@@ -155,7 +202,7 @@ else {
             <div id="page-wrapper">
                 <div class="row logo-align">
                     <nav class="navbar navbar-static-top ibox float-e-margins" role="navigation">
-                        <div class="navbar-header">
+                        <div class="navbar-header" style="margin-top: 0px;">
                             <button style="" aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
                                 <i class="fa fa-reorder"></i>
                             </button>
@@ -163,18 +210,18 @@ else {
                         </div>
                         <div class="navbar-collapse collapse" id="navbar">
                             <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a aria-expanded="false" role="button" href="home.php"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+                                <li class="dropdown">
+                                    <a style="margin-top: -6px;" aria-expanded="false" role="button" href="home.php"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
                                 </li>
-                                <li>
-                                    <a aria-expanded="false" role="button" href="sell_integrated.php"><i class="fa fa-tag" aria-hidden="true"></i>Sell</a>
+                                <li class="dropdown">
+                                    <a style="margin-top: -6px;" aria-expanded="false" role="button" href="sell_integrated.php"><i class="fa fa-tag" aria-hidden="true"></i>Sell</a>
                                 </li>
 
-                                <li>
-                                    <a aria-expanded="false" role="button" href="myAccount.php"><i class="fa fa-bars" aria-hidden="true"></i>My Account</a>
+                                <li class="dropdown">
+                                    <a style="margin-top: -6px;" aria-expanded="false" role="button" href="myAccount.php"><i class="fa fa-user" aria-hidden="true"></i>My Account</a>
                                 </li>
                                 <li id="readNotifications" class="dropdown">
-                                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                    <a style="margin-top: -6px;" class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                                         <i class="fa fa-bell"></i> <span id="unreadNotifications" class="label label-primary"></span> Notifications
                                     </a>
                                     <ul id='notifications' class="dropdown-menu dropdown-alerts" style="width: 300%">
@@ -182,8 +229,8 @@ else {
                                     </ul>
 
                                 </li>
-                                <li>
-                                    <a href="./php/logout.php">
+                                <li class="dropdown">
+                                    <a style="margin-right: 20px; margin-top: -6px;" href="./php/logout.php">
                                         <i class="fa fa-sign-out" aria-hidden="true"></i>Log out
                                     </a>
                                 </li>
@@ -198,8 +245,6 @@ else {
             <span>Search Results for "Some search"</span>
         </div> -->
                 <div class="wrapper wrapper-content animated fadeInRight">
-
-
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="ibox float-e-margins">
@@ -245,7 +290,7 @@ else {
 
                             <div class="product-imitation">';
                             
-                            echo "<img src=\"{$result[$i]['cover_url']}\">";
+                            echo "<img style='max-height: 135px;' src=\"{$result[$i]['cover_url']}\">";
                                 
                             echo '</div>
                             <div class="product-desc">
@@ -253,9 +298,27 @@ else {
                                  echo '$'.$result[$i]['price'];
                                 echo '</span>
                                 <small class="text-muted">'; echo $result[$i]['isbn']; echo '</small>
-                                <a href="#" class="product-name">'; echo $result[$i]['title']; echo '</a>
+                                <a href="#" class="product-name">'; 
+                                $str = $result[$i]['title'];
+                                if(strlen($str) > 25){
+                                    $cut = substr($str, 0, 25). "...";
+                                    echo $cut;
+                                }
+                                else{
+                                    echo $str;
+                                }
+                                 
+
+                                echo '</a>
                                 <div class="small m-t-xs">';
-                                    echo 'Author(s): '.$result[$i]['authors'];
+                                    echo 'Author(s): ';
+                                    $authors = $result[$i]['authors'];
+                                    if(strlen($authors) > 20){
+                                        echo substr($authors, 0, 20) . "...";
+                                    }
+                                    else{
+                                        echo $authors;
+                                    }
                                 echo '</div>
                                 <div class="small m-t-xs">
                                 <p><span class="label label-success">'; echo $result[$i]['course_num']; echo '</span> 

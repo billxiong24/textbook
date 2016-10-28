@@ -36,8 +36,8 @@ $account = accountOverview($_SESSION['username']);
             <div id="page-wrapper">
                 <?php include 'navbar.php' ?>
                 <div id="page-wrapper">
-                    <div class="title col-lg-15"><span>Account History</span></div>
-                    <div class="wrapper wrapper-content ecommerce">
+                    <div class="title col-lg-15"><h1> Account History</h1></div>
+                    <div class="wrapper wrapper-content ecommerce animated fadeInRight">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="ibox float-e-margins">
@@ -67,11 +67,11 @@ $account = accountOverview($_SESSION['username']);
 
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <h1 class="no-margins">$<?php echo $account['books_sold'];?></h1>
+                                                <h1 class="no-margins">$<?php echo $account['money_made'];?></h1>
                                                 <div class="font-bold text-success">Amount Sold</div>
                                             </div>
                                             <div class="col-md-6">
-                                                <h1 class="no-margins"><?php echo $account['money_made'];?></h1>
+                                                <h1 class="no-margins"><?php echo $account['books_sold'];?></h1>
                                                 <div class="font-bold text-success">Number Sold</div>
                                             </div>
                                         </div>

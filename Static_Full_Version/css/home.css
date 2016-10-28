@@ -244,11 +244,7 @@ input[type="text"]{
 .drop-notif{
   padding-left: 30px;
 }
-.divider{
-  padding-left: 30px;
-  padding-bottom: 15px;
-  opacity: 0.5;
-}
+
 .nav-header{
   padding-left: 33px;
   background-color: #001A57;
@@ -478,7 +474,8 @@ h2{
   margin-right: 35px;
 }
 .navbar-toggle{
-  background-color: #001A57;
+  margin-top: 14px;
+  background-color: transparent;
 }
 .small-title{
   margin: auto;
@@ -494,6 +491,7 @@ h2{
 .invisible{
   display: none;
 }
+
 
 .top-navigation .navbar-brand {
   font-family: Garamond;
@@ -512,10 +510,12 @@ h2{
   opacity: 0.9;
 }
 .btn-lg{
-  margin-top: -1px;
   background-color: #001A57;
-  height: 46px;
+  height: 44px;
   border: none;
+}
+.update-profile{
+  height: 20px;
 }
 .title{
   margin-top: 50px;
@@ -536,6 +536,9 @@ h2{
 .top-navigation .nav > li a{
   background: transparent;
   color: white !important;
+}
+.top-navigation .nav .notif-color{
+  color: black !important;
 }
 .dropdown-toggle{
   background: transparent;

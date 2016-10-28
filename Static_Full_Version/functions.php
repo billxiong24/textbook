@@ -40,11 +40,13 @@ function getBook($id){
     return $book;
     
 }
-
+function search1($var){
+    return array();
+}
 function search ($search){
     $search = strtolower($search);
     global $connection;
-    $search = mysql_real_escape_string($search);
+    $search = mysqli_real_escape_string($search);
     $searchTerms = explode(' ', $search);
     $simpleWords = ['the','a','an','of','and','for','is'];
     foreach ($simpleWords as $word){  // removes all the simple words that may exist in many book titles, but not relevent to the book the user is searching
@@ -97,7 +99,10 @@ function getUser($username){
     $query = "SELECT * FROM users WHERE username = '$username' ";
     $result = mysqli_query($connection, $query);
     return mysqli_fetch_assoc($result);
+    
+    
 }
+
 function addUser($username,$name,$phone_num,$email){
     global $connection;
     
@@ -284,7 +289,7 @@ function getNotifications($username){
     $formattedNotification = $formattedNotification." 
             <li>
                 <li>
-                    <div class='text-center link-block notif-color' style='background-color: #001A57; opacity: 0.9'>
+                    <div class='text-center link-block'>
                         <a href='notifications.php'>
                             <strong>See All Alerts</strong>
                             <i class='fa fa-angle-right'></i>
