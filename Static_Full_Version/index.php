@@ -1,7 +1,7 @@
 <?php
 include './php/functions.php';
 session_start();
-
+//authenticating? change redirecting
 if (isset($_POST['first_name'])){ // add users once they add their information in the create account modal
     
     $first_name = trim($_POST['first_name']);
