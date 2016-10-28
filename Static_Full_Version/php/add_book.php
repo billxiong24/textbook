@@ -16,10 +16,4 @@ $notes = $_POST['notes'];
 $price = floatval($_POST['price']);
 addBook($username,$isbn,$title,$publish_date,$authors,$cover_url,$course_name,$course_number,$book_condition,$notes,$price);
 echo '';
-
-
-
-
-
-
 ?>

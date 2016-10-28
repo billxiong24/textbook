@@ -102,6 +102,9 @@ body {
   border-color: #001A57;
   color: #001A57;
 }
+.m-t button:hover{
+  border:solid #001A57 1px;
+}
 
 .product-price{
   text-align: center;
@@ -491,6 +494,16 @@ body .nav > li a{
   background: transparent;
   color: white !important;
 }
+.buy-modal-button{
+  border-color: #001A57; 
+  color: #001A57;
+}
+.buy-modal-button:hover,
+.buy-modal-button:focus{
+  border: solid #001A57 1px;
+  background-color: #001A57;
+  color: #fff;
+}
 .dropdown-toggle{
   background: transparent;
 }
@@ -498,12 +511,3 @@ body .nav > li a{
 .dropdown-toggle:focus{
   background: transparent !important;
 }
-
-.modal .btn-primary{
-  background-color: #001A57;
-  color: white;
-}
-.modal .btn-primary:focus{
-  background-color: #001A57;
-  color: white;
-} 

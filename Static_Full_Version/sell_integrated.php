@@ -248,7 +248,7 @@ if(!isset($_SESSION['username'])){
                                                     </ul>
                                                 </div>
 
-                                                <form id="addBook" method="post" role="form" action="./php/add_book.php">
+                                                <form id="addBook" method="post" action="./php/add_book.php">
                                                     <div class="tab-content">
 
 
@@ -477,6 +477,7 @@ if(!isset($_SESSION['username'])){
                 });
 
                 $('#addBook').submit(function (evt) {
+                    //$('#addBook').load("./php/add_book.php");
                     evt.preventDefault(); // only sends data if data is entered
                     var postData = $(this).serialize(); // postData is POST data with the string name of form elements
                     var title = $('#title').val();

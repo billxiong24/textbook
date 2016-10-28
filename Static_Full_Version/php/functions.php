@@ -6,15 +6,15 @@ date_default_timezone_set('America/New_York');
 function addBook($username,$isbn,$title,$publish_date,$authors,$cover_url,$course_name,$course_num,$book_condition,$notes,$price){
     global $connection;
     
-    $isbn = mysql_real_escape_string($isbn);
-    $title = mysql_real_escape_string($title);
-    $publish_date = mysql_real_escape_string($publish_date);
-    $authors = mysql_real_escape_string($authors);
-    $cover_url = mysql_real_escape_string($cover_url);
-    $course_name = mysql_real_escape_string($course_name);
-    $course_num = mysql_real_escape_string($course_num);
-    $book_condition = mysql_real_escape_string($book_condition);
-    $notes = mysql_real_escape_string($notes);
+    $isbn = mysqli_real_escape_string($connection, $isbn);
+    $title = mysqli_real_escape_string($connection, $title);
+    $publish_date = mysqli_real_escape_string($connection, $publish_date);
+    $authors = mysqli_real_escape_string($connection, $authors);
+    $cover_url = mysqli_real_escape_string($connection, $cover_url);
+    $course_name = mysqli_real_escape_string($connection, $course_name);
+    $course_num = mysqli_real_escape_string($connection, $course_num);
+    $book_condition = mysqli_real_escape_string($connection, $book_condition);
+    $notes = mysqli_real_escape_string($connection, $notes);
     
     
     $query = 'INSERT INTO books(username,isbn,title,publish_date,authors,cover_url,course_name,course_num,book_condition,notes,price) ';
@@ -44,7 +44,7 @@ function getBook($id){
 function search ($search){
     $search = strtolower($search);
     global $connection;
-    $search = mysql_real_escape_string($search);
+    $search = mysqli_real_escape_string($connection, $search);
     $searchTerms = explode(' ', $search);
     $simpleWords = ['the','a','an','of','and','for','is'];
     foreach ($simpleWords as $word){  // removes all the simple words that may exist in many book titles, but not relevent to the book the user is searching
@@ -267,7 +267,7 @@ function getNotifications($username){
             $formattedNotification = $formattedNotification."
                <li>
                 <a href='myAccount.php'>
-                    <div>
+                    <div style='color:#535353'>
                         <i class='fa fa-envelope fa-fw'></i> {$notif['action']} {$notif['title']} for \${$notif['price']}
                         <span class='pull-right text-muted small'>4 minutes ago</span>
                     </div>
