@@ -158,71 +158,7 @@ $account = accountOverview($_SESSION['username']);
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="purchase col-lg-2"></div>
-                            <div class="col-lg-12">
-                                <div class="col-lg-8 purchase">SELL HISTORY</div>
-                                <div class="ibox">
-                                    <div class="ibox-content">
-
-                                        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-                                            <thead>
-                                                <tr>
-
-                                                    <th data-toggle="true">Title</th>
-                                                    <th data-hide="phone" data-sort-ignore="true">ISBN</th>
-                                                    <th data-hide="phone" data-sort-ignore="true">Course</th>
-                                                    <th>Price</th>
-                                                    <th class="text-right">Transaction Date</th>
-                                                    <th data-hide="all">Author(s)</th>
-                                                    <th data-hide="all">Book Condition</th>
-                                                    <th data-hide="all">Notes</th>
-                                                    <th data-hide="all">Buyer Name</th>
-                                                    <th data-hide="all">Buyer Email</th>
-                                                    <th data-hide="all">Buyer Phone</th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                            
-                                            foreach ($soldBooks as $book){
-                                                echo "<tr>";
-                                                echo "<td> {$book['title']}</td>";
-                                                echo "<td> {$book['isbn']}</td>";
-                                                echo "<td> <span class='label label-warning'>{$book['course_num']}</span></td>";
-                                                echo "<td>".'$'."{$book['price']}.00</td>";
-                                                $date = date("m/d/y",$book['trans_date']);
-                                                echo "<td class='text-right'> {$date}</td>";
-                                                echo "<td> {$book['authors']}</td>";
-                                                echo "<td> {$book['book_condition']}</td>";
-                                                echo "<td> {$book['notes']}</td>";
-                                                $buyer = getUser($book['buyer']);
-                                                echo "<td> {$buyer['name']}</td>";
-                                                echo "<td> <a href='mailto:{$buyer['email']}'>{$buyer['email']}</a></td>";
-                                                echo "<td> {$buyer['phone_num']}</td>";
-                                                echo "</tr>";
-                                            }
-                                            
-                                            
-                                            
-                                            ?>
-
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <td colspan="6">
-                                                        <ul class="pagination pull-right"></ul>
-                                                    </td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
+                                                <div class="row">
                             <div class="purchase col-lg-2" style="margin-top: 5px;"></div>
 
                             <div class="col-lg-12">
@@ -266,6 +202,70 @@ $account = accountOverview($_SESSION['username']);
                                                 echo "<td> {$seller['name']}</td>";
                                                 echo "<td> <a href='mailto:{$seller['email']}'>{$seller['email']}</a></td>";
                                                 echo "<td> {$seller['phone_num']}</td>";
+                                                echo "</tr>";
+                                            }
+                                            
+                                            
+                                            
+                                            ?>
+
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="6">
+                                                        <ul class="pagination pull-right"></ul>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="purchase col-lg-2"></div>
+                            <div class="col-lg-12">
+                                <div class="col-lg-8 purchase">SELL HISTORY</div>
+                                <div class="ibox">
+                                    <div class="ibox-content">
+
+                                        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                            <thead>
+                                                <tr>
+
+                                                    <th data-toggle="true">Title</th>
+                                                    <th data-hide="phone" data-sort-ignore="true">ISBN</th>
+                                                    <th data-hide="phone" data-sort-ignore="true">Course</th>
+                                                    <th>Price</th>
+                                                    <th class="text-right">Transaction Date</th>
+                                                    <th data-hide="all">Author(s)</th>
+                                                    <th data-hide="all">Book Condition</th>
+                                                    <th data-hide="all">Notes</th>
+                                                    <th data-hide="all">Buyer Name</th>
+                                                    <th data-hide="all">Buyer Email</th>
+                                                    <th data-hide="all">Buyer Phone</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                            
+                                            foreach ($soldBooks as $book){
+                                                echo "<tr>";
+                                                echo "<td> {$book['title']}</td>";
+                                                echo "<td> {$book['isbn']}</td>";
+                                                echo "<td> <span class='label label-warning'>{$book['course_num']}</span></td>";
+                                                echo "<td>".'$'."{$book['price']}.00</td>";
+                                                $date = date("m/d/y",$book['trans_date']);
+                                                echo "<td class='text-right'> {$date}</td>";
+                                                echo "<td> {$book['authors']}</td>";
+                                                echo "<td> {$book['book_condition']}</td>";
+                                                echo "<td> {$book['notes']}</td>";
+                                                $buyer = getUser($book['buyer']);
+                                                echo "<td> {$buyer['name']}</td>";
+                                                echo "<td> <a href='mailto:{$buyer['email']}'>{$buyer['email']}</a></td>";
+                                                echo "<td> {$buyer['phone_num']}</td>";
                                                 echo "</tr>";
                                             }
                                             
