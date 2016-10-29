@@ -14,7 +14,7 @@ if(!isset($_SESSION['username'])){
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>INSPINIA | Dashboard v.4</title>
+        <title>Sell | Duke Exchange</title>
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -61,7 +61,7 @@ if(!isset($_SESSION['username'])){
                 color: #555555;
                 cursor: default;
                 border: 0;
-                border-bottom-color: transparent;
+                border-bottom-color: #E0E0E0;
             }
             
             span.round-tab {
@@ -85,11 +85,11 @@ if(!isset($_SESSION['username'])){
             
             .wizard li.active span.round-tab {
                 background: #fff;
-                border: 2px solid #5bc0de;
+                border: 2px solid #001A57;
             }
             
             .wizard li.active span.round-tab i {
-                color: #5bc0de;
+                color: #001A57;
             }
             
             span.round-tab:hover {
@@ -98,7 +98,7 @@ if(!isset($_SESSION['username'])){
             }
             
             .wizard .nav-tabs > li {
-                width: 25%;
+                width: 20%;
             }
             
             .wizard li:after {
@@ -108,8 +108,8 @@ if(!isset($_SESSION['username'])){
                 opacity: 0;
                 margin: 0 auto;
                 bottom: 0px;
-                border: 5px solid transparent;
-                border-bottom-color: #5bc0de;
+                border: 5px solid #E0E0E0;
+                border-bottom-color: black;
                 transition: 0.1s ease-in-out;
             }
             
@@ -226,14 +226,14 @@ if(!isset($_SESSION['username'])){
                                                         <li role="presentation" class="disabled">
                                                             <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Course">
                                                                 <span class="round-tab">
-                                <i class="glyphicon glyphicon-pencil"></i>
+                                <i class="glyphicon glyphicon-menu-hamburger"></i>
                             </span>
                                                             </a>
                                                         </li>
                                                         <li role="presentation" class="disabled">
                                                             <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Book Condition">
                                                                 <span class="round-tab">
-                                <i class="glyphicon glyphicon-check"></i>
+                                <i class="glyphicon glyphicon-pencil"></i>
                             </span>
                                                             </a>
                                                         </li>
@@ -242,6 +242,13 @@ if(!isset($_SESSION['username'])){
                                                             <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Price">
                                                                 <span class="round-tab">
                                 <i class="glyphicon glyphicon-usd"></i>
+                            </span>
+                                                            </a>
+                                                        </li>
+                                                         <li role="presentation" class="disabled">
+                                                            <a href="#step5" data-toggle="tab" aria-controls="step5" role="tab" title="Confirm">
+                                                                <span class="round-tab">
+                                <i class="glyphicon glyphicon-arrow-right"></i>
                             </span>
                                                             </a>
                                                         </li>
@@ -348,6 +355,15 @@ if(!isset($_SESSION['username'])){
                                                             <ul class="list-inline pull-right">
                                                                 <li>
                                                                     <button type="button" class="btn btn-default prev-step">Previous</button>
+                                                                     <button id="confirm" type="button" class="btn btn-primary btn-info-full next-step">Sell</button>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="tab-pane" role="tabpanel" id="step5">
+                                                        <h2>You are about to sell this book. Continue?</h2>
+                                                            <ul class="list-inline pull-right">
+                                                                <li>
+                                                                    <button type="button" class="btn btn-default prev-step">Previous</button>
                                                                     <input type="submit" class="btn btn-primary" value="Sell">
                                                                 </li>
                                                             </ul>
@@ -403,7 +419,13 @@ if(!isset($_SESSION['username'])){
 
         <script>
             $(document).ready(function () {
-
+                //prevents users from pressing enter and submitting
+                $(window).keydown(function(event){
+                    if(event.keyCode == 13) {
+                        event.preventDefault();
+                        return false;
+                    }
+                });
                 $('#search').keyup(function (e) {
                     var search = $('#search').val();
                     //alert(search);
@@ -471,6 +493,15 @@ if(!isset($_SESSION['username'])){
                 function prevTab(elem) {
                     $(elem).prev().find('a[data-toggle="tab"]').click();
                 }
+                $('#confirm').click(function (e) { // when person clicks okay on modal
+                    var title = $('#title').val();
+                    var price = $('#price').val();
+                    var summary1 = 'You are about to post the following listing: "';
+                    var summary = summary1.concat(title, '" for $');
+                    summary = summary.concat(price, '.');
+                    $('#step5 h2').text(summary).append('<br/><br/>').append("<h4> Press sell to post this listing. <h4>");
+
+                }); 
                 $('#ok').click(function (e) { // when person clicks okay on modal
                     location.reload();
 
