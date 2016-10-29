@@ -269,7 +269,56 @@ function time_elapsed_string($ptime)// time elapsed function from stackoverflow 
         }
     }
 }
+function getNotificationArray($username){
+     global $connection;
+    $query = "SELECT * FROM notifications WHERE username = '$username' ORDER BY timestamp DESC";
+    $result = mysqli_query($connection,$query);
+    if(!$result){
+        die('Query Failed' . mysqli_error($connection));
+    }  
+    $formattedNotification = '';
+    while ($notif = mysqli_fetch_assoc($result)){
+        $info = "{$notif['action']} {$notif['title']} for \${$notif['price']}.";
+        $time = time_elapsed_string($notif['timestamp']);
+        $icon = '';
+        $color = "#00B16A";
+        $header=$notif['action'];
+        if($notif['action'] == 'Bought'){
+            $icon = 'fa fa-shopping-cart';
+            $header = 'Bought';
+            $color = "#EF4836"; //red
+        }
+        else if($notif['action'] == 'Someone bought'){
+            $icon = 'fa fa-usd';
+            $header = 'Sold';
 
+        }
+        else if (trim($notif['action']) == 'Added listing'){
+            $icon = 'fa fa-plus';
+            $header = 'Added Listing';
+            $color = "#19B5FE"; //light blue
+        }
+
+        echo"               <div class='vertical-timeline-block'>
+                                <div class='vertical-timeline-icon' style='color: #fff; background-color: $color'>
+                                    <i class='$icon'></i>
+                                </div>
+                                <div class='vertical-timeline-content'>
+                                    <h2>{$header}</h2>
+                                    <p class='query-message'>{$info}
+                                    </p>
+                                    
+                                    <button class='btn btn-sm btn-primary clear-notif'>Clear</button>
+                                    
+                                    <span class='vertical-date'>
+                                         <br/>
+                                        <small>{$time}</small>
+                                    </span>
+                                </div>
+                            </div>";
+    }
+
+}
 function getNotifications($username){
     
     global $connection;
@@ -339,10 +388,12 @@ function getNotifications($username){
             <li>
                 <li>
                     <div class='text-center link-block notif-color' style='background-color: #001A57; opacity: 0.9'>
+                        <form method ='post' action='notifications.php'>
                         <a href='notifications.php'>
                             <strong>See All Alerts</strong>
                             <i class='fa fa-angle-right'></i>
                         </a>
+                        </form>
                     </div>
                 </li>";                               
     

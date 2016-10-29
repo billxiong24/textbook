@@ -1,0 +1,11 @@
+.btn-primary{
+	background-color: transparent;
+	color: #019875;
+	border: solid #019875 1px !important;
+}
+.btn-primary:hover,
+.btn-primary:focus{
+	background-color: #019875 !important;
+	color: #fff !important;
+	border: solid #019875 1px;
+}
