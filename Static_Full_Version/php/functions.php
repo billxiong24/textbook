@@ -23,7 +23,7 @@ function addBook($username,$isbn,$title,$publish_date,$authors,$cover_url,$cours
     if(!$result){
         die('Query Failed' . mysqli_error($connection));
     }
-    addNotification($username,'Added listing ',$title,$price);
+    addNotification($username,'Added listing',$title,$price);
     
     
 }
@@ -132,7 +132,7 @@ function getCurrentListings($username){
 function boughtBooks($username){
     global $connection;
     $boughtBooks = array();
-    $query = "SELECT * FROM transaction_history WHERE buyer = '$username' ";
+    $query = "SELECT * FROM transaction_history WHERE buyer = '$username' ORDER BY trans_date DESC";
     $result = mysqli_query($connection, $query);
     
     while ($book = mysqli_fetch_assoc($result)){
@@ -147,7 +147,7 @@ function boughtBooks($username){
 function soldBooks($username){
     global $connection;
     $soldBooks = array();
-    $query = "SELECT * FROM transaction_history WHERE seller = '$username' ";
+    $query = "SELECT * FROM transaction_history WHERE seller = '$username' ORDER BY trans_date DESC";
     $result = mysqli_query($connection, $query);
     
     while ($book = mysqli_fetch_assoc($result)){
@@ -235,6 +235,40 @@ function addNotification($username,$action,$title,$price){
     }  
     
 }
+function time_elapsed_string($ptime)// time elapsed function from stackoverflow http://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago
+{
+    $etime = time() - $ptime;
+
+    if ($etime < 1)
+    {
+        return '0 seconds';
+    }
+
+    $a = array( 365 * 24 * 60 * 60  =>  'year',
+                 30 * 24 * 60 * 60  =>  'month',
+                      24 * 60 * 60  =>  'day',
+                           60 * 60  =>  'hour',
+                                60  =>  'minute',
+                                 1  =>  'second'
+                );
+    $a_plural = array( 'year'   => 'years',
+                       'month'  => 'months',
+                       'day'    => 'days',
+                       'hour'   => 'hours',
+                       'minute' => 'minutes',
+                       'second' => 'seconds'
+                );
+
+    foreach ($a as $secs => $str)
+    {
+        $d = $etime / $secs;
+        if ($d >= 1)
+        {
+            $r = round($d);
+            return $r . ' ' . ($r > 1 ? $a_plural[$str] : $str) . ' ago';
+        }
+    }
+}
 
 function getNotifications($username){
     
@@ -249,13 +283,33 @@ function getNotifications($username){
     $unread = 0; // will count number of new notifications
     while ($counter<5){
         $notif = mysqli_fetch_assoc($result);
+        $info = "{$notif['action']} {$notif['title']} for \${$notif['price']}";
+        if(strlen($info)>=39){ // cuts off the notification string if it is too long so it can fit in the notifications box
+            $info = substr($info,0,38);
+            $info = $info.'...'; 
+        }
+        $time = time_elapsed_string($notif['timestamp']);
+        $icon = '';
+        if($notif['action'] == 'Bought'){
+            $icon = 'fa fa-shopping-cart';
+        }
+        else if($notif['action'] == 'Someone bought'){
+            $icon = 'fa fa-usd';
+            
+        }
+        else if ($notif['action'] == 'Added listing'){
+            $icon = 'fa fa-plus';
+        }
+        
+        
+        
         if ($notif['looked_at']==0){
                     $formattedNotification = $formattedNotification."
                <li>
                 <a href='myAccount.php'>
                     <div style='color: red;'>
-                        <i class='fa fa-envelope fa-fw'></i> {$notif['action']} {$notif['title']} for \${$notif['price']}
-                        <span style='color: red;'class='pull-right text-muted small'>4 minutes ago</span>
+                        <i class='$icon fa-fw'></i> {$info}
+                        <span style='color: red;'class='pull-right text-muted small'>{$time}</span>
                     </div>
                 </a>
             </li>
@@ -268,8 +322,8 @@ function getNotifications($username){
                <li>
                 <a href='myAccount.php'>
                     <div style='color:#535353'>
-                        <i class='fa fa-envelope fa-fw'></i> {$notif['action']} {$notif['title']} for \${$notif['price']}
-                        <span class='pull-right text-muted small'>4 minutes ago</span>
+                        <i class='$icon fa-fw'></i> {$info}
+                        <span class='pull-right text-muted small'>{$time}</span>
                     </div>
                 </a>
             </li>
