@@ -107,7 +107,7 @@ $account = accountOverview($_SESSION['username']);
                         <div class="row">
                             <div class="purchase col-lg-2"></div>
                             <div class="col-lg-12">
-                                <div class="col-lg-8 purchase">CURRENT LISTINGS</div>
+                                <a class="col-lg-8 purchase" name="listings" href="#listings">CURRENT LISTINGS</a>
                                 <div class="ibox">
                                     <div class="ibox-content">
 
@@ -162,7 +162,7 @@ $account = accountOverview($_SESSION['username']);
                             <div class="purchase col-lg-2" style="margin-top: 5px;"></div>
 
                             <div class="col-lg-12">
-                                <div class="col-lg-8 purchase">PURCHASE HISTORY</div>
+                                <a name="purchase-history" href="#purchase-history"><div class="col-lg-8 purchase">PURCHASE HISTORY</div></a>
                                 <div class="ibox tab">
                                     <div class="ibox-content">
 
@@ -226,7 +226,7 @@ $account = accountOverview($_SESSION['username']);
                         <div class="row">
                             <div class="purchase col-lg-2"></div>
                             <div class="col-lg-12">
-                                <div class="col-lg-8 purchase">SELL HISTORY</div>
+                                <a class="col-lg-8 purchase" name="sold" href="#sold"><div class="col-lg-8 purchase">SELL HISTORY</div></a>
                                 <div class="ibox">
                                     <div class="ibox-content">
 

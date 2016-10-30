@@ -282,6 +282,7 @@ function getNotificationArray($username){
         $time = time_elapsed_string($notif['timestamp']);
         $icon = '';
         $color = "#00B16A";
+        $link = '/textbook/Static_Full_Version/myAccount.php#purchase-history';
         $header=$notif['action'];
         if($notif['action'] == 'Bought'){
             $icon = 'fa fa-shopping-cart';
@@ -291,12 +292,13 @@ function getNotificationArray($username){
         else if($notif['action'] == 'Someone bought'){
             $icon = 'fa fa-usd';
             $header = 'Sold';
-
+            $link='/textbook/Static_Full_Version/myAccount.php#sold';
         }
         else if (trim($notif['action']) == 'Added listing'){
             $icon = 'fa fa-plus';
             $header = 'Added Listing';
             $color = "#19B5FE"; //light blue
+            $link='/textbook/Static_Full_Version/myAccount.php#listings';
         }
 
         echo"               <div class='vertical-timeline-block'>
@@ -308,7 +310,7 @@ function getNotificationArray($username){
                                     <p class='query-message'>{$info}
                                     </p>
                                     
-                                    <button class='btn btn-sm btn-primary clear-notif'>Clear</button>
+                                    <a class='btn btn-sm btn-primary' href='$link'>Details</a>
                                     
                                     <span class='vertical-date'>
                                          <br/>

@@ -23,7 +23,6 @@ $user = getUser($_SESSION['username']);
         <!-- FooTable -->
         <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
-        <!--                <link href="css/data.css" rel="stylesheet">-->
 
     </head>
 
@@ -41,7 +40,7 @@ $user = getUser($_SESSION['username']);
 -->
                     <div class="title" style="text-align: center; margin-top: 100px">
                         <h3 style="font-weight: 400;">You have purchased this book. The seller will contact you and deliver your product.
-                        <br/><br/>You can see the details of your purchase <a href="myAccount.php">here</a>.</h3>
+                        <br/><br/>You can see the details of your purchase <a href="myAccount.php#purchase-history">here</a>.</h3>
                     </div>
                     <div class="wrapper wrapper-content animated fadeInRight expose">
                         <div class="row content">

@@ -96,11 +96,8 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                                 <a aria-expanded="false" role="button" href="data.html"> My Account</a>
                             </li> -->
                                 <li>
-                                    <a aria-expanded="false" role="button" href="auth.html"> Sign up</a>
-                                </li>
-                                <li>
                                     <a href="oauth.php">
-                                Log in
+                                About us
                                 </a>
                                 </li>
 
@@ -109,10 +106,39 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                     </nav>
                 </div>
                 <div class="foobar">
-                    <span>Duke Exchange</span>
+                    <div>
+                        <span>One account, all of Duke.</span>
+                    </div>
+                    <div class='small-message'>
+                     <span>Get everything you need on campus. It's easy and free.</span>
+                    </div>
+                    <form method="get" action="oauth.php">
+                        <button class="btn btn-xs btn-outline btn-success getting-started">Let's get started</button>
+                    </form>
                 </div>
+                    <!-- <div class=col-md-4></div>             
+                    <div class="col-md-4 data">
+                            <div class="ibox-content">
+                                    <div class=individual>
+                                        <span>Current Temperature</span>
+                                        <small class="pull-right">10/200 GB</small>
+                                    </div>
+                                    <div class=individual>
+                                        <span>Conditions</span>
+                                        <small class="pull-right">20 GB</small>
+                                    </div>
+                                    <div class=individual>
+                                        <span>Feels Like</span>
+                                        <small class="pull-right">73%</small>
+                                    </div>
+                                    <div class=individual>
+                                        <span>Later Today</span>
+                                        <small class="pull-right">400 GB</small>
+                                    </div>
+                            </div>
+                        </div> -->
 
-                <div class="search-form animated fadeInDown">
+                <!-- <div class="search-form animated fadeInDown">
                     <form action="index.html" method="get">
                         <div class="input-group">
                             <input type="text" name="search" class="form-control input-lg foc">
@@ -123,11 +149,8 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                             </div>
                         </div>
                     </form>
-                </div>
+                </div> -->
                 <div class="footer">
-                    <div class="pull-right about">
-                        About us
-                    </div>
                     <div class="about">
                         <strong>Copyright</strong> Duke Exchange &copy; 2016
                     </div>

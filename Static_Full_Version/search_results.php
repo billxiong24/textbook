@@ -29,11 +29,12 @@ else {
 
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+        <link href="css/home.css" rel="stylesheet">
         <link href="css/search_results.css" rel="stylesheet">
 
     </head>
 
-    <body>
+    <body class='top-navigation'>
         <div id="buyModal" class="modal inmodal fade" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-md">
                 <div class="modal-content">
@@ -78,119 +79,8 @@ else {
             </div>
         </div>
         <div id="wrapper">
-
-            <nav class="navbar-default navbar-static-side" role="navigation">
-                <div class="logo">
-                    <a href="home.php">Duke <span class="smaller">EXCHANGE</span></a>
-                </div>
-                <div class="sidebar-collapse">
-
-                </div>
-
-
-                <div class="filter-message">
-                    <h2 style="color: #E8E8E8;"><i class="fa fa-filter"></i><span style="margin-left: 10px;">Filter search</span></h2>
-
-
-                </div>
-
-
-                <div class="search-filter">
-                    <div class="ibox float-e-margins">
-                        <div class="filter ibox-content">
-
-                            <small class="labels">Price: </small>
-                            <ul class="list1 todo-list m-t small-list">
-                                <li style="background-color: #FAFAFA">
-                                    <a href="#" class="check-link"><i class="howdy fa fa-square-o"></i> </a>
-                                    <span class="m-l-xs">Under $5</span>
-                                </li>
-                                <li style="background-color: #FAFAFA">
-                                    <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                    <span class="m-l-xs">Under $15</span>
-
-                                </li>
-                                <li style="background-color: #FAFAFA">
-                                    <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                    <span class="m-l-xs">Under $30</span>
-                                </li>
-                                <li style="background-color: #FAFAFA">
-                                    <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                    <span class="m-l-xs">Any</span>
-                                </li>
-                            </ul>
-                            <p></p>
-                            <small class="labels">Condition: </small>
-                            <ul class="list2 todo-list m-t small-list">
-                                <li style="background-color: #FAFAFA">
-                                    <a href="#" class="check-link"><i class="howdy fa fa-square-o"></i> </a>
-                                    <span class="m-l-xs">New</span>
-                                </li>
-                                <li style="background-color: #FAFAFA">
-                                    <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                    <span class="m-l-xs">Good</span>
-
-                                </li>
-                                <li style="background-color: #FAFAFA">
-                                    <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                    <span class="m-l-xs">Fair</span>
-                                </li>
-                                <li style="background-color: #FAFAFA">
-                                    <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a>
-                                    <span class="m-l-xs">Any</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </nav>
-
-
             <div id="page-wrapper">
-                <div class="row logo-align">
-                    <nav class="navbar navbar-static-top ibox float-e-margins" role="navigation">
-                        <div class="navbar-header" style="margin-top: 0px;">
-                            <button style="" aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-                                <i class="fa fa-reorder"></i>
-                            </button>
-                            <a href="#" class="navbar-brand"></a>
-                        </div>
-                        <div class="navbar-collapse collapse" id="navbar">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown">
-                                    <a style="margin-top: -6px;" aria-expanded="false" role="button" href="home.php"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
-                                </li>
-                                <li class="dropdown">
-                                    <a style="margin-top: -6px;" aria-expanded="false" role="button" href="sell_integrated.php"><i class="fa fa-tag" aria-hidden="true"></i>Sell</a>
-                                </li>
-
-                                <li class="dropdown">
-                                    <a style="margin-top: -6px;" aria-expanded="false" role="button" href="myAccount.php"><i class="fa fa-user" aria-hidden="true"></i>My Account</a>
-                                </li>
-                                <li id="readNotifications" class="dropdown">
-                                    <a style="margin-top: -6px;" class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                        <i class="fa fa-bell"></i> <span id="unreadNotifications" class="label label-primary"></span> Notifications
-                                    </a>
-                                    <ul id='notifications' class="dropdown-menu dropdown-alerts" style="width: 300%">
-
-                                    </ul>
-
-                                </li>
-                                <li class="dropdown">
-                                    <a style="margin-right: 20px; margin-top: -6px;" href="./php/logout.php">
-                                        <i class="fa fa-sign-out" aria-hidden="true"></i>Log out
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-
-
+                <?php include 'navbar.php'; ?>
                 <!-- <div class="recommend rec-message">
             <span>Search Results for "Some search"</span>
         </div> -->
@@ -211,6 +101,73 @@ else {
                                                     <button class="btn btn-lg btn-primary space" type="submit">
                                                         <i class="fa fa-search"></i>
                                                     </button>
+                                                     <li class="dropdown" style="display: inline; margin-left: 5px;">
+                    <a class="dropdown-toggle count-info btn btn-lg btn-primary space" data-toggle="dropdown" href="#">
+                                                        <i class="fa fa-filter"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts pull-right todo-list m-t" style=" margin-top: 20px;  width: 250px; padding-top: 5px;">
+                        <span class=labels>Price: </span> 
+                        <li>
+                        <label>
+                            <input type="checkbox" value="" name="" class="i-checks"/>
+                            <span class="m-l-xs">Under $5</span>
+                        </label>
+                        </li>
+                        <li>
+                        <label>
+                            <input type="checkbox" value="" name="" class="i-checks"/>
+                            <span class="m-l-xs">Under $10</span>
+                        </label>
+                        </li>
+                        <li>
+                        <label>
+                            <input type="checkbox" value="" name="" class="i-checks" />
+                            <span class="m-l-xs">Under $20</span>
+                        </label>    
+                        </li>
+                        <li>
+                           <label>
+                            <input type="checkbox" value="" name="" class="i-checks" />
+                            <span class="m-l-xs">Under $30</span>
+                        </label>  
+                            
+                        </li>
+                        <li>
+                            <label>
+                            <input type="checkbox" value="" name="" class="i-checks" />
+                            <span class="m-l-xs">Any</span>
+                        </label>  
+                            
+                        </li>
+                        <span class=labels>Condition:</span> 
+                        <li>
+                            <label>
+                            <input type="checkbox" value="" name="" class="i-checks" />
+                            <span class="m-l-xs">New</span>
+                        </label>  
+                            
+                        </li>
+                        <li>
+                          <label>
+                            <input type="checkbox" value="" name="" class="i-checks" />
+                            <span class="m-l-xs">Good</span>
+                        </label>  
+                        </li>
+                        <li>
+                           <label>
+                            <input type="checkbox" value="" name="" class="i-checks" />
+                            <span class="m-l-xs">Fair</span>
+                        </label>  
+                            
+                        </li>
+                        <li>
+                           <label>
+                            <input type="checkbox" value="" name="" class="i-checks" />
+                            <span class="m-l-xs">Any</span>
+                        </label>  
+                        </li>
+                    </ul>
+                </li>
                                                 </div>
                                             </div>
 
@@ -336,7 +293,7 @@ else {
         <!-- Toastr -->
         <script src="js/plugins/toastr/toastr.min.js"></script>
         <!-- Custom script -->
-        <script src="js/frontpage.js">
+        <!--<script src="js/frontpage.js">-->
         </script>
 
         <script>
