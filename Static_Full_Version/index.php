@@ -122,7 +122,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                                     <div class="search-form animated fadeInDown">
                                         <form action="index.html" method="get">
                                             <div class="input-group" style="font-weight: normal">
-                                                <input type="text" name="search" class="form-control input-lg foc">
+                                                <input type="text" name="search" class="form-control input-lg foc" autocomplete="off">
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-lg btn-primary" type="submit">
                                                         <i class="fa fa-search"></i>

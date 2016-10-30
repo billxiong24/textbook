@@ -5,16 +5,16 @@
 .dropdown .space:focus{
   background-color: #001A40 !important;
 }
-.dropdown-menu .labels{
+.todo-list .labels{
   margin-top: 5px;
   font-family: Arial;
   font-size: 12px;
 
 }
-.dropdown-menu{
+.todo-list{
   background-color: #F1F1F1;
 }
-.dropdown-menu li{
+.todo-list li{
   font-family: Arial;
   background-color: #F1F1F1;
 }

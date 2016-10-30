@@ -63,7 +63,7 @@ $user = getUser($_SESSION['username']);
                                             <?php echo $user['phone_num']; ?>
                                         </li>
                                         <li class="pull-right">
-                                            <a class="btn btn-xs btn-white"><i class="fa fa-pencil-square"></i> Update </a>
+                                            <a class="btn btn-xs btn-white"><i class="fa fa-pencil-square"></i> Update Info</a>
                                         </li>
                                     </ul>
                                 </div>

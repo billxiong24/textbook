@@ -335,6 +335,7 @@ function getNotifications($username){
     while ($counter<5){
         $notif = mysqli_fetch_assoc($result);
         $info = "{$notif['action']} {$notif['title']} for \${$notif['price']}";
+        $link = '/textbook/Static_Full_Version/myAccount.php';
         if(strlen($info)>=39){ // cuts off the notification string if it is too long so it can fit in the notifications box
             $info = substr($info,0,38);
             $info = $info.'...'; 
@@ -343,13 +344,15 @@ function getNotifications($username){
         $icon = '';
         if($notif['action'] == 'Bought'){
             $icon = 'fa fa-shopping-cart';
+            $link .='#purchase-history';
         }
         else if($notif['action'] == 'Someone bought'){
             $icon = 'fa fa-usd';
-            
+            $link .= '#sold';
         }
         else if ($notif['action'] == 'Added listing'){
             $icon = 'fa fa-plus';
+            $link .= '#listings';
         }
         
         
@@ -357,7 +360,7 @@ function getNotifications($username){
         if ($notif['looked_at']==0){
                     $formattedNotification = $formattedNotification."
                <li>
-                <a href='myAccount.php'>
+                <a href='$link'>
                     <div style='color: red;'>
                         <i class='$icon fa-fw'></i> {$info}
                         <span style='color: red;'class='pull-right text-muted small'>{$time}</span>
@@ -371,7 +374,7 @@ function getNotifications($username){
         else {
             $formattedNotification = $formattedNotification."
                <li>
-                <a href='myAccount.php'>
+                <a href='$link'>
                     <div style='color:#535353'>
                         <i class='$icon fa-fw'></i> {$info}
                         <span class='pull-right text-muted small'>{$time}</span>
