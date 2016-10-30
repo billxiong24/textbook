@@ -1,6 +1,7 @@
 <?php
 include "./php/functions.php";
 session_start();
+//auth
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
