@@ -48,12 +48,13 @@ $user = getUser($_SESSION['username']);
                                 <div class="widget ibox-content text-center">
                                     <h1><?php echo $user['name']; ?></h1>
                                     <div class="m-b-sm">
-                                        <img alt="image" class="img-circle" src="img/a8.jpg">
+                                        <i class="fa fa-user" style="font-size: 7em"></i>
+                                        <!-- <img alt="image" class="img-circle" src="img/a8.jpg"> -->
                                     </div>
                                     <ul class="list-unstyled m-t-md">
                                         <li>
                                             <span class="fa fa-envelope m-r-xs"></span>
-                                            <label>Email:</label>
+                                            <label>Email:</label>   
                                             <?php echo $user['email']; ?>
                                         </li>
                                         <li>

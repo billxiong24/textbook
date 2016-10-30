@@ -388,7 +388,7 @@ else {
                         success: function (data) {
                             if (!data.error) { // this sort of json accessing data only works in ajax
                                 $('#buyModal').delay(1000).modal('hide');
-                                window.location.replace('./myAccount.php');
+                                window.location.replace('./buy-confirm.php');
 
                             }
                         }

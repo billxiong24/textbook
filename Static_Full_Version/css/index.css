@@ -40,7 +40,7 @@ body {
     border-collapse: separate;
     margin: auto;
     width: 50%;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .input-group .form-control {
@@ -168,17 +168,18 @@ body {
 }
 
 .btn-primary {
+    border: solid #001A57 1px !important;
     background-color: #001A57;
     color: white;
-    height: 46px;
-    margin-top: -1px;
+    height: 44px;
     margin-right: 5px;
     border-radius: 3px;
 }
 
 .btn-primary:hover,
 .btn-primary:focus {
-    background-color: #001A40;
+    border: solid #001A57 1px !important;
+    background-color: #001A40 !important;
     color: white;
 }
 
@@ -188,12 +189,10 @@ body {
     width: 90%;
     max-height: 100px;
     margin-top: 130px;
-    font-family: Garamond;
     font-weight: 300;
-    font-size: 70px;
-    color: #001A57;
-    letter-spacing: 7px;
-    padding-bottom: 10px;
+    font-size: 50px;
+    color: white;
+    letter-spacing: 0px;
     text-align: center;
 }
 
@@ -231,7 +230,10 @@ body {
     color: #001A57;
 }
 
-
+.nav-static-top, .row{
+    background-color: #001A57;
+    opacity: 0.9;
+}
 /*override*/
 
 .top-navigation .navbar-brand {
@@ -239,7 +241,7 @@ body {
     letter-spacing: 2px;
     font-size: 25px;
     background-color: transparent;
-    color: #001A57;
+    color: white;
     padding: 15px 25px;
 }
 
@@ -255,10 +257,14 @@ body {
 .top-navigation .nav > li a:hover,
 .top-navigation .nav > li a:focus {
     background: transparent;
-    color: #001A57;
+    color: #D1D1D1;
 }
-
+.top-navigation .nav > li a {
+    background: transparent;
+    color: #fff;
+}
 .footer {
+    color: white;
     border: none;
     background-color: transparent;
 }
@@ -268,7 +274,7 @@ body {
 }
 
 .about {
-    color: #515151;
+    color: white;
 }
 
 .footer {
