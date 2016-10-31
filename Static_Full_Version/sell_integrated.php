@@ -207,6 +207,7 @@ if(!isset($_SESSION['username'])){
                             </h2>
                                         <p>
                                             Want to sell your book? It's easy- just follow the steps below. 
+                                            <img src="img/poweredgoogle.png"></img>
                                         </p>
 
                                         <section>
