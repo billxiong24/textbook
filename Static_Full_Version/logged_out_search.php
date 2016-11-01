@@ -1,16 +1,7 @@
 <?php
-include './php/functions.php';
-session_start();
-//authenticating? change redirecting
-if (isset($_POST['first_name'])){ // add users once they add their information in the create account modal
-    
-    $first_name = trim($_POST['first_name']);
-    $last_name = trim($_POST['last_name']);
-    $name = $first_name . ' ' . $last_name;
-    addUser($_SESSION['username'],$name,$_POST['phone_num'],$_POST['email']);
-    header('Location: home.php');
-}
-if (isset($_POST['search'])){
+include "./php/functions.php";
+
+if (isset($_GET['search'])){
     $result = search($_GET['search']);
 }
 else {
@@ -26,7 +17,7 @@ else {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title><?php echo $_POST['search'] ?> - Duke Exchange</title>
+        <title><?php echo $_GET['search'] ?> - Duke Exchange</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
@@ -44,52 +35,29 @@ else {
     </head>
 
     <body class='top-navigation'>
-        <div id="buyModal" class="modal inmodal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title">Confirm Purchase</h4>
-                        <small class="font-bold">Click Buy to continue with purchase.</small>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-md-6">
-                            <div class="ibox">
-                                <div class="ibox-content product-box">
-
-                                    <div id='pic' class="product-imitation">
-                                        Book Cover
-                                    </div>
-                                    <div class="product-desc">
-                                        <span id='productPrice' class="product-price"></span>
-                                        <a href="#" id='book_title' class="product-name"></a>
-
-                                        <!--
-                                        <div class="small m-t-xs">
-                                            Many desktop publishing packages and web page editors now.
-                                        </div>
--->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sell-info">
-                            <p id='seller'></p>
-                            <p id='email'></p>
-                            <p id='phone_num'></p>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                        <button id="buy" type="button" class="btn btn-white buy-modal-button">Buy</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div id="wrapper">
             <div id="page-wrapper">
-                <?php include 'navbar.php'; ?>
+                 <div class="row">
+                    <nav class="navbar navbar-static-top" role="navigation">
+                        <div class="navbar-header">
+                            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                                <i class="fa fa-reorder"></i>
+                            </button>
+                            <a href="home.php" class="navbar-brand">Duke 
+                        <span class="smaller">EXCHANGE</span></a>
+                        </div>
+                        <div class="navbar-collapse collapse" id="navbar">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a href="./php/logout.php">
+                                        <i class="fa fa-sign-in" aria-hidden="true"></i>Log in
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
                 <!-- <div class="recommend rec-message">
             <span>Search Results for "Some search"</span>
         </div> -->
@@ -99,11 +67,11 @@ else {
                             <div class="ibox float-e-margins">
                                 <div class="ibox-content">
                                     <h2>
-                                <?php echo count($result); ?> results found for: <span style="color: #001A57"><?php echo $_POST['search']; ?></span>
+                                <?php echo count($result); ?> results found for: <span style="color: #001A57"><?php echo $_GET['search']; ?></span>
                             </h2>
 
                                     <div class="search-form">
-                                        <form action="search_results.php" method="post">
+                                        <form action="logged_out_search.php" method="get">
                                             <div class="input-group">
                                                 <input type="text" placeholder="Search ISBN, Title, Author, or Class" name="search" class="form-control input-lg">
                                                 <div class="input-group-btn">
@@ -244,7 +212,7 @@ else {
                 
                                 echo'
                                 <div class="m-t text-right buy">
-                                    <button href="#" data-id ='; echo "\"{$result[$i]['id']}\""; echo 'class="btn btn-xs btn-outline btn-success bought" data-toggle="modal" data-target="#buyModal">Buy <i class="fa fa-long-arrow-right"></i> </button>
+                                    <button href="#" data-id ='; echo "\"{$result[$i]['id']}\""; echo 'class="btn btn-xs btn-outline btn-success bought" id="login">Buy <i class="fa fa-long-arrow-right"></i> </button>
                                 </div>
                             </div>
                         </div>
@@ -307,97 +275,8 @@ else {
 
         <script>
             $(document).ready(function () {
-
-                var bookID; // used to store the book id for other functions on this page
-                $('.bought').click(function (evt) {
-                    bookID = $(this).data("id");
-                    $.ajax({
-                        type: 'POST',
-                        data: {
-                            bookID: $(this).data("id")
-                                //id of book stored in buy link
-                        },
-                        url: './php/get_book_details.php',
-                        dataType: "json",
-                        success: function (data) {
-
-                            if (!data.error) { // this sort of json accessing data only works in ajax
-                                var seller = '<strong>Seller: </strong>' + data.seller;
-                                var email = '<strong>Email: </strong>' + data.email;
-                                var phone_num = '<strong>Phone: </strong>' + data.phone_num;
-                                var pic = "<img src=\"" + data.pic + "\">";
-                                var price = '$' + data.price;
-                                //alert(seller);
-                                $('#seller').html(seller);
-                                $('#email').html(email);
-                                $('#phone_num').html(phone_num);
-                                $('#productPrice').html(price);
-                                $('#pic').html(pic);
-                                $('#book_title').html(data.title);
-
-                            }
-
-                        }
-                    });
-
-                });
-
-                $('#buy').click(function (evt) {
-                    $.ajax({
-                        type: 'POST',
-                        data: {
-                            bookID: bookID
-                                //id of book stored in buy link
-                        },
-                        url: './php/buy_book.php',
-                        dataType: "text",
-                        success: function (data) {
-                            if (!data.error) { // this sort of json accessing data only works in ajax
-                                $('#buyModal').delay(1000).modal('hide');
-                                window.location.replace('./buy-confirm.php');
-
-                            }
-                        }
-                    });
-
-                });
-
-                refresh = setInterval(function () {
-                    refreshNotifications();
-
-                }, 1000);
-
-                function refreshNotifications() {
-                    $.ajax({
-                        url: './php/refreshNotifications.php',
-                        dataType: "json",
-                        success: function (data) {
-                            if (!data.error) { // this sort of json accessing data only works in ajax
-                                if (data.unread != 0) { // wont display notifications label if none exist
-                                    $('#unreadNotifications').html(data.unread);
-                                    $('#notifications').html(data.notifications);
-                                } else {
-                                    $('#unreadNotifications').html('');
-                                    $('#notifications').html(data.notifications);
-                                }
-
-
-
-                            }
-                        }
-                    });
-                }
-
-                $('#readNotifications').click(function (evt) {
-                    $(document).click(function () {
-                        $.ajax({
-                            url: './php/readNotifications.php',
-                            success: function (data) {}
-                        });
-
-
-                    });
-
+                $('#login').click(function(){
+                    window.location.replace('logged_out_redirect.php');
                 });
 
             });

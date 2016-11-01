@@ -11,8 +11,6 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
     header('Location: home.php');
 }
 
-
-
 ?>
 
     <!DOCTYPE html>
@@ -97,7 +95,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                             </li> -->
                                 <li>
                                     <a href="oauth.php">
-                                Log in
+                                <i class="fa fa-sign-in"></i>Log in
                                 </a>
                                 </li>
 
@@ -120,7 +118,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                                 <div class="back">
                                     <div class="small-message" style="margin-bottom: -25px;">Search for a book- it's that easy.</div>
                                     <div class="search-form animated fadeInDown">
-                                        <form action="index.html" method="get">
+                                        <form action="logged_out_search.php" method="get">
                                             <div class="input-group" style="font-weight: normal">
                                                 <input type="text" name="search" class="form-control input-lg foc" autocomplete="off">
                                                 <div class="input-group-btn">

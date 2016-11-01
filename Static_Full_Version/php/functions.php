@@ -333,12 +333,9 @@ function getNotifications($username){
     $counter = 0; 
     $unread = 0; // will count number of new notifications
     while ($notif = mysqli_fetch_assoc($result)){
-
+        
         $info = "{$notif['action']} {$notif['title']} for \${$notif['price']}";
         $link = '/textbook/Static_Full_Version/myAccount.php';
-        if(!isset($info) || strlen($info) < 1){
-            continue;
-        }
         if(strlen($info)>=39){ // cuts off the notification string if it is too long so it can fit in the notifications box
             $info = substr($info,0,38);
             $info = $info.'...'; 
@@ -390,9 +387,10 @@ function getNotifications($username){
         }
 
         
-    $counter++;    
+    $counter++;
     if($counter >= 5)
         break;
+            
     }
     $formattedNotification = $formattedNotification." 
             <li>
