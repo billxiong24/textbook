@@ -142,7 +142,7 @@ public class SendEmailAuto {
 			//Actually sends message- send is static method, so use class to access
 			
 			Transport.send(m);
-			//System.out.println("Message successfully sent.");
+			System.out.println("Message successfully sent.");
 		}
 		catch(MessagingException e){
 			System.out.println("Email failed to send. Check username and password.");

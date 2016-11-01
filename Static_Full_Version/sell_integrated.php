@@ -497,14 +497,20 @@ if(!isset($_SESSION['username'])){
                 $('#confirm').click(function (e) { // when person clicks okay on modal
                     var title = $('#title').val();
                     var price = $('#price').val();
-                    var summary1 = 'You are about to post the following listing: "';
-                    var summary = summary1.concat(title, '" for $');
-                    summary = summary.concat(price, '.');
-                    $('#step5 h2').text(summary).append('<br/><br/>').append("<h4> Press sell to post this listing. <h4>");
+                    var course = $('#course').val();
+                    var notes = $('#notes').val();
+
+                    var summary1 = 'You are about to post the following listing: <br/>';
+                    var summary2 = '<span style="color: #001A57; font-weight: bold; font-size: 16px;">"' + title + '"</span> for <span style="color: #001A57; font-weight: bold; font-size: 16px;">$';
+                    summary2 += price +  '</span>. <br/> <br/>';
+                    summary2 +='<img src='+$('#coverURL').val() +'></img><br/><br/>'
+                    summary2 += 'Class: <span style="color: #001A57; font-weight: bold; font-size: 16px;">' + course + '</span> <br/> ';
+                    summary2 += "Notes: " + notes + '<br/>';
+                    $('#step5 h2').html(summary1).append('<br/>').append('<h3 style="font-weight: normal; font-size: 16px">' + summary2 + '</h3>').append("<h4> Press sell to post this listing. <h4>");
 
                 }); 
                 $('#ok').click(function (e) { // when person clicks okay on modal
-                    location.reload();
+                    window.location.replace('list-confirm.php');
 
                 });
 

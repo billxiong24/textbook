@@ -24,7 +24,7 @@ echo '
                                 <li id="readNotifications" class="dropdown">
                                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
 
-                                        <i class="fa fa-bell"></i> <span id="unreadNotifications" class="label label-primary"></span> 
+                                        <i class="fa fa-bell"></i> <span id="unreadNotifications" class="label label-danger"></span> 
                                         Notifications
                                     </a>
                                     <ul id="notifications" class="dropdown-menu dropdown-alerts" style="width: 300%">
