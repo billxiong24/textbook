@@ -6,7 +6,7 @@ body {
   overflow-x: hidden;
 }
 #page-wrapper{
-  background-color: #F1F1F1;
+  background-color: #363051;
 }
 
 .row{
@@ -506,7 +506,7 @@ h2{
   margin-right: 20px;
 }
 .navbar-static-top{
-  background-color: #002365;
+  background-color: #363051;
   opacity: 0.9;
 }
 .btn-lg{
@@ -521,6 +521,7 @@ h2{
   margin-top: 50px;
 }
 .title h1{
+  color: #F1F1F1;
   text-align: center;
   font-size: 45px;
 }

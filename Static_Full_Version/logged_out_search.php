@@ -49,7 +49,7 @@ else {
                         <div class="navbar-collapse collapse" id="navbar">
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a href="./php/logout.php">
+                                    <a href="oauth.php">
                                         <i class="fa fa-sign-in" aria-hidden="true"></i>Log in
                                     </a>
                                 </li>
@@ -212,7 +212,7 @@ else {
                 
                                 echo'
                                 <div class="m-t text-right buy">
-                                    <button href="#" data-id ='; echo "\"{$result[$i]['id']}\""; echo 'class="btn btn-xs btn-outline btn-success bought" id="login">Buy <i class="fa fa-long-arrow-right"></i> </button>
+                                    <button href="#" data-id ='; echo "\"{$result[$i]['id']}\""; echo 'class="btn btn-xs btn-outline btn-success bought">Buy <i class="fa fa-long-arrow-right"></i> </button>
                                 </div>
                             </div>
                         </div>
@@ -275,7 +275,7 @@ else {
 
         <script>
             $(document).ready(function () {
-                $('#login').click(function(){
+                $('.bought').click(function(){
                     window.location.replace('logged_out_redirect.php');
                 });
 

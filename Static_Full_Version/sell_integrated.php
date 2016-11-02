@@ -503,7 +503,7 @@ if(!isset($_SESSION['username'])){
 
                 }); 
                 $('#ok').click(function (e) { // when person clicks okay on modal
-                    location.reload();
+                    window.location.replace('listing-confirm.php');
 
                 });
 

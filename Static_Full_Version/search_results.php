@@ -11,7 +11,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
     header('Location: home.php');
 }
 if (isset($_POST['search'])){
-    $result = search($_GET['search']);
+    $result = search($_POST['search']);
 }
 else {
     $result = array();

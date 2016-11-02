@@ -1,5 +1,11 @@
 <?php
 include "./php/functions.php";
+session_start();
+if(!isset($_SESSION['username'])){
+    header('Location: index.php');
+}
+$account = accountOverview($_SESSION['username']);
+$user = getUser($_SESSION['username']);
 ?>
     <!DOCTYPE html>
     <html>
@@ -29,29 +35,9 @@ include "./php/functions.php";
     <body class='top-navigation'>
         <div id="wrapper">
             <div id="page-wrapper">
-                 <div class="row">
-                    <nav class="navbar navbar-static-top" role="navigation">
-                        <div class="navbar-header">
-                            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-                                <i class="fa fa-reorder"></i>
-                            </button>
-                            <a href="home.php" class="navbar-brand">Duke 
-                        <span class="smaller">EXCHANGE</span></a>
-                        </div>
-                        <div class="navbar-collapse collapse" id="navbar">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="oauth.php">
-                                        <i class="fa fa-sign-in" aria-hidden="true"></i>Log in
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
+                 <?php include 'navbar.php'; ?>
                  <div class="title" style="text-align: center; margin-top: 100px">
-                        <h3 style="font-weight: 400;">You must <a href="oauth.php">log in</a> to make this purchase.</h3>
+                        <h3 style="font-weight: 400;">Congratulations! You have posted your item on the market place.<br/> <br/>You can click<a href="myAccount.php#listings"> here</a> to see the details.</h3>
                     </div>
                     <div class="wrapper wrapper-content animated fadeInRight expose">
                         <div class="row content">
