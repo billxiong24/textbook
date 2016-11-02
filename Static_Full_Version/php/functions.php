@@ -42,6 +42,7 @@ function getBook($id){
 }
 
 function search ($search){
+    $max_price = func_get_arg(0);
     $search = strtolower($search);
     global $connection;
     $search = mysqli_real_escape_string($connection, $search);
@@ -77,7 +78,7 @@ function search ($search){
     $search4 = substr($search4, 0, -4);
     $search5 = substr($search5, 0, -4);
     
-    $query = "SELECT * FROM books WHERE $search1 OR $search2 OR $search3 OR $search4 OR $search5 ORDER BY price ASC";
+    $query = "SELECT * FROM books WHERE ($search1 OR $search2 OR $search3 OR $search4 OR $search5) AND price < 45 ORDER BY price ASC";
     //$search = '%'.$search.'%';
 //    $query = "SELECT * FROM books WHERE isbn LIKE '$search' OR title LIKE '$search' OR authors LIKE '$search' OR course_name LIKE '$search' OR course_num LIKE '$search' ORDER BY price ASC";
     $result = mysqli_query($connection,$query);

@@ -116,32 +116,32 @@ else {
                     </a>
                     <ul class="dropdown-menu dropdown-alerts pull-right todo-list m-t" style=" margin-top: 20px;  width: 250px; padding-top: 5px;">
                         <span class=labels>Price: </span> 
-                        <li>
+                        <li class="price">
                         <label>
                             <input type="checkbox" value="" name="" class="i-checks"/>
                             <span class="m-l-xs">Under $5</span>
                         </label>
                         </li>
-                        <li>
+                        <li class="price">
                         <label>
                             <input type="checkbox" value="" name="" class="i-checks"/>
                             <span class="m-l-xs">Under $10</span>
                         </label>
                         </li>
-                        <li>
+                        <li class="price">
                         <label>
                             <input type="checkbox" value="" name="" class="i-checks" />
                             <span class="m-l-xs">Under $20</span>
                         </label>    
                         </li>
-                        <li>
+                        <li class="price">
                            <label>
                             <input type="checkbox" value="" name="" class="i-checks" />
                             <span class="m-l-xs">Under $30</span>
                         </label>  
                             
                         </li>
-                        <li>
+                        <li class="price">
                             <label>
                             <input type="checkbox" value="" name="" class="i-checks" />
                             <span class="m-l-xs">Any</span>
@@ -302,7 +302,7 @@ else {
         <!-- Toastr -->
         <script src="js/plugins/toastr/toastr.min.js"></script>
         <!-- Custom script -->
-        <!--<script src="js/frontpage.js">-->
+        <script src="js/filter.js">
         </script>
 
         <script>
