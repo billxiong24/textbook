@@ -149,27 +149,27 @@ else {
                             
                         </li>
                         <span class=labels>Condition:</span> 
-                        <li>
+                        <li class="cond">
                             <label>
                             <input type="checkbox" value="" name="" class="i-checks" />
                             <span class="m-l-xs">New</span>
                         </label>  
                             
                         </li>
-                        <li>
+                        <li class="cond">
                           <label>
                             <input type="checkbox" value="" name="" class="i-checks" />
                             <span class="m-l-xs">Good</span>
                         </label>  
                         </li>
-                        <li>
+                        <li class="cond">
                            <label>
                             <input type="checkbox" value="" name="" class="i-checks" />
                             <span class="m-l-xs">Fair</span>
                         </label>  
                             
                         </li>
-                        <li>
+                        <li class="cond">
                            <label>
                             <input type="checkbox" value="" name="" class="i-checks" />
                             <span class="m-l-xs">Any</span>
@@ -182,9 +182,6 @@ else {
 
                                         </form>
                                     </div>
-
-                                    <?php //print_r($result); ?>
-
                                 </div>
                             </div>
                         </div>
