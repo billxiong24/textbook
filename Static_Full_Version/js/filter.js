@@ -12,9 +12,9 @@ $('.price label .i-checks').click(function(){
 		}
 		//price is a number, either 5, 10, 20, 30, or Any
 		//DO STUFF HERE with price
+		refreshSearch(price);
 	}
 });
-
 $('.cond label .i-checks').click(function(){
 	if($(this).is(':checked')){
 		var index = $('.cond').index($(this).parent().parent());
@@ -29,6 +29,23 @@ $('.cond label .i-checks').click(function(){
 	}
 });
 
+$('#filter').focusout(function(){
+	$('#filter').css('background-color', "#001A40");
+});
+function refreshSearch(price) {
+    $.ajax({
+    	type: "POST",
+    	url: '/textbook/Static_Full_Version/filter.php',
+		data: {
+		    'max_price': 35,
+		    'search': "hello world"
+        },   
+        success: function (data) {
+        	
+        	//window.location.replace('/textbook/Static_Full_Version/search_results.php');
+        }
+    });
+}
 function uncheckOthers(index, name){
 	var list = $('.todo-list').find('.'+ name);
 	for(var i = 0; i < list.length; i++){

@@ -10,8 +10,15 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
     addUser($_SESSION['username'],$name,$_POST['phone_num'],$_POST['email']);
     header('Location: home.php');
 }
+print_r($_POST);
 if (isset($_POST['search'])){
-    $result = search($_POST['search']);
+    if(isset($_POST['max_price'])){
+        $result = search($_POST['search'], $_POST['max_price']);
+        //$result = array();
+    }
+    else{
+        $result = search($_POST['search']);
+    }
 }
 else {
     $result = array();
@@ -100,7 +107,7 @@ else {
                                 <div class="ibox-content">
                                     <h2>
                                 <?php echo count($result); ?> results found for: <span style="color: #001A57"><?php echo $_POST['search']; ?></span>
-                            </h2>
+                                    </h2>
 
                                     <div class="search-form">
                                         <form action="search_results.php" method="post">
@@ -111,7 +118,7 @@ else {
                                                         <i class="fa fa-search"></i>
                                                     </button>
                                                      <li class="dropdown" style="display: inline; margin-left: 5px;">
-                    <a class="dropdown-toggle count-info btn btn-lg btn-primary space" data-toggle="dropdown" href="#">
+                    <a class="dropdown-toggle count-info btn btn-lg btn-primary space" id="filter" data-toggle="dropdown" href="#">
                                                         <i class="fa fa-filter"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts pull-right todo-list m-t" style=" margin-top: 20px;  width: 250px; padding-top: 5px;">

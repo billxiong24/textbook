@@ -38,7 +38,7 @@ $user = getUser($_SESSION['username']);
                 <div class="col-lg-8">
                 <div class="ibox float-e-margins">
                     <div class="text-center float-e-margins p-md">
-                    <h1  style="font-size: 45px; color: white">Notifications</h1>
+                    <h1  style="font-size: 45px;">Notifications</h1>
                     <a href="#" class="btn btn-xs btn-primary" id="leftVersion">Timeline View</a>
                     </div>
                     <div class="ibox-content" id="ibox-content">
