@@ -1,12 +1,12 @@
 <?php
-function sendSellEmail($isbn, $title, $publish_date, $authors, $course, $book_condition, $notes, $price){
+function sendListEmail($isbn, $title, $publish_date, $authors, $course, $book_condition, $notes, $price){
 
 	if(isset($_POST['title']) && isset($_SESSION['username'])){
 		$user= getUser($_SESSION['username']);
 		$to = $user['email'];
-		$subject = "Added " . $title . " to the marketplace";
+		$subject = "Added \"" . $title . "\" to the marketplace";
 		$message = "Congratulations! You have posted \"" . $title . "\" for $" . $price . " to the marketplace. We will notify you when your item has been bought, so you can deliver it to the buyer.\n\n";
-		$message .= "Details: \nTitle: " . $title . "\nPrice: " . $price . "\nCourse: " . $course . "\nBook Condition: " . $book_condition . "\nNotes: " . $notes;
+		$message .= "Details: \nTitle: " . $title . "\nISBN: " . $isbn . "\nPrice: " . $price . "\nCourse: " . $course . "\nBook Condition: " . $book_condition . "\nNotes: " . $notes;
 		$headers .= 'Return-Path: billx0477@gmail.com' ."\r\n";
 		$headers .= 'From: Duke Exchange' . "\r\n";
 		mail($to, $subject, $message, $headers, "-femail.address@example.com");
@@ -15,7 +15,28 @@ function sendSellEmail($isbn, $title, $publish_date, $authors, $course, $book_co
 		header('Location: /textbook/Static_Full_Version/index.php');
 	}
 }
-function sendBoughtEmail($isbn, $title, $publish_date, $authors, $course, $book_condition, $notes, $price){
 
-}
+function sendBoughtEmail($book, $trans_date){
+	if(isset($_POST['bookID']) && isset($_SESSION['username'])){
+		$seller = $book['username'];
+	    $isbn = $book['isbn'];
+	    $title = $book['title'];
+	    $authors = $book['authors'];
+	    $course_name = $book['course_name'];
+	    $course_num = $book['course_num'];
+	    $book_condition = $book['book_condition'];
+	    $notes = $book['notes'];
+	    $price = $book['price'];
+
+		$buyer = getUser($_SESSION['username']);
+		$to = $buyer['email'];
+		$subject = "You bought \"" . $title . "\" from " .  $seller;
+		$message = "Congratulations! You bought \"" . $title . "\" for $" . $price . " from " . $seller .  " on " . $trans_date .". Your item will be delivered shortly.\n\n";
+		$message .= "Details: \nTitle: " . $title . "\nAuthors: " . $authors . "\nISBN: " . $isbn . "\nPrice: $" . $price . "\nCourse: " . $course_num . "\nBook Condition: " . $book_condition . "\nNotes: " . $notes;
+		$headers .= 'Return-Path: billx0477@gmail.com' ."\r\n";
+		$headers .= 'From: Duke Exchange' . "\r\n";
+		mail($to, $subject, $message, $headers);
+	}
+
+} 
 ?>
