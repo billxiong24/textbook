@@ -11,7 +11,7 @@ if(!isset($_SESSION['username'])){
 
     <head>
 
-        <meta charset="utf-8">
+        <meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Sell | Duke Exchange</title>
@@ -360,11 +360,15 @@ if(!isset($_SESSION['username'])){
                                                             </ul>
                                                         </div>
                                                         <div class="tab-pane" role="tabpanel" id="step5">
-                                                        <h2>You are about to sell this book. Continue?</h2>
+                                                            <div class = 'info' style='border: solid #E8E8E8 1px; text-align: center'>
+                                                                <h2>You are about to sell this book. Continue?</h2>
+                                                                <img>
+                                                                <p></p>
+                                                            </div>
                                                             <ul class="list-inline pull-right">
                                                                 <li>
                                                                     <button type="button" class="btn btn-default prev-step">Previous</button>
-                                                                    <input type="submit" class="btn btn-primary" value="Sell">
+                                                                    <input name="add_book" type="submit" class="btn btn-primary" value="Sell">
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -499,7 +503,16 @@ if(!isset($_SESSION['username'])){
                     var summary1 = 'You are about to post the following listing: "';
                     var summary = summary1.concat(title, '" for $');
                     summary = summary.concat(price, '.');
-                    $('#step5 h2').text(summary).append('<br/><br/>').append("<h4> Press sell to post this listing. <h4>");
+                    $('#step5 .info h2').text(summary).append('<br/><br/>').append("<h4> Press sell to post this listing. <h4>");
+                    console.log($('#coverURL').val());
+                    $('#step5 .info img').attr('src', $('#coverURL').val());
+                    var details ="Title: " + $('#title').val() + "<br/>";
+                    details += "Course: " + $('#course').val() + "<br/>";
+                    details += "ISBN: " + $('#isbn').val() + "<br/>";
+                    details += "Authors: " + $('#authors').val() + "<br/>";
+                    details +="Notes: " + $('#notes').val() + "<br/>";
+                    $('#step5 .info p').html(details);
+
 
                 }); 
                 $('#ok').click(function (e) { // when person clicks okay on modal

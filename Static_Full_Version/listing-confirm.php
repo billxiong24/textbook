@@ -37,7 +37,7 @@ $user = getUser($_SESSION['username']);
             <div id="page-wrapper">
                  <?php include 'navbar.php'; ?>
                  <div class="title" style="text-align: center; margin-top: 100px">
-                        <h3 style="font-weight: 400;">Congratulations! You have posted your item on the market place.<br/> <br/>You can click<a href="myAccount.php#listings"> here</a> to see the details.</h3>
+                        <h3 style="font-weight: 400;">Congratulations! You have posted your item on the market place.<br/> <br/>We'll notify you when your item is sold. You can click<a href="myAccount.php#listings"> here</a> to see the details.</h3>
                     </div>
                     <div class="wrapper wrapper-content animated fadeInRight expose">
                         <div class="row content">

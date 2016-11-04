@@ -10,7 +10,6 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
     addUser($_SESSION['username'],$name,$_POST['phone_num'],$_POST['email']);
     header('Location: home.php');
 }
-print_r($_POST);
 if (isset($_POST['search'])){
     if(isset($_POST['max_price'])){
         $result = search($_POST['search'], $_POST['max_price']);
