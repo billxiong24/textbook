@@ -14,7 +14,7 @@ $user = getUser($_SESSION['username']);
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Home | Duke Exchange</title>
+        <title>Duke Exchange</title>
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -173,6 +173,7 @@ $user = getUser($_SESSION['username']);
                             if (!data.error) { // this sort of json accessing data only works in ajax
                                 if (data.unread != 0) { // wont display notifications label if none exist
                                     $('#unreadNotifications').html(data.unread);
+                                    $('title').html('(' + data.unread + ') Duke Exchange');
                                     $('#notifications').html(data.notifications);
                                 } else {
                                     $('#unreadNotifications').html('');
