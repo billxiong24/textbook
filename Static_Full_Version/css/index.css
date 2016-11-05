@@ -264,7 +264,7 @@ body {
     align: center;
     width: 90%;
     max-height: 100px;
-    margin-top: 100px;
+    margin-top: 40px;
     font-weight: 300;
     font-size: 60px;
     color: white;
@@ -277,8 +277,9 @@ body {
 }
 .small-message{
     font-weight: 300;
-    margin-top: 10px;
+    margin-top: 5px;
     font-size: 17px;
+    margin-bottom: -20px;
 }
 .small-message span{
     font-weight: thin;

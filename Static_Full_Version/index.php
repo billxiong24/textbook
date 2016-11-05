@@ -123,7 +123,6 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
       
       <div id="content-register">
         <div class="content">
-        <div class='small-message' style="color: #C8F7C5">Let's start by searching for something. </div>
         <div class="search-form">
                                         <form action="logged_out_search.php" method="get">
                                             <div class="input-group" style="font-weight: normal">
