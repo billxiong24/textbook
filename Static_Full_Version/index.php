@@ -230,16 +230,19 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                 $(document).ready(function () {
                     var width = $(window).width();
                     if ($(window).width() < 630) {
-                        $('.foobar').css("font-size", "30px");
+                        $('.foobar').css("font-size", "25px");
                         $('.footer').hide();
+                        $('.small-message').css("font-size", "12px");
                     }
                     $(window).resize(function () {
                         if ($(window).width() < 630) {
-                            $('.foobar').css("font-size", "30px");
+                            $('.foobar').css("font-size", "25px");
                             $('.footer').hide();
+                             $('.small-message').css("font-size", "12px");
                         } else {
                             $('.foobar').css("font-size", "70px");
                             $('.footer').show();
+                            $('.small-message').css("font-size", "23px");
                         }
                     });
                 });
