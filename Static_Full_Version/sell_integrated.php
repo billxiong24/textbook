@@ -10,7 +10,6 @@ if(!isset($_SESSION['username'])){
     <html>
 
     <head>
-
         <meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -272,6 +271,7 @@ if(!isset($_SESSION['username'])){
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Title of Book</label>
+
                                                                 <input id="title" name="title" type="text" class="form-control required">
                                                             </div>
                                                             <div class="form-group">
@@ -285,8 +285,10 @@ if(!isset($_SESSION['username'])){
                                                             <div class="form-group">
                                                                 <label>Book Cover Url</label>
                                                                 <input id="coverURL" name="coverURL" type="text" class="form-control required">
-                                                                <br>
-                                                                <img class="cover" src="" style="max-width:140px; max-height:200px" ;>
+                                                            </div>
+                                                            <div>
+                                                                 <br>
+                                                                <img class="cover" style="margin-top: 15px;" src="" style="max-width:140px; max-height:200px" ;>
                                                             </div>
                                                             <ul class="list-inline pull-right">
                                                                 <li>
@@ -475,11 +477,7 @@ if(!isset($_SESSION['username'])){
                     }
                 });
 
-                $(".next-step").click(function (e) {
-
-                    var $active = $('.wizard .nav-tabs li.active');
-                    $active.next().removeClass('disabled');
-                    nextTab($active);
+                $(".next-step").click(function (e) { 
 
                 });
                 $(".prev-step").click(function (e) {
@@ -490,6 +488,79 @@ if(!isset($_SESSION['username'])){
                 });
 
 
+            $('#step1 ul li button').click(function(e){
+                e.preventDefault();
+                
+                var inputs = $('#step1').find('input');
+                //dont want to include the search input
+                var flip = true;
+                for(var i = 1; i < inputs.length; i++){
+                    if($(inputs[i]).val().length == 0){   
+                        flip = false;
+                        var parent = $(inputs[i]).parent();
+                        if(parent.children().length < 3){
+                             parent.children("label").after("<label class='pull-right warning' style = 'color: darkred; font-weight: normal'>You must fill this out</label>");
+                        }
+                    }
+
+                }
+                if(flip){
+                    var parent = $(inputs[i]).parent();
+                    $('.warning').remove();
+                    var $active = $('.wizard .nav-tabs li.active');
+                    $active.next().removeClass('disabled');
+                    nextTab($active);
+                }
+            });
+            $('#step2 ul li button').click(function(e){
+                e.preventDefault();
+                var inputs = $('#step2').find('input');
+                var flip = true;
+                for(var i = 0; i < inputs.length; i++){
+                    if($(inputs[i]).val().length == 0){   
+                        flip = false;
+                        var parent = $(inputs[i]).parent();
+                        if(parent.children().length < 3){
+                             parent.children("label").after("<label class='pull-right warning' style = 'color: darkred; font-weight: normal'>You must fill this out</label>");
+                        }
+                    }
+
+                }
+                if(flip){
+                    var parent = $(inputs[i]).parent();
+                    $('.warning').remove();
+                    var $active = $('.wizard .nav-tabs li.active');
+                    $active.next().removeClass('disabled');
+                    nextTab($active);
+                }
+
+            });
+            $('#step3 ul li button').click(function(e){
+                var $active = $('.wizard .nav-tabs li.active');
+                $active.next().removeClass('disabled');
+                nextTab($active);
+            });
+            $('#step4 ul li button').click(function(e){
+                var inputs = $('#step4').find('input');
+                var num = $(inputs[0]).val();
+                var check = /^[0-9]+$/;
+                var flip = true;
+                if(!check.test(num)){
+                    flip = false;
+                     var parent = $(inputs[0]).parent();
+                        if(parent.children().length < 4){
+                             parent.children("label").after("<label class='pull-right warning' style = 'color: darkred; font-weight: normal'>You must fill this out</label>");
+                        }
+                }
+                if(flip){
+                    var parent = $(inputs[0]).parent();
+                    $('.warning').remove();
+                    var $active = $('.wizard .nav-tabs li.active');
+                    $active.next().removeClass('disabled');
+                    nextTab($active);
+                }
+
+            });
                 function nextTab(elem) {
                     $(elem).next().find('a[data-toggle="tab"]').click();
                 }
@@ -504,7 +575,6 @@ if(!isset($_SESSION['username'])){
                     var summary = summary1.concat(title, '" for $');
                     summary = summary.concat(price, '.');
                     $('#step5 .info h2').text(summary).append('<br/><br/>').append("<h4> Press sell to post this listing. <h4>");
-                    console.log($('#coverURL').val());
                     $('#step5 .info img').attr('src', $('#coverURL').val());
                     var details ="Title: " + $('#title').val() + "<br/>";
                     details += "Course: " + $('#course').val() + "<br/>";
