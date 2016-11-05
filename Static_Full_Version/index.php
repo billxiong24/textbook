@@ -107,17 +107,24 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                         <div>
                             <span>One account, all of Duke.</span>
                         </div>
-                        <div class='small-message'>
+                        <div class='small-message' style="font-size: 23px;">
                          <span>Get everything you need on campus. It's easy and free.</span>
                         </div>
-                        <div class="vertical flip-container">
-                            <div class="flipper">
-                                <div class="front">
-                            <button class="btn btn-xs btn-outline btn-success getting-started">Let's get started</button>
-                                </div>
-                                <div class="back">
-                                    <div class="small-message" style="margin-bottom: -25px;">Search for a book- it's that easy.</div>
-                                    <div class="search-form animated fadeInDown">
+                                <div id="w">
+    <div id="page">
+      <div id="content-login">
+        <div class="content">
+         <button class="btn btn-xs btn-outline btn-success getting-started" id="showregister">Let's get started</button>
+          <form id="login" name="login" action="#" method="post">
+          </form>
+        </div>
+      </div><!-- /end #content-login -->
+      
+      
+      <div id="content-register">
+        <div class="content">
+        <div class='small-message' style="color: #C8F7C5">Let's start by searching for something. </div>
+        <div class="search-form">
                                         <form action="logged_out_search.php" method="get">
                                             <div class="input-group" style="font-weight: normal">
                                                 <input type="text" name="search" class="form-control input-lg foc" autocomplete="off">
@@ -125,13 +132,19 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                                                     <button class="btn btn-lg btn-primary" type="submit">
                                                         <i class="fa fa-search"></i>
                                                     </button>
+
                                                 </div>
                                             </div>
                                         </form>
+                                         <a class="btn btn-xs btn-outline btn-success getting-started" href="oauth.php">Log in</a>
+                                        <button class="btn btn-xs btn-outline btn-success getting-started" id="showlogin">Back</button>
                                     </div>
-                                </div>
-                            </div>
-                            </div>
+        </div>
+      </div><!-- /end #content-register -->
+      
+    </div><!-- /end #page -->
+  </div><!-- /end #w -->
+                               
                 </div>
 
                     <!-- <div class=col-md-4></div>             
@@ -168,11 +181,11 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                         </div>
                     </form>
                 </div> -->
-                <div class="footer">
+               <!--  <div class="footer">
                     <div class="about">
                         <strong>Copyright</strong> Duke Exchange &copy; 2016
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -191,7 +204,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
 
         <!-- Input Mask-->
         <script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
-
+        <script src="js/formslider.js"></script>
         <?php
     
         if(isset($_SESSION['username'])){

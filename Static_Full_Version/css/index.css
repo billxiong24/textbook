@@ -8,7 +8,28 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
-/* entire container, keeps perspective */
+/* page structure */
+#w { width: 100%; margin: 0 auto; padding-top: 25px; }
+
+#page { 
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: auto;
+}
+.content {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+}
+/* inner page layouts */
+#content-login { display: block; position: relative; width: 100%; }
+
+#content-register { display: none; width: 100%; position: absolute; top: 0; left: 880px; }
+
+
+.leftsidelink { font-size: 1.25em; font-weight: bold; display: inline-block; }
+/*
 .flip-container {
     perspective: 0px;
 }
@@ -18,7 +39,6 @@ body {
     height: 400px;
 }
 
-/* flip speed goes here */
 .flipper {
     transition: 0.6s;
     transform-style: preserve-3d;
@@ -26,7 +46,6 @@ body {
     position: relative;
 }
 
-/* hide back of pane during swap */
 .front, .back {
     backface-visibility: hidden;
 
@@ -35,14 +54,10 @@ body {
     left: 0;
 }
 
-/* front pane, placed above back */
 .front {
     z-index: 2;
-    /* for firefox 31 */
     transform: rotateY(0deg);
 }
-
-/* back, initially hidden pane */
 .back {
     transform: rotateY(180deg);
 }
@@ -55,12 +70,12 @@ body {
     }
 
     .vertical.flip-container .flipper {
-        transform-origin: 100% 213.5px; /* half of height */
+        transform-origin: 100% 213.5px;
     }
 
     .vertical.flip-container:hover .flipper {
         transform: rotateX(-180deg);
-    }
+    }*/
 
 
 .navbar-default .navbar-brand {
@@ -261,8 +276,12 @@ body {
     font-size: 24px;
 }
 .small-message{
+    font-weight: 300;
     margin-top: 10px;
     font-size: 17px;
+}
+.small-message span{
+    font-weight: thin;
 }
 .getting-started{
     font-weight: 300;
