@@ -548,7 +548,7 @@ if(!isset($_SESSION['username'])){
                 if(!check.test(num)){
                     flip = false;
                      var parent = $(inputs[0]).parent();
-                        if(parent.children().length < 4){
+                        if(parent.children().length < 6){
                              parent.children("label").after("<label class='pull-right warning' style = 'color: darkred; font-weight: normal'>You must fill this out</label>");
                         }
                 }
