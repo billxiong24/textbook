@@ -103,7 +103,7 @@ $user = getUser($_SESSION['username']);
                                             <i class="fa fa-dollar fa-5x"></i>
                                         </div>
                                         <div class="col-xs-8 text-right">
-                                            <span> Total Profit </span>
+                                            <span> Total Spent </span>
                                             <h2 class="font-bold" style="color: #001A57;"><?php echo $account['profit'];?></h2>
                                         </div>
                                     </div>

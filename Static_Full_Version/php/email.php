@@ -1,6 +1,5 @@
 <?php
 function sendListEmail($isbn, $title, $publish_date, $authors, $course, $book_condition, $notes, $price){
-
 	if(isset($_POST['title']) && isset($_SESSION['username'])){
 		$user= getUser($_SESSION['username']);
 		$to = $user['email'];

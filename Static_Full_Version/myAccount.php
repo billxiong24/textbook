@@ -45,6 +45,8 @@ $account = accountOverview($_SESSION['username']);
                                         <h5>Profit</h5>
                                     </div>
                                     <div class="ibox-content">
+                                      <div class="row">
+                                            <div class="col-md-6">
                                         <h1 class="no-margins">
                                             <?php if($account['profit'] < 0){
                                                 echo '-$'.abs($account['profit']);   
@@ -53,7 +55,9 @@ $account = accountOverview($_SESSION['username']);
                                                 echo '$'.$account['profit'];
                                             }
                                             ?></h1>
-                                        <div class="font-bold text-success">Total Profit</div>
+                                            <div class="font-bold text-success">Total Profit</div>
+                                            </div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +111,7 @@ $account = accountOverview($_SESSION['username']);
                         <div class="row">
                             <div class="purchase col-lg-2"></div>
                             <div class="col-lg-12">
-                                <a class="col-lg-8 purchase" name="listings" href="#listings">CURRENT LISTINGS</a>
+                                <a class="col-lg-8 purchase" name="listings" href="#listings"><div class="col-lg-8 purchase">CURRENT LISTINGS</div></a>
                                 <div class="ibox">
                                     <div class="ibox-content">
 
