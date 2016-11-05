@@ -25,8 +25,6 @@ function addBook($username,$isbn,$title,$publish_date,$authors,$cover_url,$cours
         die('Query Failed' . mysqli_error($connection));
     }
     addNotification($username,'Added listing',$title,$price);
-    
-    
 }
 
 function getBook($id){
