@@ -1,6 +1,5 @@
 <?php
 include "connection.php";
-define("MAX", 10000);
 date_default_timezone_set('America/New_York');
 
 
@@ -39,8 +38,7 @@ function getBook($id){
     return $book;
     
 }
-
-function search ($search, $max_price = MAX){
+function log_out_search ($search){
     $search = strtolower($search);
     global $connection;
     $search = mysqli_real_escape_string($connection, $search);
@@ -75,7 +73,7 @@ function search ($search, $max_price = MAX){
     $search3 = substr($search3, 0, -4);
     $search4 = substr($search4, 0, -4);
     $search5 = substr($search5, 0, -4);
-    $query = "SELECT * FROM books WHERE ($search1 OR $search2 OR $search3 OR $search4 OR $search5) AND price < $max_price ORDER BY price ASC";
+    $query = "SELECT * FROM books WHERE ($search1 OR $search2 OR $search3 OR $search4 OR $search5) ORDER BY price ASC";
     //$search = '%'.$search.'%';
 //    $query = "SELECT * FROM books WHERE isbn LIKE '$search' OR title LIKE '$search' OR authors LIKE '$search' OR course_name LIKE '$search' OR course_num LIKE '$search' ORDER BY price ASC";
     $result = mysqli_query($connection,$query);
@@ -88,6 +86,132 @@ function search ($search, $max_price = MAX){
         
     }  
     return $books;
+}
+function search ($search, $price, $condition){
+    $price_search = '';
+    $condition_search = '';
+    if ($price != 'Any'){
+        $price_search = "AND price < $price";     
+    }
+    
+    if($condition != 'Any'){ //
+        $condition_search = "AND book_condition = '$condition'";
+    }
+    
+    $search = strtolower($search);
+    global $connection;
+    $search = mysqli_real_escape_string($connection, $search);
+    $searchTerms = explode(' ', $search);
+    $simpleWords = ['the','a','an','of','and','for','is'];
+    foreach ($simpleWords as $word){  // removes all the simple words that may exist in many book titles, but not relevent to the book the user is searching
+        $keys = array_keys($searchTerms,$word);
+        foreach($keys as $location){
+            unset($searchTerms[$location]);     
+        }
+            
+    }
+    if (count($searchTerms) == 0){  
+        $searchTerms[0] = '';
+    }
+    
+    $search1 = ''; // each search variable is to create a search string for every word from the user separated by a space to be searched in a column. the five search variables are for searching five columns for every space separated word from the user
+    $search2 = '';
+    $search3 = '';
+    $search4 = '';
+    $search5 = '';
+    foreach ($searchTerms as $current){
+        $searchTerm = '%'.$current.'%';
+        $search1 = $search1 . "isbn LIKE '$current' OR ";  // does not look for number in isbn, but only for exact match isbn
+        $search2 = $search2 . "title LIKE '$searchTerm' OR ";
+        $search3 = $search3 . "authors LIKE '$searchTerm' OR "; 
+        $search4 = $search4 . "course_name LIKE '$searchTerm' OR ";
+        $search5 = $search5 . "course_num LIKE '$searchTerm' OR ";
+    }
+    
+    $search1 = substr($search1, 0, -4);
+    $search2 = substr($search2, 0, -4);
+    $search3 = substr($search3, 0, -4);
+    $search4 = substr($search4, 0, -4);
+    $search5 = substr($search5, 0, -4);
+    $query = "SELECT * FROM books WHERE ($search1 OR $search2 OR $search3 OR $search4 OR $search5) $price_search $condition_search ORDER BY price ASC";
+    //$search = '%'.$search.'%';
+//    $query = "SELECT * FROM books WHERE isbn LIKE '$search' OR title LIKE '$search' OR authors LIKE '$search' OR course_name LIKE '$search' OR course_num LIKE '$search' ORDER BY price ASC";
+    $result = mysqli_query($connection,$query);
+    if(!$result){
+        die('Query Failed' . mysqli_error($connection));
+    }
+    $books = array();
+    $num_results = 0;
+    while($row = mysqli_fetch_assoc($result)){
+        array_push($books, $row);
+        $num_results++;      
+    }
+    
+     $books_displayed = $books_displayed .'<div class="row">';
+            for($i=0; $i<count($books); $i++){  // printing out a grid of books from the php data loaded at the top of the file
+                if ($i != 0 && $i%4 == 0){
+                    $books_displayed = $books_displayed .'</div>';
+                }
+                if ($i != 0 && $i%4 == 0){
+                    $books_displayed = $books_displayed . '<div class="row">'; // for creating rows of books displayed 
+                }
+               $books_displayed = $books_displayed .'
+                <div class="col-md-3">
+                    <div class="ibox">
+                        <div class="ibox-content product-box">
+
+                            <div class="product-imitation">';
+                            
+                            $books_displayed = $books_displayed . "<img style='max-height: 135px;' src=\"{$books[$i]['cover_url']}\">";
+                                
+                            $books_displayed = $books_displayed . '</div>
+                            <div class="product-desc">
+                                <span class="product-price">';
+                                 $books_displayed = $books_displayed .'$'.$books[$i]['price'];
+                                $books_displayed = $books_displayed . '</span>
+                                <small class="text-muted">'; $books_displayed = $books_displayed . $books[$i]['isbn']; $books_displayed = $books_displayed . '</small>
+                                <a href="#" class="product-name">'; 
+                                $str = $books[$i]['title'];
+                                if(strlen($str) > 25){
+                                    $cut = substr($str, 0, 25). "...";
+                                    $books_displayed = $books_displayed . $cut;
+                                }
+                                else{
+                                    $books_displayed = $books_displayed . $str;
+                                }
+                                 
+                                $books_displayed = $books_displayed . '</a>
+                                <div class="small m-t-xs">';
+                                    $books_displayed = $books_displayed . 'Author(s): ';
+                                    $authors = $books[$i]['authors'];
+                                    if(strlen($authors) > 20){
+                                        $books_displayed = $books_displayed . substr($authors, 0, 20) . "...";
+                                    }
+                                    else{
+                                        $books_displayed = $books_displayed . $authors;
+                                    }
+                                $books_displayed = $books_displayed . '</div>
+                                <div class="small m-t-xs">
+                                <p><span class="label label-success">'; $books_displayed = $books_displayed . $books[$i]['course_num']; $books_displayed = $books_displayed . '</span> 
+                                <span class="label label-danger">'; $books_displayed = $books_displayed . $books[$i]['book_condition'];
+                                $books_displayed = $books_displayed . '</span></p>
+                                </div>';
+                
+                                $books_displayed = $books_displayed .'
+                                <div class="m-t text-right buy">
+                                    <button href="#" data-id ='; $books_displayed = $books_displayed . "\"{$books[$i]['id']}\""; $books_displayed = $books_displayed . 'class="btn btn-xs btn-outline btn-success bought" data-toggle="modal" data-target="#buyModal">Buy <i class="fa fa-long-arrow-right"></i> </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+                
+                
+                
+            }
+            $books_displayed = $books_displayed . '</div>';
+    
+    return $num_results . "" . $books_displayed;
 }
 
 function getUser($username){
@@ -123,7 +247,7 @@ function getCurrentListings($username){
     while ($book = mysqli_fetch_assoc($result)){
         array_push($listings, $book);
     }
-    return $listings;  
+    return array_reverse($listings);  // first books are most recent
     
 }
 
