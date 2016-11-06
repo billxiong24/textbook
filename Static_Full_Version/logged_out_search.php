@@ -2,7 +2,7 @@
 include "./php/functions.php";
 
 if (isset($_GET['search'])){
-    $result = search($_GET['search'], "Any", "Any");
+    $result = log_out_search($_GET['search']);
 }
 else {
     $result = array();
@@ -78,7 +78,7 @@ else {
                                                     <button class="btn btn-lg btn-primary space" type="submit">
                                                         <i class="fa fa-search"></i>
                                                     </button>
-                                                     <li class="dropdown" style="display: inline; margin-left: 5px;">
+                                                    <!--  <li class="dropdown" style="display: inline; margin-left: 5px;">
                     <a class="dropdown-toggle count-info btn btn-lg btn-primary space" data-toggle="dropdown" href="#">
                                                         <i class="fa fa-filter"></i>
                     </a>
@@ -144,7 +144,7 @@ else {
                         </label>  
                         </li>
                     </ul>
-                </li>
+                </li> -->
                                                 </div>
                                             </div>
 
