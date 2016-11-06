@@ -62,8 +62,6 @@ include "./php/functions.php";
                
             </div>
 
-        </div>
-
         <!-- Mainly scripts -->
 
         <script src="js/jquery-2.1.1.js"></script>
@@ -105,7 +103,7 @@ include "./php/functions.php";
         <script src="js/plugins/toastr/toastr.min.js"></script>
         <!-- Custom script -->
         <!--<script src="js/frontpage.js">-->
-        </script>
+        <!--        </script>-->
 
         <script>
             $(document).ready(function () {
