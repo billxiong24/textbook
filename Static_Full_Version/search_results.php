@@ -93,7 +93,7 @@ else {
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-content">
                                         <h2>
-                                <?//php echo count($result); ?> results found for: <span style="color: #001A57"><?php echo $_POST['search']; ?></span>
+                                <span id="numResults">0</span> results found for: <span style="color: #001A57"><?php echo $_POST['search']; ?></span>
                             </h2>
 
                                         <div class="search-form">
@@ -234,7 +234,6 @@ else {
                /////////////// filter //////////////////// 
                 var price = "Any";
                 var condition = "Any";
-
                 function search_and_filter() {
                     $.ajax({
                         type: "POST",
@@ -242,16 +241,20 @@ else {
                         data: {
                             price: price,
                             condition: condition
-
                         },
                         success: function (data) {
                             if (!data.error) { // this sort of json accessing data only works in ajax
-                                $('#display_books').html(data);
+                                var nums = data.match(/^[0-9]+/).toString();
+                                console.log(nums.length);
+                                $('#numResults').html(nums);
+                                $('#display_books').html(data.substring(nums.length));
 
                             }
                         }
                     });
                 }
+                search_and_filter(); // call search on load of page
+                ////////////////////
 
                 $('.price label .i-checks').click(function () {
                     if ($(this).is(':checked')) {
@@ -284,10 +287,6 @@ else {
                         //condition is a string, either New, Good, Fair, or Any
                         //DO STUFF HERE with condition
                         search_and_filter();
-
-
-
-
                     }
                 });
 
@@ -299,10 +298,6 @@ else {
                         }
                     }
                 }
-                
-                search_and_filter(); // call search on load of page
-                ////////////////////
-
                 var bookID; // used to store the book id for other functions on this page
                 $(document).on('click', '.bought',function(){ // document allows for dynamic content to use jquery
                     bookID = $(this).data("id");

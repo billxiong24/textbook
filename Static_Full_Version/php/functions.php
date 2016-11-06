@@ -62,8 +62,6 @@ function search ($search, $price, $condition){
         }
             
     }
-            
-        
     if (count($searchTerms) == 0){  
         $searchTerms[0] = '';
     }
@@ -95,12 +93,11 @@ function search ($search, $price, $condition){
         die('Query Failed' . mysqli_error($connection));
     }
     $books = array();
+    $num_results = 0;
     while($row = mysqli_fetch_assoc($result)){
         array_push($books, $row);
-        
-    }  
-    
-    $books_displayed = '';
+        $num_results++;      
+    }
     
      $books_displayed = $books_displayed .'<div class="row">';
             for($i=0; $i<count($books); $i++){  // printing out a grid of books from the php data loaded at the top of the file
@@ -135,7 +132,6 @@ function search ($search, $price, $condition){
                                     $books_displayed = $books_displayed . $str;
                                 }
                                  
-
                                 $books_displayed = $books_displayed . '</a>
                                 <div class="small m-t-xs">';
                                     $books_displayed = $books_displayed . 'Author(s): ';
@@ -167,7 +163,7 @@ function search ($search, $price, $condition){
             }
             $books_displayed = $books_displayed . '</div>';
     
-    return $books_displayed;
+    return $num_results . "" . $books_displayed;
 }
 
 function getUser($username){

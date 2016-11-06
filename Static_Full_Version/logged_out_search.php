@@ -2,7 +2,7 @@
 include "./php/functions.php";
 
 if (isset($_GET['search'])){
-    $result = search($_GET['search']);
+    $result = search($_GET['search'], "Any", "Any");
 }
 else {
     $result = array();
