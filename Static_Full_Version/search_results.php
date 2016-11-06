@@ -304,9 +304,8 @@ else {
                 ////////////////////
 
                 var bookID; // used to store the book id for other functions on this page
-                $(document).on('click', '.bought',function(){
+                $(document).on('click', '.bought',function(){ // document allows for dynamic content to use jquery
                     bookID = $(this).data("id");
-                    //alert('hello');
                     $.ajax({
                         type: 'POST',
                         data: {
