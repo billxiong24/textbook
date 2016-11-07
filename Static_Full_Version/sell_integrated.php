@@ -590,7 +590,11 @@ if(!isset($_SESSION['username'])){
                 $('#addBook').submit(function (evt) {
                     evt.preventDefault(); // only sends data if data is entered
                     var postData = $(this).serialize(); // postData is POST data with the string name of form elements
-                    window.location.replace('listing-confirm.php');
+                    var url = $(this).attr('action'); // in form html code as add_book.php
+                    $.post(url, postData, function (data) {
+                        window.location.replace('listing-confirm.php');
+                    });
+                    
 
 
                 });
