@@ -10,7 +10,7 @@ if(!isset($_SESSION['username'])){
     <html>
 
     <head>
-        <meta charset="utf-8"> 
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Sell | Duke Exchange</title>
@@ -191,206 +191,206 @@ if(!isset($_SESSION['username'])){
         <!-- /.modal -->
 
         <div id="wrapper">
-            
+
             <div id="page-wrapper" class="gray-bg">
                 <?php include 'navbar.php'; ?>
-                <div class="wrapper wrapper-content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-16">
-                                <div class="ibox">
+                    <div class="wrapper wrapper-content">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-16">
+                                    <div class="ibox">
 
-                                    <div class="ibox-content">
-                                        <h2>
+                                        <div class="ibox-content">
+                                            <h2>
                                 Sell A Book
                             </h2>
-                                        <p>
-                                            Want to sell your book? It's easy- just follow the steps below. 
-                                        </p>
+                                            <p>
+                                                Want to sell your book? It's easy - just follow the steps below.
+                                            </p>
 
-                                        <section>
-                                            <div class="wizard" >
-                                                <div class="wizard-inner" >
-                                                    <div class="connecting-line"></div>
-                                                    <ul class="nav nav-tabs" role="tablist">
+                                            <section>
+                                                <div class="wizard">
+                                                    <div class="wizard-inner">
+                                                        <div class="connecting-line"></div>
+                                                        <ul class="nav nav-tabs" role="tablist">
 
-                                                        <li role="presentation" class="active">
-                                                            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Textbook">
-                                                                <span class="round-tab">
+                                                            <li role="presentation" class="active">
+                                                                <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Textbook">
+                                                                    <span class="round-tab">
                                 <i class="glyphicon glyphicon-book"></i>
                             </span>
-                                                            </a>
-                                                        </li>
+                                                                </a>
+                                                            </li>
 
-                                                        <li role="presentation" class="disabled">
-                                                            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Course">
-                                                                <span class="round-tab">
+                                                            <li role="presentation" class="disabled">
+                                                                <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Course">
+                                                                    <span class="round-tab">
                                 <i class="glyphicon glyphicon-menu-hamburger"></i>
                             </span>
-                                                            </a>
-                                                        </li>
-                                                        <li role="presentation" class="disabled">
-                                                            <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Book Condition">
-                                                                <span class="round-tab">
+                                                                </a>
+                                                            </li>
+                                                            <li role="presentation" class="disabled">
+                                                                <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Book Condition">
+                                                                    <span class="round-tab">
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </span>
-                                                            </a>
-                                                        </li>
+                                                                </a>
+                                                            </li>
 
-                                                        <li role="presentation" class="disabled">
-                                                            <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Price">
-                                                                <span class="round-tab">
+                                                            <li role="presentation" class="disabled">
+                                                                <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Price">
+                                                                    <span class="round-tab">
                                 <i class="glyphicon glyphicon-usd"></i>
                             </span>
-                                                            </a>
-                                                        </li>
-                                                         <li role="presentation" class="disabled">
-                                                            <a href="#step5" data-toggle="tab" aria-controls="step5" role="tab" title="Confirm">
-                                                                <span class="round-tab">
+                                                                </a>
+                                                            </li>
+                                                            <li role="presentation" class="disabled">
+                                                                <a href="#step5" data-toggle="tab" aria-controls="step5" role="tab" title="Confirm">
+                                                                    <span class="round-tab">
                                 <i class="glyphicon glyphicon-arrow-right"></i>
                             </span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
 
-                                                <form id="addBook" method="post" action="./php/add_book.php">
-                                                    <div class="tab-content">
+                                                    <form id="addBook" method="post" action="./php/add_book.php">
+                                                        <div class="tab-content">
 
 
-                                                        <div class="tab-pane active" role="tabpanel" id="step1">
-                                                            <h3>Textbook</h3>
+                                                            <div class="tab-pane active" role="tabpanel" id="step1">
+                                                                <h3>Textbook</h3>
 
-                                                            <label>Search</label>
-                                                            <input id="search" name="search" type="text" class="form-control" placeholder="ISBN, Title, Author, etc.">
-                                                            <br>
-                                                            <hr class="hr-line-solid">
-                                                            <div class="form-group">
-                                                                <label>ISBN</label>
-                                                                <input id="isbn" name="isbn" type="text" class="form-control required">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Title of Book</label>
+                                                                <label>Search</label>
+                                                                <input id="search" name="search" type="text" class="form-control" placeholder="ISBN, Title, Author, etc.">
+                                                                <br>
+                                                                <hr class="hr-line-solid">
+                                                                <div class="form-group">
+                                                                    <label>ISBN</label>
+                                                                    <input id="isbn" name="isbn" type="text" class="form-control required">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Title of Book</label>
 
-                                                                <input id="title" name="title" type="text" class="form-control required">
+                                                                    <input id="title" name="title" type="text" class="form-control required">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Published Date</label>
+                                                                    <input id="publishDate" name="publishDate" type="text" class="form-control required">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Author(s)</label>
+                                                                    <input id="authors" name="authors" type="text" class="form-control required">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Book Cover Url</label>
+                                                                    <input id="coverURL" name="coverURL" type="text" class="form-control required">
+                                                                </div>
+                                                                <div>
+                                                                    <br>
+                                                                    <img class="cover" style="margin-top: 15px;" src="" style="max-width:140px; max-height:200px" ;>
+                                                                </div>
+                                                                <ul class="list-inline pull-right">
+                                                                    <li>
+                                                                        <button type="button" class="btn btn-primary next-step">Save and continue</button>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label>Published Date</label>
-                                                                <input id="publishDate" name="publishDate" type="text" class="form-control required">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Author(s)</label>
-                                                                <input id="authors" name="authors" type="text" class="form-control required">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Book Cover Url</label>
-                                                                <input id="coverURL" name="coverURL" type="text" class="form-control required">
-                                                            </div>
-                                                            <div>
-                                                                 <br>
-                                                                <img class="cover" style="margin-top: 15px;" src="" style="max-width:140px; max-height:200px" ;>
-                                                            </div>
-                                                            <ul class="list-inline pull-right">
-                                                                <li>
-                                                                    <button type="button" class="btn btn-primary next-step">Save and continue</button>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="tab-pane" role="tabpanel" id="step2">
-                                                            <h3>Course</h3>
-                                                            <div class="form-group">
-                                                                <label>Course Name (i.e. Math 212 or Multivariable Calculus)</label>
-                                                                <input id="course" name="course" type="text" class="typeahead_1 form-control required">
-                                                            </div>
-                                                            <!--
+                                                            <div class="tab-pane" role="tabpanel" id="step2">
+                                                                <h3>Course</h3>
+                                                                <div class="form-group">
+                                                                    <label>Course Name (i.e. Math 212 or Multivariable Calculus)</label>
+                                                                    <input id="course" name="course" type="text" class="typeahead_1 form-control required">
+                                                                </div>
+                                                                <!--
                                         <div class="form-group">
                                             <label>Course Number (i.e. Math 212) </label>
                                             <input id="courseNumber" name="courseNumber" type="text" class="form-control required">
                                         </div>
 -->
 
-                                                            <ul class="list-inline pull-right">
-                                                                <li>
-                                                                    <button type="button" class="btn btn-default prev-step">Previous</button>
-                                                                </li>
-                                                                <li>
-                                                                    <button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="tab-pane" role="tabpanel" id="step3">
-                                                            <h3>Book Condition</h3>
-                                                            <div class="form-group">
-                                                                <label>Condition</label>
-                                                                <div>
-                                                                    <select name='bookCondition' data-placeholder="Choose some condition" class="chosen-select form-control" tabindex="1">
-                                                                        <option value="New">New</option>
-                                                                        <option value="Very Good">Very Good</option>
-                                                                        <option value="Good">Good</option>
-                                                                        <option value="Fair">Fair</option>
-                                                                        <option value="Poor">Poor</option>
-                                                                        <option value="UNC Crapple Hill">UNC Crapple Hill</option>
-                                                                    </select>
+                                                                <ul class="list-inline pull-right">
+                                                                    <li>
+                                                                        <button type="button" class="btn btn-default prev-step">Previous</button>
+                                                                    </li>
+                                                                    <li>
+                                                                        <button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="tab-pane" role="tabpanel" id="step3">
+                                                                <h3>Book Condition</h3>
+                                                                <div class="form-group">
+                                                                    <label>Condition</label>
+                                                                    <div>
+                                                                        <select name='bookCondition' data-placeholder="Choose some condition" class="chosen-select form-control" tabindex="1">
+                                                                            <option value="New">New</option>
+                                                                            <option value="Very Good">Very Good</option>
+                                                                            <option value="Good">Good</option>
+                                                                            <option value="Fair">Fair</option>
+                                                                            <option value="Poor">Poor</option>
+                                                                            <option value="UNC Crapple Hill">UNC Crapple Hill</option>
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Notes</label>
-                                                                <input id="notes" name="notes" type="text" class="form-control">
-                                                            </div>
-                                                            <ul class="list-inline pull-right">
-                                                                <li>
-                                                                    <button type="button" class="btn btn-default prev-step">Previous</button>
-                                                                </li>
-                                                                <li>
-                                                                    <button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="tab-pane" role="tabpanel" id="step4">
-                                                            <div class="form-group">
-                                                                <label>Price</label>
-                                                                <div class="input-group">
-                                                                    <span class="input-group-addon">$</span>
-                                                                    <input id="price" name="price" type="text" class="form-control"><span class="input-group-addon">.00</span>
+                                                                <div class="form-group">
+                                                                    <label>Notes</label>
+                                                                    <input id="notes" name="notes" type="text" class="form-control">
                                                                 </div>
+                                                                <ul class="list-inline pull-right">
+                                                                    <li>
+                                                                        <button type="button" class="btn btn-default prev-step">Previous</button>
+                                                                    </li>
+                                                                    <li>
+                                                                        <button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
-                                                            <ul class="list-inline pull-right">
-                                                                <li>
-                                                                    <button type="button" class="btn btn-default prev-step">Previous</button>
-                                                                     <button id="confirm" type="button" class="btn btn-primary btn-info-full next-step">Sell</button>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="tab-pane" role="tabpanel" id="step5">
-                                                            <div class = 'info' style='border: solid #E8E8E8 1px; text-align: center'>
-                                                                <h2>You are about to sell this book. Continue?</h2>
-                                                                <img>
-                                                                <p></p>
+                                                            <div class="tab-pane" role="tabpanel" id="step4">
+                                                                <div class="form-group">
+                                                                    <label>Price</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon">$</span>
+                                                                        <input id="price" name="price" type="text" class="form-control"><span class="input-group-addon">.00</span>
+                                                                    </div>
+                                                                </div>
+                                                                <ul class="list-inline pull-right">
+                                                                    <li>
+                                                                        <button type="button" class="btn btn-default prev-step">Previous</button>
+                                                                        <button id="confirm" type="button" class="btn btn-primary btn-info-full next-step">Sell</button>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
-                                                            <ul class="list-inline pull-right">
-                                                                <li>
-                                                                    <button type="button" class="btn btn-default prev-step">Previous</button>
-                                                                    <input name="add_book" type="submit" class="btn btn-primary" value="Sell">
-                                                                </li>
-                                                            </ul>
+                                                            <div class="tab-pane" role="tabpanel" id="step5">
+                                                                <div class='info' style='border: solid #E8E8E8 1px; text-align: center'>
+                                                                    <h2>You are about to sell this book. Continue?</h2>
+                                                                    <img>
+                                                                    <p></p>
+                                                                </div>
+                                                                <ul class="list-inline pull-right">
+                                                                    <li>
+                                                                        <button type="button" class="btn btn-default prev-step">Previous</button>
+                                                                        <input name="add_book" type="submit" class="btn btn-primary" value="Confirm">
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="clearfix"></div>
                                                         </div>
-                                                        <div class="clearfix"></div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </section>
+                                                    </form>
+                                                </div>
+                                            </section>
 
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
 
                         </div>
 
                     </div>
-
-                </div>
-                <div class="footer">
-                    <!--
+                    <div class="footer">
+                        <!--
                 <div class="pull-right">
                     10GB of <strong>250GB</strong> Free.
                 </div>
@@ -398,7 +398,7 @@ if(!isset($_SESSION['username'])){
                     <strong>Copyright</strong> Example Company &copy; 2014-2017
                 </div>
 -->
-                </div>
+                    </div>
 
             </div>
         </div>
@@ -426,8 +426,8 @@ if(!isset($_SESSION['username'])){
         <script>
             $(document).ready(function () {
                 //prevents users from pressing enter and submitting
-                $(window).keydown(function(event){
-                    if(event.keyCode == 13) {
+                $(window).keydown(function (event) {
+                    if (event.keyCode == 13) {
                         event.preventDefault();
                         return false;
                     }
@@ -477,7 +477,7 @@ if(!isset($_SESSION['username'])){
                     }
                 });
 
-                $(".next-step").click(function (e) { 
+                $(".next-step").click(function (e) {
 
                 });
                 $(".prev-step").click(function (e) {
@@ -488,79 +488,80 @@ if(!isset($_SESSION['username'])){
                 });
 
 
-            $('#step1 ul li button').click(function(e){
-                e.preventDefault();
-                
-                var inputs = $('#step1').find('input');
-                //dont want to include the search input
-                var flip = true;
-                for(var i = 1; i < inputs.length; i++){
-                    if($(inputs[i]).val().length == 0){   
-                        flip = false;
-                        var parent = $(inputs[i]).parent();
-                        if(parent.children().length < 3){
-                             parent.children("label").after("<label class='pull-right warning' style = 'color: darkred; font-weight: normal'>You must fill this out</label>");
+                $('#step1 ul li button').click(function (e) {
+                    e.preventDefault();
+
+                    var inputs = $('#step1').find('input');
+                    //dont want to include the search input
+                    var flip = true;
+                    for (var i = 1; i < inputs.length; i++) {
+                        if ($(inputs[i]).val().length == 0) {
+                            flip = false;
+                            var parent = $(inputs[i]).parent();
+                            if (parent.children().length < 3) {
+                                parent.children("label").after("<label class='pull-right warning' style = 'color: darkred; font-weight: normal'>You must fill this out</label>");
+                            }
                         }
+
+                    }
+                    if (flip) {
+                        var parent = $(inputs[i]).parent();
+                        $('.warning').remove();
+                        var $active = $('.wizard .nav-tabs li.active');
+                        $active.next().removeClass('disabled');
+                        nextTab($active);
+                    }
+                });
+                $('#step2 ul li .btn-info-full').click(function (e) {
+                    e.preventDefault();
+                    var inputs = $('#step2').find('input');
+                    var flip = true;
+                    for (var i = 0; i < inputs.length; i++) {
+                        if ($(inputs[i]).val().length == 0) {
+                            flip = false;
+                            var parent = $(inputs[i]).parent();
+                            if (parent.children().length < 3) {
+                                parent.children("label").after("<label class='pull-right warning' style = 'color: darkred; font-weight: normal'>You must fill this out</label>");
+                            }
+                        }
+
+                    }
+                    if (flip) {
+                        var parent = $(inputs[i]).parent();
+                        $('.warning').remove();
+                        var $active = $('.wizard .nav-tabs li.active');
+                        $active.next().removeClass('disabled');
+                        nextTab($active);
                     }
 
-                }
-                if(flip){
-                    var parent = $(inputs[i]).parent();
-                    $('.warning').remove();
+                });
+                $('#step3 ul li .btn-info-full').click(function (e) {
                     var $active = $('.wizard .nav-tabs li.active');
                     $active.next().removeClass('disabled');
                     nextTab($active);
-                }
-            });
-            $('#step2 ul li .btn-info-full').click(function(e){
-                e.preventDefault();
-                var inputs = $('#step2').find('input');
-                var flip = true;
-                for(var i = 0; i < inputs.length; i++){
-                    if($(inputs[i]).val().length == 0){   
+                });
+                $('#step4 ul li .btn-info-full').click(function (e) {
+                    var inputs = $('#step4').find('input');
+                    var num = $(inputs[0]).val();
+                    var check = /^[0-9]+$/;
+                    var flip = true;
+                    if (!check.test(num)) {
                         flip = false;
-                        var parent = $(inputs[i]).parent();
-                        if(parent.children().length < 3){
-                             parent.children("label").after("<label class='pull-right warning' style = 'color: darkred; font-weight: normal'>You must fill this out</label>");
+                        var parent = $(inputs[0]).parent();
+                        if (parent.children().length < 6) {
+                            parent.children("label").after("<label class='pull-right warning' style = 'color: darkred; font-weight: normal'>You must fill this out</label>");
                         }
                     }
+                    if (flip) {
+                        var parent = $(inputs[0]).parent();
+                        $('.warning').remove();
+                        var $active = $('.wizard .nav-tabs li.active');
+                        $active.next().removeClass('disabled');
+                        nextTab($active);
+                    }
 
-                }
-                if(flip){
-                    var parent = $(inputs[i]).parent();
-                    $('.warning').remove();
-                    var $active = $('.wizard .nav-tabs li.active');
-                    $active.next().removeClass('disabled');
-                    nextTab($active);
-                }
+                });
 
-            });
-            $('#step3 ul li .btn-info-full').click(function(e){
-                var $active = $('.wizard .nav-tabs li.active');
-                $active.next().removeClass('disabled');
-                nextTab($active);
-            });
-            $('#step4 ul li .btn-info-full').click(function(e){
-                var inputs = $('#step4').find('input');
-                var num = $(inputs[0]).val();
-                var check = /^[0-9]+$/;
-                var flip = true;
-                if(!check.test(num)){
-                    flip = false;
-                     var parent = $(inputs[0]).parent();
-                        if(parent.children().length < 6){
-                             parent.children("label").after("<label class='pull-right warning' style = 'color: darkred; font-weight: normal'>You must fill this out</label>");
-                        }
-                }
-                if(flip){
-                    var parent = $(inputs[0]).parent();
-                    $('.warning').remove();
-                    var $active = $('.wizard .nav-tabs li.active');
-                    $active.next().removeClass('disabled');
-                    nextTab($active);
-                }
-
-            });
                 function nextTab(elem) {
                     $(elem).next().find('a[data-toggle="tab"]').click();
                 }
@@ -568,7 +569,7 @@ if(!isset($_SESSION['username'])){
                 function prevTab(elem) {
                     $(elem).prev().find('a[data-toggle="tab"]').click();
                 }
-                $('#confirm').click(function (e) { // when person clicks okay on modal
+                $('#confirm').click(function (e) {
                     var title = $('#title').val();
                     var price = $('#price').val();
                     var summary1 = 'You are about to post the following listing: "';
@@ -576,39 +577,20 @@ if(!isset($_SESSION['username'])){
                     summary = summary.concat(price, '.');
                     $('#step5 .info h2').text(summary).append('<br/><br/>').append("<h4> Press sell to post this listing. <h4>");
                     $('#step5 .info img').attr('src', $('#coverURL').val());
-                    var details ="Title: " + $('#title').val() + "<br/>";
-                    details += "Course: " + $('#course').val() + "<br/>";
-                    details += "ISBN: " + $('#isbn').val() + "<br/>";
-                    details += "Authors: " + $('#authors').val() + "<br/>";
-                    details +="Notes: " + $('#notes').val() + "<br/>";
+                    var details = "<b>Title: </b>" + $('#title').val() + "<br/>";
+                    details += "<b>Course: </b>" + $('#course').val() + "<br/>";
+                    details += "<b>ISBN: </b>" + $('#isbn').val() + "<br/>";
+                    details += "<b>Authors: </b>" + $('#authors').val() + "<br/>";
+                    details += "<b>Notes: </b>" + $('#notes').val() + "<br/>";
                     $('#step5 .info p').html(details);
 
-
-                }); 
-                $('#ok').click(function (e) { // when person clicks okay on modal
-                    window.location.replace('listing-confirm.php');
 
                 });
 
                 $('#addBook').submit(function (evt) {
-                    //$('#addBook').load("./php/add_book.php");
                     evt.preventDefault(); // only sends data if data is entered
                     var postData = $(this).serialize(); // postData is POST data with the string name of form elements
-                    var title = $('#title').val();
-                    var price = $('#price').val();
-                    var summary1 = 'You have added ';
-                    var summary = summary1.concat(title, ' for $');
-                    summary = summary.concat(price, ' to the market place.');
-                    $('#addSummary').text(summary) // prints summary of book added in modal
-                    var url = $(this).attr('action'); // in form html code as add_book.php
-                    $.post(url, postData, function (data) {
-                        //$('#addBook').trigger("reset");
-
-                        $('#myModal').modal('show');
-                        // alert("Transaction Completed");
-
-
-                    });
+                    window.location.replace('listing-confirm.php');
 
 
                 });

@@ -1,12 +1,14 @@
 <?php
-include "./php/functions.php";
+include './php/functions.php';
+session_start();
 
-if (isset($_GET['search'])){
-    $result = log_out_search($_GET['search']);
+if (isset($_POST['search'])){
+    $_SESSION['search'] = $_POST['search'];
 }
 else {
-    $result = array();
+    header("Location: index.php");
 }
+
 ?>
 
     <!DOCTYPE html>
@@ -17,12 +19,10 @@ else {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title><?php echo $_GET['search'] ?> - Duke Exchange</title>
+        <title>
+            <?php echo $_POST['search'] ?> - Duke Exchange</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-        <!-- Toastr style -->
-        <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
 
         <!-- Gritter -->
         <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
@@ -37,7 +37,7 @@ else {
     <body class='top-navigation'>
         <div id="wrapper">
             <div id="page-wrapper">
-                 <div class="row">
+                <div class="row">
                     <nav class="navbar navbar-static-top" role="navigation">
                         <div class="navbar-header">
                             <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
@@ -67,163 +67,96 @@ else {
                             <div class="ibox float-e-margins">
                                 <div class="ibox-content">
                                     <h2>
-                                <?php echo count($result); ?> results found for: <span style="color: #001A57"><?php echo $_GET['search']; ?></span>
+                                <span id="numResults"></span> results found for: <span style="color: #001A57"><?php echo $_POST['search']; ?></span>
                             </h2>
 
                                     <div class="search-form">
-                                        <form action="logged_out_search.php" method="get">
+                                        <form action="logged_out_search.php" method="post">
                                             <div class="input-group">
                                                 <input type="text" placeholder="Search ISBN, Title, Author, or Class" name="search" class="form-control input-lg">
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-lg btn-primary space" type="submit">
                                                         <i class="fa fa-search"></i>
                                                     </button>
-                                                    <!--  <li class="dropdown" style="display: inline; margin-left: 5px;">
-                    <a class="dropdown-toggle count-info btn btn-lg btn-primary space" data-toggle="dropdown" href="#">
-                                                        <i class="fa fa-filter"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts pull-right todo-list m-t" style=" margin-top: 20px;  width: 250px; padding-top: 5px;">
-                        <span class=labels>Price: </span> 
-                        <li>
-                        <label>
-                            <input type="checkbox" value="" name="" class="i-checks"/>
-                            <span class="m-l-xs">Under $5</span>
-                        </label>
-                        </li>
-                        <li>
-                        <label>
-                            <input type="checkbox" value="" name="" class="i-checks"/>
-                            <span class="m-l-xs">Under $10</span>
-                        </label>
-                        </li>
-                        <li>
-                        <label>
-                            <input type="checkbox" value="" name="" class="i-checks" />
-                            <span class="m-l-xs">Under $20</span>
-                        </label>    
-                        </li>
-                        <li>
-                           <label>
-                            <input type="checkbox" value="" name="" class="i-checks" />
-                            <span class="m-l-xs">Under $30</span>
-                        </label>  
-                            
-                        </li>
-                        <li>
-                            <label>
-                            <input type="checkbox" value="" name="" class="i-checks" />
-                            <span class="m-l-xs">Any</span>
-                        </label>  
-                            
-                        </li>
-                        <span class=labels>Condition:</span> 
-                        <li>
-                            <label>
-                            <input type="checkbox" value="" name="" class="i-checks" />
-                            <span class="m-l-xs">New</span>
-                        </label>  
-                            
-                        </li>
-                        <li>
-                          <label>
-                            <input type="checkbox" value="" name="" class="i-checks" />
-                            <span class="m-l-xs">Good</span>
-                        </label>  
-                        </li>
-                        <li>
-                           <label>
-                            <input type="checkbox" value="" name="" class="i-checks" />
-                            <span class="m-l-xs">Fair</span>
-                        </label>  
-                            
-                        </li>
-                        <li>
-                           <label>
-                            <input type="checkbox" value="" name="" class="i-checks" />
-                            <span class="m-l-xs">Any</span>
-                        </label>  
-                        </li>
-                    </ul>
-                </li> -->
+                                                    <li class="dropdown" style="display: inline; margin-left: 5px;">
+                                                        <a class="dropdown-toggle count-info btn btn-lg btn-primary space" id="filter" data-toggle="dropdown" href="#">
+                                                            <i class="fa fa-filter"></i>
+                                                        </a>
+                                                        <ul class="dropdown-menu dropdown-alerts pull-right todo-list m-t" style=" margin-top: 20px;  width: 250px; padding-top: 5px;">
+                                                            <span class="labels">Price: </span>
+                                                            <li class="price">
+                                                                <label>
+                                                                    <input type="checkbox" value="" name="" class="i-checks" />
+                                                                    <span class="m-l-xs">Under $5</span>
+                                                                </label>
+                                                            </li>
+                                                            <li class="price">
+                                                                <label>
+                                                                    <input type="checkbox" value="" name="" class="i-checks" />
+                                                                    <span class="m-l-xs">Under $10</span>
+                                                                </label>
+                                                            </li>
+                                                            <li class="price">
+                                                                <label>
+                                                                    <input type="checkbox" value="" name="" class="i-checks" />
+                                                                    <span class="m-l-xs">Under $20</span>
+                                                                </label>
+                                                            </li>
+                                                            <li class="price">
+                                                                <label>
+                                                                    <input type="checkbox" value="" name="" class="i-checks" />
+                                                                    <span class="m-l-xs">Under $30</span>
+                                                                </label>
+
+                                                            </li>
+                                                            <li class="price">
+                                                                <label>
+                                                                    <input type="checkbox" value="" name="" class="i-checks" />
+                                                                    <span class="m-l-xs">Any</span>
+                                                                </label>
+
+                                                            </li>
+                                                            <span class="labels">Condition:</span>
+                                                            <li class="cond">
+                                                                <label>
+                                                                    <input type="checkbox" value="" name="" class="i-checks" />
+                                                                    <span class="m-l-xs">New</span>
+                                                                </label>
+
+                                                            </li>
+                                                            <li class="cond">
+                                                                <label>
+                                                                    <input type="checkbox" value="" name="" class="i-checks" />
+                                                                    <span class="m-l-xs">Good</span>
+                                                                </label>
+                                                            </li>
+                                                            <li class="cond">
+                                                                <label>
+                                                                    <input type="checkbox" value="" name="" class="i-checks" />
+                                                                    <span class="m-l-xs">Fair</span>
+                                                                </label>
+
+                                                            </li>
+                                                            <li class="cond">
+                                                                <label>
+                                                                    <input type="checkbox" value="" name="" class="i-checks" />
+                                                                    <span class="m-l-xs">Any</span>
+                                                                </label>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
                                                 </div>
                                             </div>
 
                                         </form>
                                     </div>
-
-                                    <?php //print_r($result); ?>
-
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <?php
-            echo '<div class="row">';
-            for($i=0; $i<count($result); $i++){  // printing out a grid of books from the php data loaded at the top of the file
-                if ($i != 0 && $i%4 == 0){
-                    echo '</div>';
-                }
-                if ($i != 0 && $i%4 == 0){
-                    echo '<div class="row">'; // for creating rows of books displayed 
-                }
-                echo'
-                <div class="col-md-3">
-                    <div class="ibox">
-                        <div class="ibox-content product-box">
-
-                            <div class="product-imitation">';
-                            
-                            echo "<img style='max-height: 135px;' src=\"{$result[$i]['cover_url']}\">";
-                                
-                            echo '</div>
-                            <div class="product-desc">
-                                <span class="product-price">';
-                                 echo '$'.$result[$i]['price'];
-                                echo '</span>
-                                <small class="text-muted">'; echo $result[$i]['isbn']; echo '</small>
-                                <a href="#" class="product-name">'; 
-                                $str = $result[$i]['title'];
-                                if(strlen($str) > 25){
-                                    $cut = substr($str, 0, 25). "...";
-                                    echo $cut;
-                                }
-                                else{
-                                    echo $str;
-                                }
-                                 
-
-                                echo '</a>
-                                <div class="small m-t-xs">';
-                                    echo 'Author(s): ';
-                                    $authors = $result[$i]['authors'];
-                                    if(strlen($authors) > 20){
-                                        echo substr($authors, 0, 20) . "...";
-                                    }
-                                    else{
-                                        echo $authors;
-                                    }
-                                echo '</div>
-                                <div class="small m-t-xs">
-                                <p><span class="label label-success">'; echo $result[$i]['course_num']; echo '</span> 
-                                <span class="label label-danger">'; echo $result[$i]['book_condition'];
-                                echo '</span></p>
-                                </div>';
-                
-                                echo'
-                                <div class="m-t text-right buy">
-                                    <button href="#" data-id ='; echo "\"{$result[$i]['id']}\""; echo 'class="btn btn-xs btn-outline btn-success bought">Buy <i class="fa fa-long-arrow-right"></i> </button>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="display_books">
                     </div>
-                </div>';
-                
-                
-                
-            }
-            echo '</div>';
-            ?>
 
                 </div>
             </div>
@@ -267,18 +200,81 @@ else {
         <!-- ChartJS-->
         <script src="js/plugins/chartJs/Chart.min.js"></script>
 
-        <!-- Toastr -->
-        <script src="js/plugins/toastr/toastr.min.js"></script>
-        <!-- Custom script -->
-        <!--<script src="js/frontpage.js">-->
-        </script>
 
         <script>
             $(document).ready(function () {
-                $('.bought').click(function(){
+                $(document).on('click', '.bought', function () { // document allows for dynamic content to use jquery
                     window.location.replace('logged_out_redirect.php');
+
                 });
 
+                /////////////// filter //////////////////// 
+                var price = "Any";
+                var condition = "Any";
+
+                function search_and_filter() {
+                    $.ajax({
+                        type: "POST",
+                        url: './php/get_search_results.php',
+                        dataType: 'json',
+                        data: {
+                            price: price,
+                            condition: condition
+                        },
+                        success: function (data) {
+                            if (!data.error) { // this sort of json accessing data only works in ajax
+                                $('#numResults').html(data.numResults);
+                                $('#display_books').html(data.books);
+
+                            }
+                        }
+                    });
+                }
+                search_and_filter(); // call search on load of page
+                ////////////////////
+
+                $('.price label .i-checks').click(function () {
+                    if ($(this).is(':checked')) {
+                        var index = $('.price').index($(this).parent().parent());
+                        uncheckOthers(index, 'price');
+
+                        //this is the price u want to do stuff with
+                        price = "Any";
+                        var span;
+                        if ((span = $(this).parent().find("span").text()) !== "Any") {
+                            var nums = /[0-9]+$/;
+                            price = parseInt(span.match(nums) + "");
+                        }
+
+                        //price is a number, either 5, 10, 20, 30, or Any
+                        //DO STUFF HERE with price
+                        search_and_filter();
+
+                    }
+                });
+
+                $('.cond label .i-checks').click(function () {
+                    if ($(this).is(':checked')) {
+                        var index = $('.cond').index($(this).parent().parent());
+                        uncheckOthers(index, 'cond');
+
+                        //THIS IS THE CONDITION NAME, I.E. NEW, GOOD, FAIR, POOR
+                        condition = $(this).parent().find("span").text();
+
+                        //condition is a string, either New, Good, Fair, or Any
+                        //DO STUFF HERE with condition
+                        search_and_filter();
+                    }
+                });
+
+                function uncheckOthers(index, name) {
+                    var list = $('.todo-list').find('.' + name);
+                    for (var i = 0; i < list.length; i++) {
+                        if (i != index) {
+                            $(list[i]).find('.i-checks').attr('checked', false);
+                        }
+                    }
+                }
             });
         </script>
     </body>

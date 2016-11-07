@@ -39,10 +39,10 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                         <div class="row">
                             <h3 class="m-t-none m-b">Create an Account</h3>
                             <div class="hr-line-dashed"></div>
-                            <form role="form" method='post' action='index.php' >
+                            <form role="form" method='post' action='index.php'>
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input name = 'first_name' type="text" placeholder="First Name" class="form-control" required>
+                                    <input name='first_name' type="text" placeholder="First Name" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Last Name</label>
@@ -95,8 +95,8 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                             </li> -->
                                 <li>
                                     <a href="oauth.php">
-                                <i class="fa fa-sign-in"></i>Log in
-                                </a>
+                                        <i class="fa fa-sign-in"></i>Log in
+                                    </a>
                                 </li>
 
                             </ul>
@@ -104,27 +104,28 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                     </nav>
                 </div>
                 <div class="foobar">
-                        <div>
-                            <span>One account, all of Duke.</span>
-                        </div>
-                        <div class='small-message' style="font-size: 23px;">
-                         <span>Get everything you need on campus. It's easy and free.</span>
-                        </div>
-                                <div id="w">
-    <div id="page">
-      <div id="content-login">
-        <div class="content">
-         <button class="btn btn-xs btn-outline btn-success getting-started" id="showregister">Let's get started</button>
-          <form id="login" name="login" action="#" method="post">
-          </form>
-        </div>
-      </div><!-- /end #content-login -->
-      
-      
-      <div id="content-register">
-        <div class="content">
-        <div class="search-form">
-                                        <form action="logged_out_search.php" method="get">
+                    <div>
+                        <span>Duke Book Exchange</span>
+                    </div>
+                    <div class='small-message' style="font-size: 23px;">
+                        <span>Sell and buy books. It's easy and free.</span>
+                    </div>
+                    <div id="w">
+                        <div id="page">
+                            <div id="content-login">
+                                <div class="content">
+                                    <button class="btn btn-xs btn-outline btn-success getting-started" id="showregister">Let's get started</button>
+                                    <form id="login" name="login" action="#" method="post">
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- /end #content-login -->
+
+
+                            <div id="content-register">
+                                <div class="content">
+                                    <div class="search-form">
+                                        <form action="logged_out_search.php" method="post">
                                             <div class="input-group" style="font-weight: normal">
                                                 <input type="text" name="search" class="form-control input-lg foc" autocomplete="off">
                                                 <div class="input-group-btn">
@@ -135,18 +136,19 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                                                 </div>
                                             </div>
                                         </form>
-                                         <a class="btn btn-xs btn-outline btn-success getting-started" href="oauth.php">Log in</a>
-                                        <button class="btn btn-xs btn-outline btn-success getting-started" id="showlogin">Back</button>
                                     </div>
-        </div>
-      </div><!-- /end #content-register -->
-      
-    </div><!-- /end #page -->
-  </div><!-- /end #w -->
-                               
+                                </div>
+                            </div>
+                            <!-- /end #content-register -->
+
+                        </div>
+                        <!-- /end #page -->
+                    </div>
+                    <!-- /end #w -->
+
                 </div>
 
-                    <!-- <div class=col-md-4></div>             
+                <!-- <div class=col-md-4></div>             
                     <div class="col-md-4 data">
                             <div class="ibox-content">
                                     <div class=individual>
@@ -180,7 +182,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                         </div>
                     </form>
                 </div> -->
-               <!--  <div class="footer">
+                <!--  <div class="footer">
                     <div class="about">
                         <strong>Copyright</strong> Duke Exchange &copy; 2016
                     </div>
@@ -238,7 +240,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                         if ($(window).width() < 630) {
                             $('.foobar').css("font-size", "25px");
                             $('.footer').hide();
-                             $('.small-message').css("font-size", "12px");
+                            $('.small-message').css("font-size", "12px");
                         } else {
                             $('.foobar').css("font-size", "70px");
                             $('.footer').show();

@@ -1,7 +1,9 @@
 <?php
 include './php/functions.php';
 session_start();
-
+if(!isset($_SESSION['username'])){
+    header('Location: index.php');
+}
 if (isset($_POST['search'])){
     $_SESSION['search'] = $_POST['search'];
 }
@@ -23,10 +25,7 @@ else {
             <?php echo $_POST['search'] ?> - Duke Exchange</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-        <!-- Toastr style -->
-        <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
+        
         <!-- Gritter -->
         <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
 
@@ -93,7 +92,7 @@ else {
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-content">
                                         <h2>
-                                <span id="numResults">0</span> results found for: <span style="color: #001A57"><?php echo $_POST['search']; ?></span>
+                                <span id="numResults"></span> results found for: <span style="color: #001A57"><?php echo $_POST['search']; ?></span>
                             </h2>
 
                                         <div class="search-form">
@@ -196,13 +195,6 @@ else {
         <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
         <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-        <!-- Flot -->
-        <script src="js/plugins/flot/jquery.flot.js"></script>
-        <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-        <script src="js/plugins/flot/jquery.flot.spline.js"></script>
-        <script src="js/plugins/flot/jquery.flot.resize.js"></script>
-        <script src="js/plugins/flot/jquery.flot.pie.js"></script>
-
         <!-- Peity -->
         <script src="js/plugins/peity/jquery.peity.min.js"></script>
         <script src="js/demo/peity-demo.js"></script>
@@ -222,12 +214,7 @@ else {
 
         <!-- Sparkline demo data  -->
         <script src="js/demo/sparkline-demo.js"></script>
-
-        <!-- ChartJS-->
-        <script src="js/plugins/chartJs/Chart.min.js"></script>
-
-        <!-- Toastr -->
-        <script src="js/plugins/toastr/toastr.min.js"></script>
+        
         <script>
             $(document).ready(function () {
                 
@@ -238,16 +225,15 @@ else {
                     $.ajax({
                         type: "POST",
                         url: './php/get_search_results.php',
+                        dataType: 'json',
                         data: {
                             price: price,
                             condition: condition
                         },
                         success: function (data) {
                             if (!data.error) { // this sort of json accessing data only works in ajax
-                                var nums = data.match(/^[0-9]+/).toString();
-                                console.log(nums.length);
-                                $('#numResults').html(nums);
-                                $('#display_books').html(data.substring(nums.length));
+                                $('#numResults').html(data.numResults);
+                                $('#display_books').html(data.books);
 
                             }
                         }

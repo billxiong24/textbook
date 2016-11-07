@@ -39,7 +39,7 @@ $user = getUser($_SESSION['username']);
             </div>
 -->
                     <div class="title">
-                        <h1>Welcome to Duke Exchange</h1>
+                        <h1>Welcome to Duke Book Exchange</h1>
                     </div>
                     <div class="wrapper wrapper-content animated fadeInRight expose">
                         <div class="row content">

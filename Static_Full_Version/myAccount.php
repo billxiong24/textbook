@@ -61,7 +61,7 @@ $account = accountOverview($_SESSION['username']);
                                 <div class="col-md-4">
                                     <div class="ibox float-e-margins">
                                         <div class="ibox-title">
-                                            <h5>Profit</h5>
+                                            <h5>Spent</h5>
                                         </div>
                                         <div class="ibox-content">
                                             <div class="row">
@@ -74,7 +74,7 @@ $account = accountOverview($_SESSION['username']);
                                                 echo '$'.$account['profit'];
                                             }
                                             ?></h1>
-                                                    <div class="font-bold text-success">Total Profit</div>
+                                                    <div class="font-bold text-success">Total Spent</div>
                                                 </div>
                                             </div>
                                         </div>
