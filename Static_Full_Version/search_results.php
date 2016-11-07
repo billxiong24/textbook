@@ -105,7 +105,7 @@ else {
                                                             <i class="fa fa-search"></i>
                                                         </button>
                                                         <li class="dropdown" style="display: inline; margin-left: 5px;">
-                                                            <a class="dropdown-toggle count-info btn btn-lg btn-primary space" data-toggle="dropdown" href="#">
+                                                            <a class="dropdown-toggle count-info btn btn-lg btn-primary space" id="filter" data-toggle="dropdown" href="#">
                                                                 <i class="fa fa-filter"></i>
                                                             </a>
                                                             <ul class="dropdown-menu dropdown-alerts pull-right todo-list m-t" style=" margin-top: 20px;  width: 250px; padding-top: 5px;">
@@ -389,6 +389,13 @@ else {
                     });
 
                 });
+                $('.dropdown .space').focusout(function(){
+                    $('#id').css("background-color", "black !important");
+                });
+                $('.dropdown .space').focus(function(){
+                    $('#id').css("background-color", "black");
+                });
+
 
             });
         </script>

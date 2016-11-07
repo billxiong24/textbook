@@ -15,7 +15,6 @@ $user = getUser($_SESSION['username']);
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Duke Exchange</title>
-
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="css/animate.css" rel="stylesheet">
@@ -164,6 +163,24 @@ $user = getUser($_SESSION['username']);
                     refreshNotifications();
 
                 }, 1000);
+                var width = $(window).width();
+                if ($(window).width() < 360) {
+                    $('.title h1').css("font-size", "20px");
+                }
+                else if ($(window).width() < 630) {
+                    $('.title h1').css("font-size", "25px");
+                }
+                $(window).resize(function () {
+                    if ($(window).width() < 360) {
+                        $('.title h1').css("font-size", "20px");
+                    }
+                    else if ($(window).width() < 630) {
+                        $('.title h1').css("font-size", "25px");
+                    } else {
+                       $('.title h1').css("font-size", "45px");
+                    }
+                });
+
 
                 function refreshNotifications() {
                     $.ajax({

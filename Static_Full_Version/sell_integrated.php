@@ -197,7 +197,7 @@ if(!isset($_SESSION['username'])){
                 <div class="wrapper wrapper-content">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-16">
                                 <div class="ibox">
 
                                     <div class="ibox-content">
@@ -209,8 +209,8 @@ if(!isset($_SESSION['username'])){
                                         </p>
 
                                         <section>
-                                            <div class="wizard">
-                                                <div class="wizard-inner">
+                                            <div class="wizard" >
+                                                <div class="wizard-inner" >
                                                     <div class="connecting-line"></div>
                                                     <ul class="nav nav-tabs" role="tablist">
 
@@ -314,7 +314,7 @@ if(!isset($_SESSION['username'])){
                                                                     <button type="button" class="btn btn-default prev-step">Previous</button>
                                                                 </li>
                                                                 <li>
-                                                                    <button type="button" class="btn btn-primary next-step">Save and continue</button>
+                                                                    <button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -512,7 +512,7 @@ if(!isset($_SESSION['username'])){
                     nextTab($active);
                 }
             });
-            $('#step2 ul li button').click(function(e){
+            $('#step2 ul li .btn-info-full').click(function(e){
                 e.preventDefault();
                 var inputs = $('#step2').find('input');
                 var flip = true;
@@ -535,12 +535,12 @@ if(!isset($_SESSION['username'])){
                 }
 
             });
-            $('#step3 ul li button').click(function(e){
+            $('#step3 ul li .btn-info-full').click(function(e){
                 var $active = $('.wizard .nav-tabs li.active');
                 $active.next().removeClass('disabled');
                 nextTab($active);
             });
-            $('#step4 ul li button').click(function(e){
+            $('#step4 ul li .btn-info-full').click(function(e){
                 var inputs = $('#step4').find('input');
                 var num = $(inputs[0]).val();
                 var check = /^[0-9]+$/;

@@ -483,7 +483,7 @@ function getNotifications($username){
                     $formattedNotification = $formattedNotification."
                <li>
                 <a href='$link'>
-                    <div style='color: red;'>
+                    <div style='color: darkred;'>
                         <i class='$icon fa-fw'></i> {$info}
                         <span style='color: red;'class='pull-right text-muted small'>{$time}</span>
                     </div>
