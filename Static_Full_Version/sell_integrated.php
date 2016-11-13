@@ -25,6 +25,8 @@ if(!isset($_SESSION['username'])){
         <!-- Bill custom stylesheet -->
         <link href="css/sell_integrated.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
+        <!-- Input Mask -->
+        <link href="css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
         <style>
             .wizard {
                 margin: 20px auto;
@@ -275,8 +277,8 @@ if(!isset($_SESSION['username'])){
                                                                     <input id="title" name="title" type="text" class="form-control required">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label>Published Date</label>
-                                                                    <input id="publishDate" name="publishDate" type="text" class="form-control required">
+                                                                    <label>Published Date (yyyy-mm)</label>
+                                                                    <input id="publishDate" name="publishDate" type="text" class="form-control required" data-mask="9999-99">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Author(s)</label>
@@ -299,7 +301,7 @@ if(!isset($_SESSION['username'])){
                                                             <div class="tab-pane" role="tabpanel" id="step2">
                                                                 <h3>Course</h3>
                                                                 <div class="form-group">
-                                                                    <label>Course Name (i.e. Math 212 or Multivariable Calculus)</label>
+                                                                    <label>Course Name (i.e. Math 212 - Multivariable Calculus)</label>
                                                                     <input id="course" name="course" type="text" class="typeahead_1 form-control required">
                                                                 </div>
                                                                 <!--
@@ -418,10 +420,11 @@ if(!isset($_SESSION['username'])){
         <!-- Chosen -->
         <script src="js/plugins/chosen/chosen.jquery.js"></script>
 
-
         <!-- Typehead -->
         <script src="js/plugins/typehead/bootstrap3-typeahead.min.js"></script>
 
+        <!-- Input Mask-->
+        <script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
 
         <script>
             $(document).ready(function () {
@@ -434,7 +437,6 @@ if(!isset($_SESSION['username'])){
                 });
                 $('#search').keyup(function (e) {
                     var search = $('#search').val();
-                    //alert(search);
                     $.ajax({
                         url: './php/findBook.php',
                         dataType: "json",
@@ -451,11 +453,9 @@ if(!isset($_SESSION['username'])){
                                 $('#authors').val(data.authors);
                                 $('#coverURL').val(data.cover);
                                 $('.cover').attr('src', data.cover);
-
                             }
                         }
                     });
-
                 });
                 $('#coverURL').keyup(function () {
                     var cover = $('#coverURL').val();
@@ -594,7 +594,7 @@ if(!isset($_SESSION['username'])){
                     $.post(url, postData, function (data) {
                         window.location.replace('listing-confirm.php');
                     });
-                    
+
 
 
                 });

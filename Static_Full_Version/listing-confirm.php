@@ -4,8 +4,6 @@ session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
-$account = accountOverview($_SESSION['username']);
-$user = getUser($_SESSION['username']);
 ?>
     <!DOCTYPE html>
     <html>
@@ -35,20 +33,19 @@ $user = getUser($_SESSION['username']);
     <body class='top-navigation'>
         <div id="wrapper">
             <div id="page-wrapper">
-                 <?php include 'navbar.php'; ?>
-                 <div class="title" style="text-align: center; margin-top: 100px">
+                <?php include 'navbar.php'; ?>
+                    <div class="title" style="text-align: center; margin-top: 100px">
                         <h3 style="font-weight: 400;">Congratulations! You have posted your item on the market place.<br/> <br/>We'll notify you when your item is sold. You can click<a href="myAccount.php#listings"> here</a> to see the details.</h3>
                     </div>
                     <div class="wrapper wrapper-content animated fadeInRight expose">
                         <div class="row content">
-                           
+
                         </div>
                     </div>
-                </div>
-               
             </div>
 
         </div>
+
 
         <!-- Mainly scripts -->
 
@@ -89,12 +86,46 @@ $user = getUser($_SESSION['username']);
 
         <!-- Toastr -->
         <script src="js/plugins/toastr/toastr.min.js"></script>
-        <!-- Custom script -->
-        <!--<script src="js/frontpage.js">-->
-        </script>
 
         <script>
             $(document).ready(function () {
+                refresh = setInterval(function () {
+                    refreshNotifications();
+
+                }, 1000);
+
+                function refreshNotifications() {
+                    $.ajax({
+                        url: './php/refreshNotifications.php',
+                        dataType: "json",
+                        success: function (data) {
+                            if (!data.error) { // this sort of json accessing data only works in ajax
+                                if (data.unread != 0) { // wont display notifications label if none exist
+                                    $('#unreadNotifications').html(data.unread);
+                                    $('#notifications').html(data.notifications);
+                                } else {
+                                    $('#unreadNotifications').html('');
+                                    $('#notifications').html(data.notifications);
+                                }
+
+
+
+                            }
+                        }
+                    });
+                }
+
+                $('#readNotifications').click(function (evt) {
+                    $(document).click(function () {
+                        $.ajax({
+                            url: './php/readNotifications.php',
+                            success: function (data) {}
+                        });
+
+
+                    });
+
+                });
 
 
             });

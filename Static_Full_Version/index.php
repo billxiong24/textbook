@@ -205,6 +205,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
 
         <!-- Input Mask-->
         <script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
+        
         <script src="js/formslider.js"></script>
         <?php
     

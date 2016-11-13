@@ -25,7 +25,7 @@ else {
             <?php echo $_POST['search'] ?> - Duke Exchange</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-        
+
         <!-- Gritter -->
         <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
 
@@ -55,13 +55,15 @@ else {
                                     </div>
                                     <div class="product-desc">
                                         <span id='productPrice' class="product-price"></span>
+                                        <small id='isbn' class="text-muted"></small>
                                         <a href="#" id='book_title' class="product-name"></a>
 
-                                        <!--
+                                        <div id='authors' class="small m-t-xs"> </div>
                                         <div class="small m-t-xs">
-                                            Many desktop publishing packages and web page editors now.
+                                                <span id='course_num' class="label label-success"></span>
+                                                <span id='book_condition' class="label label-danger"></span>
                                         </div>
--->
+
                                     </div>
                                 </div>
                             </div>
@@ -214,13 +216,14 @@ else {
 
         <!-- Sparkline demo data  -->
         <script src="js/demo/sparkline-demo.js"></script>
-        
+
         <script>
             $(document).ready(function () {
-                
-               /////////////// filter //////////////////// 
+
+                /////////////// filter //////////////////// 
                 var price = "Any";
                 var condition = "Any";
+
                 function search_and_filter() {
                     $.ajax({
                         type: "POST",
@@ -285,7 +288,7 @@ else {
                     }
                 }
                 var bookID; // used to store the book id for other functions on this page
-                $(document).on('click', '.bought',function(){ // document allows for dynamic content to use jquery
+                $(document).on('click', '.bought', function () { // document allows for dynamic content to use jquery
                     bookID = $(this).data("id");
                     $.ajax({
                         type: 'POST',
@@ -297,19 +300,24 @@ else {
                         dataType: "json",
                         success: function (data) {
 
-                            if (!data.error) { // this sort of json accessing data only works in ajax
+                            if (!data.error) { // for getting book details in modal
                                 var seller = '<strong>Seller: </strong>' + data.seller;
                                 var email = '<strong>Email: </strong>' + data.email;
                                 var phone_num = '<strong>Phone: </strong>' + data.phone_num;
                                 var pic = "<img src=\"" + data.pic + "\">";
                                 var price = '$' + data.price;
-                                //alert(seller);
+                                var title = data.title + ' (' + data.publish_date + ')';
+                                var authors = 'Author(s): ' + data.authors;
                                 $('#seller').html(seller);
                                 $('#email').html(email);
                                 $('#phone_num').html(phone_num);
-                                $('#productPrice').html(price);
                                 $('#pic').html(pic);
-                                $('#book_title').html(data.title);
+                                $('#productPrice').html(price);
+                                $('#isbn').html(data.isbn);
+                                $('#book_title').html(title);
+                                $('#authors').html(authors);
+                                $('#course_num').html(data.course_num);
+                                $('#book_condition').html(data.book_condition);
 
                             }
 
@@ -328,8 +336,7 @@ else {
                         url: './php/buy_book.php',
                         dataType: "text",
                         success: function (data) {
-                            if (!data.error) { // this sort of json accessing data only works in ajax
-                                $('#buyModal').delay(1000).modal('hide');
+                            if (!data.error) {
                                 window.location.replace('./buy-confirm.php');
 
                             }
@@ -375,10 +382,10 @@ else {
                     });
 
                 });
-                $('.dropdown .space').focusout(function(){
+                $('.dropdown .space').focusout(function () {
                     $('#id').css("background-color", "black !important");
                 });
-                $('.dropdown .space').focus(function(){
+                $('.dropdown .space').focus(function () {
                     $('#id').css("background-color", "black");
                 });
 

@@ -136,9 +136,8 @@ function search ($search, $price, $condition){
                                 }
                                  
 
-                                $books_displayed = $books_displayed . '</a>
-                                <div class="small m-t-xs">';
-                                    $books_displayed = $books_displayed . 'Author(s): ';
+                                $books_displayed = $books_displayed . ' (' . date('Y',$books[$i]['publish_date']) . ') </a>';
+                                    $books_displayed = $books_displayed . '<div class="small m-t-xs"> Author(s): ';
                                     $authors = $books[$i]['authors'];
                                     if(strlen($authors) > 20){
                                         $books_displayed = $books_displayed . substr($authors, 0, 20) . "...";
@@ -146,11 +145,12 @@ function search ($search, $price, $condition){
                                     else{
                                         $books_displayed = $books_displayed . $authors;
                                     }
-                                $books_displayed = $books_displayed . '</div>
-                                <div class="small m-t-xs">
-                                <p><span class="label label-success">'; $books_displayed = $books_displayed . $books[$i]['course_num']; $books_displayed = $books_displayed . '</span> 
+                                $books_displayed = $books_displayed . '</div>';
+                                $books_displayed = $books_displayed .
+                                '<div class="small m-t-xs">
+                                <span class="label label-success">'; $books_displayed = $books_displayed . $books[$i]['course_num']; $books_displayed = $books_displayed . '</span> 
                                 <span class="label label-danger">'; $books_displayed = $books_displayed . $books[$i]['book_condition'];
-                                $books_displayed = $books_displayed . '</span></p>
+                                $books_displayed = $books_displayed . '</span>
                                 </div>';
                 
                                 $books_displayed = $books_displayed .'

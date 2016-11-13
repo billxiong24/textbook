@@ -5,8 +5,6 @@ session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
-$account = accountOverview($_SESSION['username']);
-$user = getUser($_SESSION['username']);
 ?>
     <!DOCTYPE html>
     <html>
