@@ -36,7 +36,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <div class="row">
+                        <div class="row" style="background-color: white">
                             <h3 class="m-t-none m-b">Create an Account</h3>
                             <div class="hr-line-dashed"></div>
                             <form role="form" method='post' action='index.php'>
