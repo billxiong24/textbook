@@ -1,7 +1,6 @@
 <?php
 include './php/functions.php';
 session_start();
-//authenticating? change redirecting
 if (isset($_POST['first_name'])){ // add users once they add their information in the create account modal
     
     $first_name = trim($_POST['first_name']);
@@ -104,36 +103,36 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                     </nav>
                 </div>
                 <div class="foobar">
-                        <div>
-                            <span>One account, all of Duke.</span>
-                        </div>
-                        <div class='small-message'>
-                         <span>Get everything you need on campus. It's easy and free.</span>
-                        </div>
-                        <div class="vertical flip-container">
-                            <div class="flipper">
-                                <div class="front">
-                            <button class="btn btn-xs btn-outline btn-success getting-started">Let's get started</button>
-                                </div>
-                                <div class="back">
-                                    <div class="small-message" style="margin-bottom: -25px;">Search for a book- it's that easy.</div>
-                                    <div class="search-form animated fadeInDown">
-                                        <form action="logged_out_search.php" method="post">
-                                            <div class="input-group" style="font-weight: normal">
-                                                <input type="text" name="search" class="form-control input-lg foc" autocomplete="off">
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-lg btn-primary" type="submit">
-                                                        <i class="fa fa-search"></i>
-                                                    </button>
-                                                </div>
+                    <div>
+                        <span>Duke Book Exchange</span>
+                    </div>
+                    <div class='small-message'>
+                        <span>Sell and buy books. It's easy and free.</span>
+                    </div>
+                    <div class="vertical flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <button class="btn btn-xs btn-outline btn-success getting-started">Let's get started</button>
+                            </div>
+                            <div class="back">
+<!--                                <div class="small-message" style="margin-bottom: -25px;">Search for a book- it's that easy.</div>-->
+                                <div class="search-form animated fadeInDown">
+                                    <form action="logged_out_search.php" method="post">
+                                        <div class="input-group" style="font-weight: normal">
+                                            <input type="text" name="search" class="form-control input-lg foc" autocomplete="off" placeholder="Search Class, Title, Author, or ISBN">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-lg btn-primary" type="submit">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
                                             </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                            </div>
+                        </div>
+                    </div>
                 </div>
-               <!--  <div class="foobar">
+                <!--  <div class="foobar">
                     <div>
                         <span>Duke Book Exchange</span>
                     </div>
@@ -231,7 +230,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
 
         <!-- Input Mask-->
         <script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
-        
+
         <script src="js/formslider.js"></script>
         <?php
     
