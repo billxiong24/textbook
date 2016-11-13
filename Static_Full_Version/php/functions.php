@@ -136,7 +136,7 @@ function search ($search, $price, $condition){
                                 }
                                  
 
-                                $books_displayed = $books_displayed . ' (' . date('Y',$books[$i]['publish_date']) . ') </a>';
+                                $books_displayed = $books_displayed . '</a>';
                                     $books_displayed = $books_displayed . '<div class="small m-t-xs"> Author(s): ';
                                     $authors = $books[$i]['authors'];
                                     if(strlen($authors) > 20){
