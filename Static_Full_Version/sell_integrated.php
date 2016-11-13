@@ -370,7 +370,7 @@ if(!isset($_SESSION['username'])){
                                                                     <p></p>
                                                                 </div>
                                                                 <ul class="list-inline pull-right">
-                                                                    <li>
+                                                                    <li style="margin-top: 25px">
                                                                         <button type="button" class="btn btn-default prev-step">Previous</button>
                                                                         <input name="add_book" type="submit" class="btn btn-primary" value="Confirm">
                                                                     </li>

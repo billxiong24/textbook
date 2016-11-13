@@ -104,6 +104,36 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                     </nav>
                 </div>
                 <div class="foobar">
+                        <div>
+                            <span>One account, all of Duke.</span>
+                        </div>
+                        <div class='small-message'>
+                         <span>Get everything you need on campus. It's easy and free.</span>
+                        </div>
+                        <div class="vertical flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                            <button class="btn btn-xs btn-outline btn-success getting-started">Let's get started</button>
+                                </div>
+                                <div class="back">
+                                    <div class="small-message" style="margin-bottom: -25px;">Search for a book- it's that easy.</div>
+                                    <div class="search-form animated fadeInDown">
+                                        <form action="logged_out_search.php" method="post">
+                                            <div class="input-group" style="font-weight: normal">
+                                                <input type="text" name="search" class="form-control input-lg foc" autocomplete="off">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-lg btn-primary" type="submit">
+                                                        <i class="fa fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                </div>
+               <!--  <div class="foobar">
                     <div>
                         <span>Duke Book Exchange</span>
                     </div>
@@ -119,7 +149,6 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                                     </form>
                                 </div>
                             </div>
-                            <!-- /end #content-login -->
 
 
                             <div id="content-register">
@@ -139,14 +168,11 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                                     </div>
                                 </div>
                             </div>
-                            <!-- /end #content-register -->
 
                         </div>
-                        <!-- /end #page -->
                     </div>
-                    <!-- /end #w -->
 
-                </div>
+                </div> -->
 
                 <!-- <div class=col-md-4></div>             
                     <div class="col-md-4 data">

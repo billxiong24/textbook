@@ -125,7 +125,7 @@ function search ($search, $price, $condition){
                                  $books_displayed = $books_displayed .'$'.$books[$i]['price'];
                                 $books_displayed = $books_displayed . '</span>
                                 <small class="text-muted">'; $books_displayed = $books_displayed . $books[$i]['isbn']; $books_displayed = $books_displayed . '</small>
-                                <a href="#" class="product-name">'; 
+                                <a data-toggle="modal" data-target="#buyModal" class="product-name ">'; 
                                 $str = $books[$i]['title'];
                                 if(strlen($str) > 25){
                                     $cut = substr($str, 0, 25). "...";

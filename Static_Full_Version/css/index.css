@@ -9,7 +9,7 @@ body {
     background-size: cover;
 }
 /* page structure */
-#w { width: 100%; margin: 0 auto; padding-top: 25px; }
+/*#w { width: 100%; margin: 0 auto; padding-top: 25px; }
 
 #page { 
   display: block;
@@ -22,14 +22,13 @@ body {
   width: 100%;
   margin: 0 auto;
 }
-/* inner page layouts */
 #content-login { display: block; position: relative; width: 100%; }
 
 #content-register { display: none; width: 100%; position: absolute; top: 0; left: 880px; }
 
 
-.leftsidelink { font-size: 1.25em; font-weight: bold; display: inline-block; }
-/*
+.leftsidelink { font-size: 1.25em; font-weight: bold; display: inline-block; }*/
+
 .flip-container {
     perspective: 0px;
 }
@@ -75,7 +74,7 @@ body {
 
     .vertical.flip-container:hover .flipper {
         transform: rotateX(-180deg);
-    }*/
+    }
 
 
 .navbar-default .navbar-brand {

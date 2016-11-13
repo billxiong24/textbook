@@ -141,7 +141,7 @@ $user = getUser($_SESSION['username']);
 
             </div>
         </div>
-        <div id="overlay"></div>
+        <!-- <div id="overlay"></div> -->
 
         <!-- Mainly scripts -->
         <script src="js/jquery-2.1.1.js"></script>
@@ -218,7 +218,7 @@ $user = getUser($_SESSION['username']);
 
 
                 $('.footable').footable();
-                $('.expose').click(function (e) {
+                /*$('.expose').click(function (e) {
                     $(this).css('z-index', '99999');
                     $('#overlay').fadeIn(300);
                 });
@@ -226,7 +226,7 @@ $user = getUser($_SESSION['username']);
                     $('#overlay').fadeOut(300, function () {
                         $('.expose').css('z-index', '1');
                     });
-                });
+                });*/
             });
         </script>
 

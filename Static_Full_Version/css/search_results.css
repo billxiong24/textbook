@@ -21,3 +21,7 @@
 .i-checks[type="checkbox"]:before{
   background-color: black !important; 
 }
+.product-name:hover{
+	color: #001A57 !important;
+
+}
