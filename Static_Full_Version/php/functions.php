@@ -176,10 +176,10 @@ function getUser($username){
 function addUser($username,$name,$phone_num,$email){
     global $connection;
     
-    $username = mysql_real_escape_string($username);
-    $name = mysql_real_escape_string($name);
-    $phone_num = mysql_real_escape_string($phone_num);
-    $email = mysql_real_escape_string($email);
+    $username = mysqli_real_escape_string($connection, $username);
+    $name = mysqli_real_escape_string($connection, $name);
+    $phone_num = mysqli_real_escape_string($connection, $phone_num);
+    $email = mysqli_real_escape_string($connection, $email);
     
     $query = 'INSERT INTO users(username,name,phone_num,email) ';
     $query .= "VALUES ('$username','$name','$phone_num','$email')";
