@@ -100,7 +100,7 @@ else {
                                         <div class="search-form">
                                             <form action="search_results.php" method="post">
                                                 <div class="input-group">
-                                                    <input type="text" placeholder="Search ISBN, Title, Author, or Class" name="search" class="form-control input-lg">
+                                                    <input type="text" placeholder="Search Class, Title, Author, or ISBN" name="search" class="form-control input-lg">
                                                     <div class="input-group-btn">
                                                         <button class="btn btn-lg btn-primary space" type="submit">
                                                             <i class="fa fa-search"></i>
