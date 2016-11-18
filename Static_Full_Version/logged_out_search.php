@@ -111,7 +111,7 @@ else {
                                                             </li>
                                                             <li class="price">
                                                                 <label>
-                                                                    <input type="checkbox" value="" name="" class="i-checks" />
+                                                                    <input type="checkbox" value="" name="" class="i-checks" checked/>
                                                                     <span class="m-l-xs">Any</span>
                                                                 </label>
 
@@ -139,7 +139,7 @@ else {
                                                             </li>
                                                             <li class="cond">
                                                                 <label>
-                                                                    <input type="checkbox" value="" name="" class="i-checks" />
+                                                                    <input type="checkbox" value="" name="" class="i-checks" checked/>
                                                                     <span class="m-l-xs">Any</span>
                                                                 </label>
                                                             </li>

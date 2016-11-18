@@ -53,43 +53,46 @@ function search ($search, $price, $condition){
     $search = strtolower($search);
     global $connection;
     $search = mysqli_real_escape_string($connection, $search);
-    $searchTerms = explode(' ', $search);
-    $simpleWords = ['the','a','an','of','and','for','is'];
-    foreach ($simpleWords as $word){  // removes all the simple words that may exist in many book titles, but not relevent to the book the user is searching
-        $keys = array_keys($searchTerms,$word);
-        foreach($keys as $location){
-            unset($searchTerms[$location]);     
-        }
-            
-    }
-            
-        
-    if (count($searchTerms) == 0){  
-        $searchTerms[0] = '';
-    }
+//    $searchTerms = explode(' ', $search);
+//    $simpleWords = ['the','a','an','of','and','for','is'];
+//    foreach ($simpleWords as $word){  // removes all the simple words that may exist in many book titles, but not relevent to the book the user is searching
+//        $keys = array_keys($searchTerms,$word);
+//        foreach($keys as $location){
+//            unset($searchTerms[$location]);     
+//        }
+//            
+//    }
+//            
+//        
+//    if (count($searchTerms) == 0){  
+//        $searchTerms[0] = '';
+//    }
+//    
+//    $search1 = ''; // each search variable is to create a search string for every word from the user separated by a space to be searched in a column. the five search variables are for searching five columns for every space separated word from the user
+//    $search2 = '';
+//    $search3 = '';
+//    $search4 = '';
+//    $search5 = '';
+//    foreach ($searchTerms as $current){
+//        $searchTerm = '%'.$current.'%';
+//        $search1 = $search1 . "isbn LIKE '$current' OR ";  // does not look for number in isbn, but only for exact match isbn
+//        $search2 = $search2 . "title LIKE '$searchTerm' OR ";
+//        $search3 = $search3 . "authors LIKE '$searchTerm' OR "; 
+//        $search4 = $search4 . "course_name LIKE '$searchTerm' OR ";
+//        $search5 = $search5 . "course_num LIKE '$searchTerm' OR ";
+//    }
+//    
+//    $search1 = substr($search1, 0, -4);
+//    $search2 = substr($search2, 0, -4);
+//    $search3 = substr($search3, 0, -4);
+//    $search4 = substr($search4, 0, -4);
+//    $search5 = substr($search5, 0, -4);
+//    $query = "SELECT * FROM books WHERE ($search1 OR $search2 OR $search3 OR $search4 OR $search5) $price_search $condition_search ORDER BY price ASC";
+    $query = "SELECT * FROM books WHERE MATCH(isbn,title,authors,course_name,course_num) AGAINST('$search') $price_search $condition_search";
     
-    $search1 = ''; // each search variable is to create a search string for every word from the user separated by a space to be searched in a column. the five search variables are for searching five columns for every space separated word from the user
-    $search2 = '';
-    $search3 = '';
-    $search4 = '';
-    $search5 = '';
-    foreach ($searchTerms as $current){
-        $searchTerm = '%'.$current.'%';
-        $search1 = $search1 . "isbn LIKE '$current' OR ";  // does not look for number in isbn, but only for exact match isbn
-        $search2 = $search2 . "title LIKE '$searchTerm' OR ";
-        $search3 = $search3 . "authors LIKE '$searchTerm' OR "; 
-        $search4 = $search4 . "course_name LIKE '$searchTerm' OR ";
-        $search5 = $search5 . "course_num LIKE '$searchTerm' OR ";
-    }
-    
-    $search1 = substr($search1, 0, -4);
-    $search2 = substr($search2, 0, -4);
-    $search3 = substr($search3, 0, -4);
-    $search4 = substr($search4, 0, -4);
-    $search5 = substr($search5, 0, -4);
-    $query = "SELECT * FROM books WHERE ($search1 OR $search2 OR $search3 OR $search4 OR $search5) $price_search $condition_search ORDER BY price ASC";
     //$search = '%'.$search.'%';
 //    $query = "SELECT * FROM books WHERE isbn LIKE '$search' OR title LIKE '$search' OR authors LIKE '$search' OR course_name LIKE '$search' OR course_num LIKE '$search' ORDER BY price ASC";
+    
     $result = mysqli_query($connection,$query);
     if(!$result){
         die('Query Failed' . mysqli_error($connection));
@@ -104,14 +107,14 @@ function search ($search, $price, $condition){
     
      $books_displayed = $books_displayed .'<div class="row">';
             for($i=0; $i<count($books); $i++){  // printing out a grid of books from the php data loaded at the top of the file
-                if ($i != 0 && $i%4 == 0){
-                    $books_displayed = $books_displayed .'</div>';
-                }
-                if ($i != 0 && $i%4 == 0){
-                    $books_displayed = $books_displayed . '<div class="row">'; // for creating rows of books displayed 
-                }
+//                if ($i != 0 && $i%4 == 0){
+//                    $books_displayed = $books_displayed .'</div>';
+//                }
+//                if ($i != 0 && $i%4 == 0){
+//                    $books_displayed = $books_displayed . '<div class="row">'; // for creating rows of books displayed 
+//                }
                $books_displayed = $books_displayed .'
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <div class="ibox">
                         <div class="ibox-content product-box">
 
