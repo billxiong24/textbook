@@ -263,8 +263,8 @@ if(!isset($_SESSION['username'])){
                                                             <div class="tab-pane active" role="tabpanel" id="step1">
                                                                 <h3>Textbook</h3>
 
-                                                                <label>Search</label>
-                                                                <input id="search" name="search" type="text" class="form-control" placeholder="ISBN, Title, Author, etc.">
+                                                                <label>Search (i.e. Fundamentals of Physics Halliday 10th edition)</label>
+                                                                <input id="search" name="search" type="text" class="form-control" placeholder="Google Search ISBN, Title, Author, etc.">
                                                                 <br>
                                                                 <hr class="hr-line-solid">
                                                                 <div class="form-group">
