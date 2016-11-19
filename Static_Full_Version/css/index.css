@@ -284,6 +284,7 @@ body {
     font-weight: thin;
 }
 .getting-started{
+    margin-top: 40px;
     font-weight: 300;
     color: white !important;
     border-color: white;
