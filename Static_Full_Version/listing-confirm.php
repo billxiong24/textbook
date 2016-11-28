@@ -38,9 +38,18 @@ if(!isset($_SESSION['username'])){
                         <h3 style="font-weight: 400;">Congratulations! You have posted your item on the market place.<br/> <br/>We'll notify you when your item is sold. You can click<a href="myAccount.php#listings"> here</a> to see the details.</h3>
                     </div>
                     <div class="wrapper wrapper-content animated fadeInRight expose">
-                        <div class="row content">
+                        <form role="form" method='post' action='send_feedback.php'>
+                            <div class="form-group">
+                                <label>Feedback Subject</label>
+                                <input name='feedbackSubject' type="text" class="form-control" placeholder="Feedback subject">
+                            </div>
+                            <div class="form-group">
+                                <label>Feedback</label>
+                                <textarea name='feedback' class="form-control" placeholder="Your message" rows="3"></textarea>
+                            </div>
+                            <button class="btn btn-success btn-block btn-outline">Submit</button>
+                        </form>
 
-                        </div>
                     </div>
             </div>
 

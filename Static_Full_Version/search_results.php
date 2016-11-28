@@ -44,6 +44,8 @@ else {
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                         <h4 class="modal-title">Confirm Purchase</h4>
                         <small class="font-bold">Click Buy to continue with purchase.</small>
+                        <br>
+                        <small >(Will take a few moments to load once you buy.)</small>
                     </div>
                     <div class="modal-body">
                         <div class="col-md-6">
@@ -304,9 +306,14 @@ else {
                                 var seller = '<strong>Seller: </strong>' + data.seller;
                                 var email = '<strong>Email: </strong>' + data.email;
                                 var phone_num = '<strong>Phone: </strong>' + data.phone_num;
-                                var pic = "<img src=\"" + data.pic + "\">";
+                                var pic = "<img src=\"" + data.pic + "\"style='max-width:140px; max-height:200px'>";
                                 var price = '$' + data.price;
-                                var title = data.title + ' (' + data.publish_date + ')';
+                                if (data.publish_date != 1901){
+                                    var title = data.title + ' (' + data.publish_date + ')';
+                                }
+                                else {
+                                    var title = data.title;
+                                }
                                 var authors = 'Author(s): ' + data.authors;
                                 $('#seller').html(seller);
                                 $('#email').html(email);
@@ -339,6 +346,19 @@ else {
                             if (!data.error) {
                                 window.location.replace('./buy-confirm.php');
 
+                            }
+                        }
+                    });
+                    $.ajax({
+                        type: 'POST',
+                        data: {
+                            bookID: bookID
+                                //id of book stored in buy link
+                        },
+                        url: './php/send_purchase_email.php',
+                        dataType: "text",
+                        success: function (data) {
+                            if (!data.error) {
                             }
                         }
                     });

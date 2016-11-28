@@ -19,7 +19,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Duke Exchange</title>
+        <title>Duke Book Exchange</title>
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -31,6 +31,26 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
     </head>
 
     <body class="top-navigation">
+        <div id="aboutUs" class="modal inmodal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">About Us</h4>
+                    </div>
+                    <div class="modal-body">
+                        Hey everyone. We built this website this past semester to make buying and selling books easier and cheaper for Duke students. Right now, we need your help to add books to this marketplace so it can become useful for everyone when second semester rolls around. If you have any books you want to sell, you can login at the top right and sell the book. Feel free to leave feedback at info@dukebookexchange.com. Thanks for the help!
+                        <br><br>
+                        Sujay Garlanka and Bill Xiong
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="modal-form" class="modal fade" data-backdrop="static" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -55,7 +75,6 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                                     <label>Email</label>
                                     <input id='email' name='email' type="email" placeholder="Enter email" class="form-control" required>
                                 </div>
-
                                 <div class="hr-line-dashed"></div>
                                 <div>
                                     <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Log in</strong></button>
@@ -115,7 +134,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                                 <button class="btn btn-xs btn-outline btn-success getting-started">Let's get started</button>
                             </div>
                             <div class="back">
-<!--                                <div class="small-message" style="margin-bottom: -25px;">Search for a book- it's that easy.</div>-->
+                                <!--                                <div class="small-message" style="margin-bottom: -25px;">Search for a book- it's that easy.</div>-->
                                 <div class="search-form animated fadeInDown">
                                     <form action="logged_out_search.php" method="post">
                                         <div class="input-group" style="font-weight: normal">
@@ -128,6 +147,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                                         </div>
                                     </form>
                                 </div>
+                                <button type="button" class="btn btn-outline btn-default" data-toggle="modal" data-target="#aboutUs">About Us</button>
                             </div>
                         </div>
                     </div>

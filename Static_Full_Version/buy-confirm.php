@@ -1,7 +1,6 @@
 <?php
 include "./php/functions.php";
 session_start();
-//auth
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
@@ -42,8 +41,26 @@ if(!isset($_SESSION['username'])){
                         <br/><br/>You can see the details of your purchase <a href="myAccount.php#purchase-history">here</a>.</h3>
                     </div>
                     <div class="wrapper wrapper-content animated fadeInRight expose">
-                        <div class="row content">
-                           
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h3>Feedback</h3>
+
+                                <p class="small">
+                                    Any feedback on bugs, additional features or any reactions would greatly help!
+                                </p>
+                                <form role="form" method='post' action='send_feedback.php'>
+                                    <div class="form-group">
+                                        <label>Subject</label>
+                                        <input type="email" class="form-control" placeholder="Message subject">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Feedback</label>
+                                        <textarea class="form-control" placeholder="Your message" rows="3"></textarea>
+                                    </div>
+                                    <button class="btn btn-success btn-block btn-outline">Submit</button>
+                                </form>
+
+                            </div>
                         </div>
                     </div>
 

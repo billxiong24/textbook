@@ -128,7 +128,7 @@ function search ($search, $price, $condition){
                                  $books_displayed = $books_displayed .'$'.$books[$i]['price'];
                                 $books_displayed = $books_displayed . '</span>
                                 <small class="text-muted">'; $books_displayed = $books_displayed . $books[$i]['isbn']; $books_displayed = $books_displayed . '</small>
-                                <a data-toggle="modal" data-target="#buyModal" class="product-name ">'; 
+                                <a data-id=' . "\"{$books[$i]['id']}\"" . 'data-toggle="modal" data-target="#buyModal" class="product-name bought">'; 
                                 $str = $books[$i]['title'];
                                 if(strlen($str) > 25){
                                     $cut = substr($str, 0, 25). "...";
@@ -158,7 +158,7 @@ function search ($search, $price, $condition){
                 
                                 $books_displayed = $books_displayed .'
                                 <div class="m-t text-right buy">
-                                    <button href="#" data-id ='; $books_displayed = $books_displayed . "\"{$books[$i]['id']}\""; $books_displayed = $books_displayed . 'class="btn btn-xs btn-outline btn-success bought" data-toggle="modal" data-target="#buyModal">Buy <i class="fa fa-long-arrow-right"></i> </button>
+                                    <button href="#" data-id='; $books_displayed = $books_displayed . "\"{$books[$i]['id']}\""; $books_displayed = $books_displayed . 'class="btn btn-xs btn-outline btn-success bought" data-toggle="modal" data-target="#buyModal">Buy <i class="fa fa-long-arrow-right"></i> </button>
                                 </div>
                             </div>
                         </div>
@@ -235,6 +235,13 @@ function soldBooks($username){
         
 }
 
+function findBookHistory($id){
+    global $connection;
+    $query = "SELECT * FROM transaction_history WHERE id = $id";
+    $result = mysqli_query($connection, $query);
+    return mysqli_fetch_assoc($result);    
+}
+
 function accountOverview($username){
     $info = array();
     $boughtBooks = boughtBooks($username);
@@ -288,8 +295,8 @@ function buyBook($buyer,$book_id){
     $notes = $book['notes'];
     $price = $book['price'];
     
-    $query = 'INSERT INTO transaction_history(buyer,seller,trans_date,isbn,title,publish_date,authors,cover_url,course_name,course_num,book_condition,notes,price) ';
-    $query .= "VALUES('$buyer','$seller',$trans_date,'$isbn','$title',$publish_date,'$authors','$cover_url','$course_name','$course_num','$book_condition','$notes',$price)";
+    $query = 'INSERT INTO transaction_history(id,buyer,seller,trans_date,isbn,title,publish_date,authors,cover_url,course_name,course_num,book_condition,notes,price) ';
+    $query .= "VALUES($book_id,'$buyer','$seller',$trans_date,'$isbn','$title',$publish_date,'$authors','$cover_url','$course_name','$course_num','$book_condition','$notes',$price)";
     $result = mysqli_query($connection,$query);
     if(!$result){
         die('Query Failed' . mysqli_error($connection));

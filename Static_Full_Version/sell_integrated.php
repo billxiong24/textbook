@@ -263,34 +263,34 @@ if(!isset($_SESSION['username'])){
                                                             <div class="tab-pane active" role="tabpanel" id="step1">
                                                                 <h3>Textbook</h3>
 
-                                                                <label>Search (i.e. Fundamentals of Physics Halliday 10th edition)</label>
+                                                                <label>Fast Fill (i.e. Differential Equations and Linear Algebra Sochacki)</label>
+                                                                <h4> This can help quickly fill out the form below. If it doesn't find the book, you have to enter it manually. </h4>
                                                                 <input id="search" name="search" type="text" class="form-control" placeholder="Google Search ISBN, Title, Author, etc.">
                                                                 <br>
                                                                 <hr class="hr-line-solid">
                                                                 <div class="form-group">
                                                                     <label>ISBN</label>
-                                                                    <input id="isbn" name="isbn" type="text" class="form-control required">
+                                                                    <input id="isbn" name="isbn" type="text" class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label>Title of Book</label>
+                                                                    <label>Title of Book <label style="color:red">(Required)</label></label>
 
                                                                     <input id="title" name="title" type="text" class="form-control required">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Published Date (yyyy-mm)</label>
-                                                                    <input id="publishDate" name="publishDate" type="text" class="form-control required" data-mask="9999-99">
+                                                                    <input id="publishDate" name="publishDate" type="text" class="form-control" data-mask="9999-99">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label>Author(s)</label>
+                                                                    <label>Author(s) <label style="color:red">(Required)</label></label>
                                                                     <input id="authors" name="authors" type="text" class="form-control required">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Book Cover Url</label>
-                                                                    <input id="coverURL" name="coverURL" type="text" class="form-control required">
+                                                                    <input id="coverURL" name="coverURL" type="text" class="form-control">
                                                                 </div>
-                                                                <div>
-                                                                    <br>
-                                                                    <img class="cover" style="margin-top: 15px;" src="" style="max-width:140px; max-height:200px" ;>
+                                                                <div class="cover"> <!--cover picture is displayed in the form for the user and is set in javascript based on what the user types-->
+                                                        
                                                                 </div>
                                                                 <ul class="list-inline pull-right">
                                                                     <li>
@@ -452,14 +452,15 @@ if(!isset($_SESSION['username'])){
                                 $('#publishDate').val(data.date);
                                 $('#authors').val(data.authors);
                                 $('#coverURL').val(data.cover);
-                                $('.cover').attr('src', data.cover);
+                                $('.cover').html("<img class='cover' style='margin-top: 15px; max-width:140px; max-height:200px;' src=\"" + data.cover + "\">");
+                                //$('.cover').attr('src', data.cover);
                             }
                         }
                     });
                 });
                 $('#coverURL').keyup(function () {
                     var cover = $('#coverURL').val();
-                    $('.cover').attr('src', cover);
+                    $('.cover').html("<img class='cover' style='margin-top: 15px; max-width:140px; max-height:200px;' src=\"" + cover + "\">");
                 });
                 //Initialize tooltips
                 $('.chosen-select').chosen({
@@ -494,7 +495,7 @@ if(!isset($_SESSION['username'])){
                     var inputs = $('#step1').find('input');
                     //dont want to include the search input
                     var flip = true;
-                    for (var i = 1; i < inputs.length; i++) {
+                    for (var i = 2; i < inputs.length; i=i+2) {
                         if ($(inputs[i]).val().length == 0) {
                             flip = false;
                             var parent = $(inputs[i]).parent();
@@ -588,7 +589,7 @@ if(!isset($_SESSION['username'])){
                 });
 
                 $('#addBook').submit(function (evt) {
-                    evt.preventDefault(); // only sends data if data is entered
+                    evt.preventDefault(); // prevents the form from submitting on top of using this jquery function, so it doesn't add a book twice
                     var postData = $(this).serialize(); // postData is POST data with the string name of form elements
                     var url = $(this).attr('action'); // in form html code as add_book.php
                     $.post(url, postData, function (data) {
