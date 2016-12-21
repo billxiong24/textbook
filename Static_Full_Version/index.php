@@ -39,7 +39,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                         <h4 class="modal-title">About Us</h4>
                     </div>
                     <div class="modal-body">
-                        Hey everyone. We built this website this past semester to make buying and selling books easier and cheaper for Duke students. Right now, we need your help to add books to this marketplace so it can become useful for everyone when second semester rolls around. If you have any books you want to sell, you can login at the top right and sell the book. Feel free to leave feedback at info@dukebookexchange.com. Thanks for the help!
+                        Hey everyone. We built this website this past semester to make buying and selling books easier and cheaper for Duke students. Right now, we need your help to add books to this marketplace so it can become useful for everyone when second semester rolls around. If you have any books you want to sell, you can login at the top right and sell the book. Feel free to leave feedback at dukeexchange@gmail.com. Thanks for the help!
                         <br><br>
                         Sujay Garlanka and Bill Xiong
 

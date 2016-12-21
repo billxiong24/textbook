@@ -7,16 +7,16 @@ function sendListEmail($isbn, $title, $publish_date, $authors, $course, $book_co
         
         $mail = new PHPMailer;
 
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp.office365.com';     // Specify main and backup SMTP servers
+        $mail->isSMTP();                                    // Set mailer to use SMTP
+        $mail->Host = 'smtp.gmail.com';                     // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'info@dukebookexchange.com';                 // SMTP username
+        $mail->Username = 'dukeexchange@gmail.com';                 // SMTP username
         $mail->Password = 'duke2016!';                           // SMTP password
         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 587;                                    // TCP port to connect to
 
-        $mail->setFrom('info@dukebookexchange.com', 'Duke Book Exchange');
-        $mail->addReplyTo('info@dukebookexchange.com', 'Duke Book Exchange');
+        $mail->setFrom('dukeexchange@gmail.com', 'Duke Book Exchange');
+        $mail->addReplyTo('dukeexchange@gmail.com', 'Duke Book Exchange');
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->addAddress($user['email'], $user['name']);     // Add a recipient
         $mail->Subject = "Added \"" . $title . "\" to the marketplace";
@@ -120,15 +120,15 @@ function sendBoughtEmail($book){
         $mail = new PHPMailer;
 
         $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp.office365.com';     // Specify main and backup SMTP servers
+        $mail->Host = 'smtp.gmail.com';                     // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'info@dukebookexchange.com';                 // SMTP username
+        $mail->Username = 'dukeexchange@gmail.com';                 // SMTP username
         $mail->Password = 'duke2016!';                           // SMTP password
         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 587;                                    // TCP port to connect to
 
-        $mail->setFrom('info@dukebookexchange.com', 'Duke Book Exchange');
-        $mail->addReplyTo('info@dukebookexchange.com', 'Duke Book Exchange');
+        $mail->setFrom('dukeexchange@gmail.com', 'Duke Book Exchange');
+        $mail->addReplyTo('dukeexchange@gmail.com', 'Duke Book Exchange');
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->addAddress($buyer['email'], $buyer['name']);     // Add a recipient
         $mail->Subject = "You bought \"" . $title . "\"";
@@ -244,15 +244,15 @@ function sendSoldEmail($book){
         $mail = new PHPMailer;
 
         $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp.office365.com';     // Specify main and backup SMTP servers
+        $mail->Host = 'smtp.gmail.com';                     // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'info@dukebookexchange.com';                 // SMTP username
+        $mail->Username = 'dukeexchange@gmail.com';                 // SMTP username
         $mail->Password = 'duke2016!';                           // SMTP password
         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 587;                                    // TCP port to connect to
 
-        $mail->setFrom('info@dukebookexchange.com', 'Duke Book Exchange');
-        $mail->addReplyTo('info@dukebookexchange.com', 'Duke Book Exchange');
+        $mail->setFrom('dukeexchange@gmail.com', 'Duke Book Exchange');
+        $mail->addReplyTo('dukeexchange@gmail.com', 'Duke Book Exchange');
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->addAddress($seller['email'], $seller['name']);     // Add a recipient
         $mail->Subject = "You sold \"" . $title . "\"";
