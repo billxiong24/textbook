@@ -1,7 +1,7 @@
 <?php
 include "email.php";
-include "functions.php";
-session_start();
+//include "functions.php"; both included in email.php
+//session_start();
 if (isset($_POST['title']) && isset($_SESSION['username'])){
     $username = $_SESSION['username'];
     $isbn = $_POST['isbn'];
@@ -23,7 +23,7 @@ if (isset($_POST['title']) && isset($_SESSION['username'])){
     if (empty($_POST['publishDate'])){
         $publish_date = -2147483645;
     }
-    if (empty($_POST[''])){
+    if (empty($_POST['coverURL'])){
         $cover_url = 'http://www.clipartkid.com/images/815/blank-book-cover-clip-art-book-covers-szPmIv-clipart.png';
     }
     

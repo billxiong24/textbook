@@ -1,23 +1,41 @@
 <?php
 require '../../PHPMailer/PHPMailerAutoload.php';
+include 'functions.php';
+session_start();
+
+$mail = new PHPMailer;
+
+$mail->isSMTP();                                      // Set mailer to use SMTP
+$mail->Host = 'smtp.gmail.com';                       // Specify main and backup SMTP servers
+$mail->SMTPAuth = true;                               // Enable SMTP authentication
+$mail->Username = 'dukeexchange@gmail.com';                 // SMTP username
+$mail->Password = 'duke2016!';                           // SMTP password
+$mail->SMTPSecure = 'tls';                               // Enable TLS encryption, `ssl` also accepted
+$mail->Port = 587;                                    // TCP port to connect to
+
+$mail->setFrom('dukeexchange@gmail.com', 'Duke Book Exchange');
+$mail->addReplyTo('dukeexchange@gmail.com', 'Duke Book Exchange');
+$mail->isHTML(true);                                  // Set email format to HTML
+
+function sendFeedbackEmail($subject, $feedback){
+    global $mail;
+    if (isset($_SESSION['username'])){
+        $user = getUser($_SESSION['username']);
+        $mail->addAddress('dukeexchange@gmail.com', $user['name']);     // Add a recipient
+        $mail->Subject = $subject;
+        $mail->Body = $feedback; 
+        $mail->AltBody = $feedback; // for non-html emails
+        $mail->send();
+        
+    }
+    
+}
 
 function sendListEmail($isbn, $title, $publish_date, $authors, $course, $book_condition, $notes, $price){
 	if(isset($_POST['title']) && isset($_SESSION['username'])){
 		$user= getUser($_SESSION['username']);
         
-        $mail = new PHPMailer;
-
-        $mail->isSMTP();                                    // Set mailer to use SMTP
-        $mail->Host = 'smtp.gmail.com';                     // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'dukeexchange@gmail.com';                 // SMTP username
-        $mail->Password = 'duke2016!';                           // SMTP password
-        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;                                    // TCP port to connect to
-
-        $mail->setFrom('dukeexchange@gmail.com', 'Duke Book Exchange');
-        $mail->addReplyTo('dukeexchange@gmail.com', 'Duke Book Exchange');
-        $mail->isHTML(true);                                  // Set email format to HTML
+        global $mail;
         $mail->addAddress($user['email'], $user['name']);     // Add a recipient
         $mail->Subject = "Added \"" . $title . "\" to the marketplace";
         $mail->Body    =   '<table class="body-wrap" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;background-color: #f6f6f6;width: 100%;">
@@ -117,19 +135,7 @@ function sendBoughtEmail($book){
 	    $notes = $book['notes'];
 	    $price = $book['price'];
         
-        $mail = new PHPMailer;
-
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp.gmail.com';                     // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'dukeexchange@gmail.com';                 // SMTP username
-        $mail->Password = 'duke2016!';                           // SMTP password
-        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;                                    // TCP port to connect to
-
-        $mail->setFrom('dukeexchange@gmail.com', 'Duke Book Exchange');
-        $mail->addReplyTo('dukeexchange@gmail.com', 'Duke Book Exchange');
-        $mail->isHTML(true);                                  // Set email format to HTML
+        global $mail;
         $mail->addAddress($buyer['email'], $buyer['name']);     // Add a recipient
         $mail->Subject = "You bought \"" . $title . "\"";
         $mail->Body    =   '<table class="body-wrap" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;background-color: #f6f6f6;width: 100%;">
@@ -241,19 +247,7 @@ function sendSoldEmail($book){
 	    $notes = $book['notes'];
 	    $price = $book['price'];
         
-        $mail = new PHPMailer;
-
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp.gmail.com';                     // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'dukeexchange@gmail.com';                 // SMTP username
-        $mail->Password = 'duke2016!';                           // SMTP password
-        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;                                    // TCP port to connect to
-
-        $mail->setFrom('dukeexchange@gmail.com', 'Duke Book Exchange');
-        $mail->addReplyTo('dukeexchange@gmail.com', 'Duke Book Exchange');
-        $mail->isHTML(true);                                  // Set email format to HTML
+        global $mail;
         $mail->addAddress($seller['email'], $seller['name']);     // Add a recipient
         $mail->Subject = "You sold \"" . $title . "\"";
         $mail->Body    =   '<table class="body-wrap" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;background-color: #f6f6f6;width: 100%;">

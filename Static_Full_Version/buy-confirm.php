@@ -18,8 +18,7 @@ if(!isset($_SESSION['username'])){
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-        <!-- FooTable -->
-        <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
+
         <link href="css/home.css" rel="stylesheet">
 
     </head>
@@ -41,6 +40,7 @@ if(!isset($_SESSION['username'])){
                         <br/><br/>You can see the details of your purchase <a href="myAccount.php#purchase-history">here</a>.</h3>
                     </div>
                     <div class="wrapper wrapper-content animated fadeInRight expose">
+                        <!--
                         <div class="ibox">
                             <div class="ibox-content">
                                 <h3>Feedback</h3>
@@ -48,20 +48,23 @@ if(!isset($_SESSION['username'])){
                                 <p class="small">
                                     Any feedback on bugs, additional features or any reactions would greatly help!
                                 </p>
-                                <form role="form" method='post' action='send_feedback.php'>
-                                    <div class="form-group">
-                                        <label>Subject</label>
-                                        <input type="email" class="form-control" placeholder="Message subject">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Feedback</label>
-                                        <textarea class="form-control" placeholder="Your message" rows="3"></textarea>
-                                    </div>
-                                    <button class="btn btn-success btn-block btn-outline">Submit</button>
-                                </form>
+-->
+                        <form id='send_feedback' role="form" method='post' action='./php/send_feedback.php'>
+                            <div class="form-group">
+                                <label>Subject</label>
+                                <input name='subject' type="text" class="form-control" placeholder="Feedback subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Feedback</label>
+                                <textarea name='feedback' class="form-control" placeholder="Your message" rows="3" required></textarea>
+                            </div>
+                            <input type="submit" value="Submit" class="btn btn-success btn-block btn-outline">
+                        </form>
 
+                        <!--
                             </div>
                         </div>
+-->
                     </div>
 
 
@@ -90,6 +93,17 @@ if(!isset($_SESSION['username'])){
                     refreshNotifications();
 
                 }, 1000);
+                
+                $('#send_feedback').submit(function (evt) {
+                    evt.preventDefault(); // prevents the form from submitting on top of using this jquery function, so it doesn't send feedback twice
+                    var postData = $(this).serialize(); // postData is POST data with the string name of form elements
+                    var url = $(this).attr('action'); // in form html code as add_book.php
+                    $.post(url, postData, function (data) {
+                        window.location.replace('myAccount.php#sold');
+                    });
+
+                });
+
 
                 function refreshNotifications() {
                     $.ajax({

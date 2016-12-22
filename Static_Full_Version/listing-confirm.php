@@ -13,20 +13,14 @@ if(!isset($_SESSION['username'])){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Duke Exchange</title>
+        <title>Confirmation | Duke Exchange</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
-        <!-- Toastr style -->
-        <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
-        <!-- Gritter -->
-        <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
 
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
-        <link href="css/search_results.css" rel="stylesheet">
 
     </head>
 
@@ -38,16 +32,16 @@ if(!isset($_SESSION['username'])){
                         <h3 style="font-weight: 400;">Congratulations! You have posted your item on the market place.<br/> <br/>We'll notify you when your item is sold. You can click<a href="myAccount.php#listings"> here</a> to see the details.</h3>
                     </div>
                     <div class="wrapper wrapper-content animated fadeInRight expose">
-                        <form role="form" method='post' action='send_feedback.php'>
+                        <form id='send_feedback' role="form" method='post' action='./php/send_feedback.php'>
                             <div class="form-group">
-                                <label>Feedback Subject</label>
-                                <input name='feedbackSubject' type="text" class="form-control" placeholder="Feedback subject">
+                                <label>Subject</label>
+                                <input name='subject' type="text" class="form-control" placeholder="Feedback subject" required>
                             </div>
                             <div class="form-group">
                                 <label>Feedback</label>
-                                <textarea name='feedback' class="form-control" placeholder="Your message" rows="3"></textarea>
+                                <textarea name='feedback' class="form-control" placeholder="Your message" rows="3" required></textarea>
                             </div>
-                            <button class="btn btn-success btn-block btn-outline">Submit</button>
+                            <input type="submit" value="Submit" class="btn btn-success btn-block btn-outline">
                         </form>
 
                     </div>
@@ -63,17 +57,6 @@ if(!isset($_SESSION['username'])){
         <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
         <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-        <!-- Flot -->
-        <script src="js/plugins/flot/jquery.flot.js"></script>
-        <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-        <script src="js/plugins/flot/jquery.flot.spline.js"></script>
-        <script src="js/plugins/flot/jquery.flot.resize.js"></script>
-        <script src="js/plugins/flot/jquery.flot.pie.js"></script>
-
-        <!-- Peity -->
-        <script src="js/plugins/peity/jquery.peity.min.js"></script>
-        <script src="js/demo/peity-demo.js"></script>
-
         <!-- Custom and plugin javascript -->
         <script src="js/inspinia.js"></script>
         <!-- <script src="js/plugins/pace/pace.min.js"></script> -->
@@ -81,27 +64,24 @@ if(!isset($_SESSION['username'])){
         <!-- jQuery UI -->
         <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
-        <!-- GITTER -->
-        <script src="js/plugins/gritter/jquery.gritter.min.js"></script>
-
-        <!-- Sparkline -->
-        <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-        <!-- Sparkline demo data  -->
-        <script src="js/demo/sparkline-demo.js"></script>
-
-        <!-- ChartJS-->
-        <script src="js/plugins/chartJs/Chart.min.js"></script>
-
-        <!-- Toastr -->
-        <script src="js/plugins/toastr/toastr.min.js"></script>
-
         <script>
             $(document).ready(function () {
                 refresh = setInterval(function () {
                     refreshNotifications();
 
                 }, 1000);
+
+
+                $('#send_feedback').submit(function (evt) {
+                    evt.preventDefault(); // prevents the form from submitting on top of using this jquery function, so it doesn't send feedback twice
+                    var postData = $(this).serialize(); // postData is POST data with the string name of form elements
+                    var url = $(this).attr('action'); // in form html code as add_book.php
+                    $.post(url, postData, function (data) {
+                        window.location.replace('myAccount.php#listings');
+                    });
+
+                });
+
 
                 function refreshNotifications() {
                     $.ajax({

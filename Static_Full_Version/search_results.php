@@ -349,19 +349,6 @@ else {
                             }
                         }
                     });
-                    $.ajax({
-                        type: 'POST',
-                        data: {
-                            bookID: bookID
-                                //id of book stored in buy link
-                        },
-                        url: './php/send_purchase_email.php',
-                        dataType: "text",
-                        success: function (data) {
-                            if (!data.error) {
-                            }
-                        }
-                    });
 
                 });
 

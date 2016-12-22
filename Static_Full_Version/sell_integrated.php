@@ -366,7 +366,7 @@ if(!isset($_SESSION['username'])){
                                                             <div class="tab-pane" role="tabpanel" id="step5">
                                                                 <div class='info' style='border: solid #E8E8E8 1px; text-align: center'>
                                                                     <h2>You are about to sell this book. Continue?</h2>
-                                                                    <img>
+                                                                    <img src='' style='max-width:140px; max-height:200px;'>
                                                                     <p></p>
                                                                 </div>
                                                                 <ul class="list-inline pull-right">

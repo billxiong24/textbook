@@ -130,8 +130,8 @@ function search ($search, $price, $condition){
                                 <small class="text-muted">'; $books_displayed = $books_displayed . $books[$i]['isbn']; $books_displayed = $books_displayed . '</small>
                                 <a data-id=' . "\"{$books[$i]['id']}\"" . 'data-toggle="modal" data-target="#buyModal" class="product-name bought">'; 
                                 $str = $books[$i]['title'];
-                                if(strlen($str) > 25){
-                                    $cut = substr($str, 0, 25). "...";
+                                if(strlen($str) > 24){
+                                    $cut = substr($str, 0, 24). "...";
                                     $books_displayed = $books_displayed . $cut;
                                 }
                                 else{
