@@ -11,8 +11,10 @@ if (isset($_POST['title']) && isset($_SESSION['username'])){
     $cover_url = $_POST['coverURL'];
     $course1 = $_POST['course'];
     $course = explode(' - ', $course1);
-    $course_number = $course[0];
-    $course_name = $course[1];
+    if (count($course)!=0){
+       $course_number = $course[0];
+       $course_name = $course[1]; 
+    }
     $book_condition = $_POST['bookCondition'];
     $notes = $_POST['notes'];
     $price = floatval($_POST['price']);

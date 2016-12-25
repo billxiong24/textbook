@@ -15,7 +15,7 @@ echo '
                                     <a aria-expanded="false" role="button" href="home.php"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
                                 </li>
                                 <li>
-                                    <a aria-expanded="false" role="button" href="sell_integrated.php"><i class="fa fa-tag" aria-hidden="true"></i>Sell</a>
+                                    <a aria-expanded="false" role="button" href="sell.php"><i class="fa fa-tag" aria-hidden="true"></i>Sell</a>
                                 </li>
 
                                 <li>

@@ -32,7 +32,7 @@ else {
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
-        <link href="css/search_results.css" rel="stylesheet">
+        <link href="css/search.css" rel="stylesheet">
 
     </head>
 
@@ -74,6 +74,7 @@ else {
                             <p id='seller'></p>
                             <p id='email'></p>
                             <p id='phone_num'></p>
+                            <p id='notes'></p>
                         </div>
                     </div>
 
@@ -100,7 +101,7 @@ else {
                             </h2>
 
                                         <div class="search-form">
-                                            <form action="search_results.php" method="post">
+                                            <form action="search.php" method="post">
                                                 <div class="input-group">
                                                     <input type="text" placeholder="Search Class, Title, Author, or ISBN" name="search" class="form-control input-lg">
                                                     <div class="input-group-btn">
@@ -151,7 +152,12 @@ else {
                                                                         <input type="checkbox" value="" name="" class="i-checks" />
                                                                         <span class="m-l-xs">New</span>
                                                                     </label>
-
+                                                                </li>
+                                                                <li class="cond">
+                                                                    <label>
+                                                                        <input type="checkbox" value="" name="" class="i-checks" />
+                                                                        <span class="m-l-xs">Almost New</span>
+                                                                    </label>
                                                                 </li>
                                                                 <li class="cond">
                                                                     <label>
@@ -165,6 +171,12 @@ else {
                                                                         <span class="m-l-xs">Fair</span>
                                                                     </label>
 
+                                                                </li>
+                                                                <li class="cond">
+                                                                    <label>
+                                                                        <input type="checkbox" value="" name="" class="i-checks" />
+                                                                        <span class="m-l-xs">UNC Crapple Hill</span>
+                                                                    </label>
                                                                 </li>
                                                                 <li class="cond">
                                                                     <label>
@@ -306,6 +318,7 @@ else {
                                 var seller = '<strong>Seller: </strong>' + data.seller;
                                 var email = '<strong>Email: </strong>' + data.email;
                                 var phone_num = '<strong>Phone: </strong>' + data.phone_num;
+                                var notes = '<strong>Notes: </strong>' + data.notes;
                                 var pic = "<img src=\"" + data.pic + "\"style='max-width:140px; max-height:200px'>";
                                 var price = '$' + data.price;
                                 if (data.publish_date != 1901){
@@ -325,6 +338,9 @@ else {
                                 $('#authors').html(authors);
                                 $('#course_num').html(data.course_num);
                                 $('#book_condition').html(data.book_condition);
+                                if (data.notes.length > 0){
+                                    $('#notes').html(notes);
+                                }
 
                             }
 

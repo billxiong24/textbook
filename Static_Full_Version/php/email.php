@@ -96,7 +96,7 @@ function sendListEmail($isbn, $title, $publish_date, $authors, $course, $book_co
                                 </tr>
                                 <tr style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">
                                     <td class="content-block" style="margin: 0;padding: 0 0 20px;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;vertical-align: top;">
-                                        <a href="http://dukebookexchange.com/textbook/static_full_version/myAccount.php#listings" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;color: #092460;text-decoration: underline;">View in Duke Book Exchange</a>
+                                        <a href="http://dukebookexchange.com/static_full_version/myAccount.php#listings" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;color: #092460;text-decoration: underline;">View in Duke Book Exchange</a>
                                     </td>
                                 </tr>
                             </table>
@@ -106,7 +106,7 @@ function sendListEmail($isbn, $title, $publish_date, $authors, $course, $book_co
                 <div class="footer" style="margin: 0;padding: 20px;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;width: 100%;clear: both;color: #999;">
                     <table width="100%" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">
                         <tr style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">
-                            <td class="aligncenter content-block" style="margin: 0;padding: 0 0 20px;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 12px;vertical-align: top;text-align: center;">Questions? Email <a href="mailto:" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 12px;color: #999;text-decoration: underline;">dukeexchange@gmail.com</a></td>
+                            <td class="aligncenter content-block" style="margin: 0;padding: 0 0 20px;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 12px;vertical-align: top;text-align: center;">Questions? Email <a href="mailto:dukeexchange@gmail.com" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 12px;color: #999;text-decoration: underline;">dukeexchange@gmail.com</a></td>
                         </tr>
                     </table>
                 </div>
@@ -130,7 +130,12 @@ function sendBoughtEmail($book){
 	    $isbn = $book['isbn'];
 	    $title = $book['title'];
 	    $authors = $book['authors'];
-	    $course = $book['course_num'] . ' - ' . $book['course_name'];
+        if (strlen($book['course_num'])>0){
+	       $course = $book['course_num'] . ' - ' . $book['course_name'];
+        }
+        else {
+            $course = '';
+        }
 	    $book_condition = $book['book_condition'];
 	    $notes = $book['notes'];
 	    $price = $book['price'];
@@ -196,7 +201,7 @@ function sendBoughtEmail($book){
                                                         </tr>
                                                          <tr style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">
                                                             <td style="margin: 0;padding: 5px 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;vertical-align: top;border-top: #eee 1px solid;">Seller Email</td>
-                                                            <td class="alignright" style="margin: 0;padding: 5px 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;vertical-align: top;text-align: right;border-top: #eee 1px solid;">'.$seller['email'].'</td>
+                                                            <td class="alignright" style="margin: 0;padding: 5px 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;vertical-align: top;text-align: right;border-top: #eee 1px solid;">'."<a href=\"mailto:{$seller['email']}\">{$seller['email']}</a>".'</td>
                                                         </tr>
 
 
@@ -208,7 +213,7 @@ function sendBoughtEmail($book){
                                 </tr>
                                 <tr style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">
                                     <td class="content-block" style="margin: 0;padding: 0 0 20px;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;vertical-align: top;">
-                                        <a href="http://dukebookexchange.com/textbook/static_full_version/myAccount.php#purchase-history" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;color: #092460;text-decoration: underline;">View in Duke Book Exchange</a>
+                                        <a href="http://dukebookexchange.com/static_full_version/myAccount.php#purchase-history" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;color: #092460;text-decoration: underline;">View in Duke Book Exchange</a>
                                     </td>
                                 </tr>
                             </table>
@@ -218,7 +223,7 @@ function sendBoughtEmail($book){
                 <div class="footer" style="margin: 0;padding: 20px;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;width: 100%;clear: both;color: #999;">
                     <table width="100%" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">
                         <tr style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">
-                            <td class="aligncenter content-block" style="margin: 0;padding: 0 0 20px;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 12px;vertical-align: top;text-align: center;">Questions? Email <a href="mailto:" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 12px;color: #999;text-decoration: underline;">dukeexchange@gmail.com</a></td>
+                            <td class="aligncenter content-block" style="margin: 0;padding: 0 0 20px;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 12px;vertical-align: top;text-align: center;">Questions? Email <a href="mailto:dukeexchange@gmail.com" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 12px;color: #999;text-decoration: underline;">dukeexchange@gmail.com</a></td>
                         </tr>
                     </table>
                 </div>
@@ -241,8 +246,13 @@ function sendSoldEmail($book){
 		$seller = getUser($book['seller']);
 	    $isbn = $book['isbn'];
 	    $title = $book['title'];
-	    $authors = $book['authors'];
-	    $course = $book['course_num'] . ' - ' . $book['course_name'];
+	    $authors = $book['authors'];   
+        if (strlen($book['course_num'])>0){
+	       $course = $book['course_num'] . ' - ' . $book['course_name'];
+        }
+        else {
+            $course = '';
+        }
 	    $book_condition = $book['book_condition'];
 	    $notes = $book['notes'];
 	    $price = $book['price'];
@@ -308,7 +318,7 @@ function sendSoldEmail($book){
                                                         </tr>
                                                          <tr style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">
                                                             <td style="margin: 0;padding: 5px 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;vertical-align: top;border-top: #eee 1px solid;">Buyer Email</td>
-                                                            <td class="alignright" style="margin: 0;padding: 5px 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;vertical-align: top;text-align: right;border-top: #eee 1px solid;">'.$buyer['email'].'</td>
+                                                            <td class="alignright" style="margin: 0;padding: 5px 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;vertical-align: top;text-align: right;border-top: #eee 1px solid;">'."<a href=\"mailto:{$buyer['email']}\">{$buyer['email']}</a>".'</td>
                                                         </tr>
 
 
@@ -320,7 +330,7 @@ function sendSoldEmail($book){
                                 </tr>
                                 <tr style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">
                                     <td class="content-block" style="margin: 0;padding: 0 0 20px;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;vertical-align: top;">
-                                        <a href="http://dukebookexchange.com/textbook/static_full_version/myAccount.php#sold" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;color: #092460;text-decoration: underline;">View in Duke Book Exchange</a>
+                                        <a href="http://dukebookexchange.com/static_full_version/myAccount.php#sold" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;color: #092460;text-decoration: underline;">View in Duke Book Exchange</a>
                                     </td>
                                 </tr>
                             </table>
@@ -330,7 +340,7 @@ function sendSoldEmail($book){
                 <div class="footer" style="margin: 0;padding: 20px;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;width: 100%;clear: both;color: #999;">
                     <table width="100%" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">
                         <tr style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">
-                            <td class="aligncenter content-block" style="margin: 0;padding: 0 0 20px;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 12px;vertical-align: top;text-align: center;">Questions? Email <a href="mailto:" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 12px;color: #999;text-decoration: underline;">dukeexchange@gmail.com</a></td>
+                            <td class="aligncenter content-block" style="margin: 0;padding: 0 0 20px;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 12px;vertical-align: top;text-align: center;">Questions? Email <a href="mailto:dukeexchange@gmail.com" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 12px;color: #999;text-decoration: underline;">dukeexchange@gmail.com</a></td>
                         </tr>
                     </table>
                 </div>

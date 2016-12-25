@@ -30,7 +30,7 @@ else {
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
-        <link href="css/search_results.css" rel="stylesheet">
+        <link href="css/search.css" rel="stylesheet">
 
     </head>
 
@@ -127,6 +127,12 @@ else {
                                                             <li class="cond">
                                                                 <label>
                                                                     <input type="checkbox" value="" name="" class="i-checks" />
+                                                                    <span class="m-l-xs">Almost New</span>
+                                                                </label>
+                                                            </li>
+                                                            <li class="cond">
+                                                                <label>
+                                                                    <input type="checkbox" value="" name="" class="i-checks" />
                                                                     <span class="m-l-xs">Good</span>
                                                                 </label>
                                                             </li>
@@ -136,6 +142,12 @@ else {
                                                                     <span class="m-l-xs">Fair</span>
                                                                 </label>
 
+                                                            </li>
+                                                            <li class="cond">
+                                                                <label>
+                                                                    <input type="checkbox" value="" name="" class="i-checks" />
+                                                                    <span class="m-l-xs">UNC Crapple Hill</span>
+                                                                </label>
                                                             </li>
                                                             <li class="cond">
                                                                 <label>

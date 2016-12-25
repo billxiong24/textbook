@@ -19,10 +19,7 @@ $user = getUser($_SESSION['username']);
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-        <!-- FooTable -->
-        <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
-        <!--                <link href="css/data.css" rel="stylesheet">-->
 
     </head>
 
@@ -61,9 +58,11 @@ $user = getUser($_SESSION['username']);
                                             <label>Contact:</label>
                                             <?php echo $user['phone_num']; ?>
                                         </li>
+<!--
                                         <li class="pull-right">
                                             <a class="btn btn-xs btn-white"><i class="fa fa-pencil-square"></i> Update Info</a>
                                         </li>
+-->
                                     </ul>
                                 </div>
                             </div>
@@ -75,7 +74,7 @@ $user = getUser($_SESSION['username']);
                             </h2>
                                     <div>
                                         <div class="search-form">
-                                            <form action="search_results.php" method="post">
+                                            <form action="search.php" method="post">
                                                 <div class="input-group">
                                                     <input type="text" placeholder="Search Class, Title, Author, or ISBN" name="search" class="form-control input-lg">
                                                     <div class="input-group-btn">
@@ -153,9 +152,6 @@ $user = getUser($_SESSION['username']);
         <script src="js/inspinia.js"></script>
         <script src="js/plugins/pace/pace.min.js"></script>
 
-        <!-- FooTable -->
-        <script src="js/plugins/footable/footable.all.min.js"></script>
-
 
         <script>
             $(document).ready(function () {
@@ -217,7 +213,6 @@ $user = getUser($_SESSION['username']);
                 });
 
 
-                $('.footable').footable();
                 /*$('.expose').click(function (e) {
                     $(this).css('z-index', '99999');
                     $('#overlay').fadeIn(300);

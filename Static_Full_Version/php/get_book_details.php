@@ -16,6 +16,7 @@ if(isset($_POST['bookID'])){
     $info['course_num'] = $book['course_num'];
     $info['book_condition'] = $book['book_condition'];
     $info['publish_date'] = date('Y',$book['publish_date']);
+    $info['notes'] = $book['notes'];
     $info = json_encode($info);
     echo $info;
     
