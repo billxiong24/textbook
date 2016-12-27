@@ -23,10 +23,6 @@ else {
             <?php echo $_POST['search'] ?> - Duke Exchange</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-        <!-- Gritter -->
-        <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
@@ -182,35 +178,12 @@ else {
         <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
         <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-        <!-- Flot -->
-        <script src="js/plugins/flot/jquery.flot.js"></script>
-        <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-        <script src="js/plugins/flot/jquery.flot.spline.js"></script>
-        <script src="js/plugins/flot/jquery.flot.resize.js"></script>
-        <script src="js/plugins/flot/jquery.flot.pie.js"></script>
-
-        <!-- Peity -->
-        <script src="js/plugins/peity/jquery.peity.min.js"></script>
-        <script src="js/demo/peity-demo.js"></script>
-
         <!-- Custom and plugin javascript -->
         <script src="js/inspinia.js"></script>
-        <!-- <script src="js/plugins/pace/pace.min.js"></script> -->
+        <script src="js/plugins/pace/pace.min.js"></script> 
 
         <!-- jQuery UI -->
         <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
-
-        <!-- GITTER -->
-        <script src="js/plugins/gritter/jquery.gritter.min.js"></script>
-
-        <!-- Sparkline -->
-        <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-        <!-- Sparkline demo data  -->
-        <script src="js/demo/sparkline-demo.js"></script>
-
-        <!-- ChartJS-->
-        <script src="js/plugins/chartJs/Chart.min.js"></script>
 
 
         <script>
@@ -235,7 +208,11 @@ else {
                         },
                         success: function (data) {
                             if (!data.error) { // this sort of json accessing data only works in ajax
-                                $('#numResults').html(data.numResults);
+                                if (data.numResults == 0) {
+                                    $('#numResults').html('No related books currently selling for: ');
+                                } else {
+                                    $('#numResults').html(data.numResults + ' results found for: ');
+                                }
                                 $('#display_books').html(data.books);
 
                             }

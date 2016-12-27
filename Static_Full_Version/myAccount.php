@@ -29,6 +29,16 @@ $account = accountOverview($_SESSION['username']);
 
         <!-- FooTable -->
         <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
+        <style>
+            .fakeLink {
+                /* Both fakelinks are for the titles on the myAccount page so people know to click on them for more details */
+                color: #427eb7;
+            }
+            
+            .fakeLink:hover {
+                color: #23527c;
+            }
+        </style>
     </head>
 
     <body class="top-navigation">
@@ -40,7 +50,7 @@ $account = accountOverview($_SESSION['username']);
                         <h4 class="modal-title">Remove Listing</h4>
                     </div>
                     <div class="modal-body text-center">
-                        Are you sure you would like to remove the following book from the marketplace? 
+                        Are you sure you would like to remove the following book from the marketplace?
                     </div>
 
                     <div class="modal-footer">
@@ -156,7 +166,7 @@ $account = accountOverview($_SESSION['username']);
                                             
                                             foreach ($currentListings as $listing){
                                                 echo "<tr>";
-                                                echo "<td> {$listing['title']}</td>";
+                                                echo "<td class='fakeLink'> {$listing['title']}</td>";
                                                 echo "<td> {$listing['isbn']}</td>";
                                                 echo "<td> <span class='label label-warning'>{$listing['course_num']}</span></td>";
                                                 echo "<td>".'$'."{$listing['price']}.00</td>";
@@ -218,7 +228,7 @@ $account = accountOverview($_SESSION['username']);
                                             
                                             foreach ($boughtBooks as $book){
                                                 echo "<tr>";
-                                                echo "<td> {$book['title']}</td>";
+                                                echo "<td class='fakeLink'> {$book['title']}</td>";
                                                 echo "<td> {$book['isbn']}</td>";
                                                 echo "<td> <span class='label label-warning'>{$book['course_num']}</span></td>";
                                                 echo "<td>".'$'."{$book['price']}.00</td>";
@@ -284,7 +294,7 @@ $account = accountOverview($_SESSION['username']);
                                             
                                             foreach ($soldBooks as $book){
                                                 echo "<tr>";
-                                                echo "<td> {$book['title']}</td>";
+                                                echo "<td class='fakeLink'> {$book['title']}</td>";
                                                 echo "<td> {$book['isbn']}</td>";
                                                 echo "<td> <span class='label label-warning'>{$book['course_num']}</span></td>";
                                                 echo "<td>".'$'."{$book['price']}.00</td>";
@@ -344,24 +354,24 @@ $account = accountOverview($_SESSION['username']);
                 $('.delete_listing').click(function (evt) {
                     listingID = $(this).data("id");
                 });
-                
-                $('#removeListing').click(function(evt){
-                    
+
+                $('#removeListing').click(function (evt) {
+
                     $.ajax({
-                        type:'POST',
+                        type: 'POST',
                         data: {
                             listingID: listingID
                         },
                         url: './php/removeListing.php',
-                        success: function(data){
-                          location.reload();   
-                        }  
-                        
+                        success: function (data) {
+                            location.reload();
+                        }
+
                     });
-                    
+
                 });
-                
-                
+
+
 
 
                 refresh = setInterval(function () {

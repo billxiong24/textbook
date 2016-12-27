@@ -25,10 +25,6 @@ else {
             <?php echo $_POST['search'] ?> - Duke Exchange</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-        <!-- Gritter -->
-        <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
@@ -45,7 +41,7 @@ else {
                         <h4 class="modal-title">Confirm Purchase</h4>
                         <small class="font-bold">Click Buy to continue with purchase.</small>
                         <br>
-                        <small >(Will take a few moments to load once you buy.)</small>
+                        <small>(Will take a few moments to load once you buy.)</small>
                     </div>
                     <div class="modal-body">
                         <div class="col-md-6">
@@ -62,8 +58,8 @@ else {
 
                                         <div id='authors' class="small m-t-xs"> </div>
                                         <div class="small m-t-xs">
-                                                <span id='course_num' class="label label-success"></span>
-                                                <span id='book_condition' class="label label-danger"></span>
+                                            <span id='course_num' class="label label-success"></span>
+                                            <span id='book_condition' class="label label-danger"></span>
                                         </div>
 
                                     </div>
@@ -97,7 +93,7 @@ else {
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-content">
                                         <h2>
-                                <span id="numResults"></span> results found for: <span style="color: #001A57"><?php echo $_POST['search']; ?></span>
+                                <span id="numResults"></span><span style="color: #001A57"><?php echo $_POST['search']; ?></span>
                             </h2>
 
                                         <div class="search-form">
@@ -211,25 +207,12 @@ else {
         <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
         <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-        <!-- Peity -->
-        <script src="js/plugins/peity/jquery.peity.min.js"></script>
-        <script src="js/demo/peity-demo.js"></script>
-
         <!-- Custom and plugin javascript -->
         <script src="js/inspinia.js"></script>
-        <!-- <script src="js/plugins/pace/pace.min.js"></script> -->
+         <script src="js/plugins/pace/pace.min.js"></script> 
 
         <!-- jQuery UI -->
         <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
-
-        <!-- GITTER -->
-        <script src="js/plugins/gritter/jquery.gritter.min.js"></script>
-
-        <!-- Sparkline -->
-        <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-        <!-- Sparkline demo data  -->
-        <script src="js/demo/sparkline-demo.js"></script>
 
         <script>
             $(document).ready(function () {
@@ -249,7 +232,11 @@ else {
                         },
                         success: function (data) {
                             if (!data.error) { // this sort of json accessing data only works in ajax
-                                $('#numResults').html(data.numResults);
+                                if (data.numResults == 0) {
+                                    $('#numResults').html('No related books currently selling for: ');
+                                } else {
+                                    $('#numResults').html(data.numResults + ' results found for: ');
+                                }
                                 $('#display_books').html(data.books);
 
                             }
@@ -321,10 +308,9 @@ else {
                                 var notes = '<strong>Notes: </strong>' + data.notes;
                                 var pic = "<img src=\"" + data.pic + "\"style='max-width:140px; max-height:200px'>";
                                 var price = '$' + data.price;
-                                if (data.publish_date != 1901){
+                                if (data.publish_date != 1901) {
                                     var title = data.title + ' (' + data.publish_date + ')';
-                                }
-                                else {
+                                } else {
                                     var title = data.title;
                                 }
                                 var authors = 'Author(s): ' + data.authors;
@@ -338,7 +324,7 @@ else {
                                 $('#authors').html(authors);
                                 $('#course_num').html(data.course_num);
                                 $('#book_condition').html(data.book_condition);
-                                if (data.notes.length > 0){
+                                if (data.notes.length > 0) {
                                     $('#notes').html(notes);
                                 }
 
@@ -360,7 +346,7 @@ else {
                         dataType: "text",
                         success: function (data) {
                             if (!data.error) {
-                                window.location.replace('./buy-confirm.php');
+                                window.location.replace('buy-confirm.php');
 
                             }
                         }

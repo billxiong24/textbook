@@ -16,8 +16,6 @@ if(!isset($_SESSION['username'])){
         <title>Confirmation | Duke Exchange</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
@@ -29,21 +27,29 @@ if(!isset($_SESSION['username'])){
             <div id="page-wrapper">
                 <?php include 'navbar.php'; ?>
                     <div class="title" style="text-align: center; margin-top: 100px">
-                        <h3 style="font-weight: 400;">Congratulations! You have posted your item on the market place.<br/> <br/>We'll notify you when your item is sold. You can click<a href="myAccount.php#listings"> here</a> to see the details.</h3>
+                        <h3 style="font-weight: 400;">Congratulations! You have posted your book on the marketplace.<br/> <br/>We'll notify you by email when your book is sold. You can click<a href="myAccount.php#listings"> here</a> to see the details of your book.</h3>
                     </div>
                     <div class="wrapper wrapper-content animated fadeInRight expose">
-                        <form id='send_feedback' role="form" method='post' action='./php/send_feedback.php'>
-                            <div class="form-group">
-                                <label>Subject</label>
-                                <input name='subject' type="text" class="form-control" placeholder="Feedback subject" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Feedback</label>
-                                <textarea name='feedback' class="form-control" placeholder="Your message" rows="3" required></textarea>
-                            </div>
-                            <input type="submit" value="Submit" class="btn btn-success btn-block btn-outline">
-                        </form>
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h3>Feedback</h3>
 
+                                <p class="small">
+                                    Any feedback on bugs, additional features or any reactions would greatly help!
+                                </p>
+                                <form id='send_feedback' role="form" method='post' action='./php/send_feedback.php'>
+                                    <div class="form-group">
+                                        <label>Subject</label>
+                                        <input name='subject' type="text" class="form-control" placeholder="Feedback subject" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Feedback</label>
+                                        <textarea name='feedback' class="form-control" placeholder="Your message" rows="3" required></textarea>
+                                    </div>
+                                    <input type="submit" value="Submit" class="btn btn-success btn-block btn-outline">
+                                </form>
+                            </div>
+                        </div>
                     </div>
             </div>
 

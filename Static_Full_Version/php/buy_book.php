@@ -6,7 +6,8 @@ if(isset($_POST['bookID'])){
     buyBook($_SESSION['username'],$_POST['bookID']);
 	$book = findBookHistory($_POST['bookID']);
 	sendBoughtEmail($book);
-	sendSoldEmail($book); 
+	sendSoldEmail($book);
+    $_SESSION['seller'] = $book['seller'];
     echo '';
 }
 ?>
