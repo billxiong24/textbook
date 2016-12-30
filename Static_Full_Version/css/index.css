@@ -384,3 +384,9 @@ backface-visibility: hidden;
 .footer {
     padding-left: 10px;
 }
+.footer-tag{
+    color: #F5F5F5;
+}
+.footer-tag:hover{
+    color: #D3D3D3;
+}

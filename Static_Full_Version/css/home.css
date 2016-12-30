@@ -560,3 +560,19 @@ h2{
     width:100%; height:100%;
     position:absolute; top:0; left:0; z-index:99998;
 }
+.footer{
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding-top: 20px;
+    background-color: transparent;
+    border-top: solid #D8D8D8 1px;
+
+}
+.footer-tag{
+    color: #757575;
+}
+.footer-tag:hover{
+    color: #242424;
+}
