@@ -446,8 +446,8 @@ function getNotifications($username){
                     $formattedNotification = $formattedNotification."
                <li>
                 <a href='$link'>
-                    <div style='color: darkred;'>
-                        <i class='$icon fa-fw'></i> {$info}
+                    <div style='color: darkred; background-color: white'>
+                       <i class='$icon fa-fw'></i> {$info}
                         <span style='color: red;'class='pull-right text-muted small'>{$time}</span>
                     </div>
                 </a>
@@ -460,14 +460,13 @@ function getNotifications($username){
             $formattedNotification = $formattedNotification."
                <li>
                 <a href='$link'>
-                    <div style='color:#535353'>
+                    <div style='color:#535353; background-color: white'>
                         <i class='$icon fa-fw'></i> {$info}
                         <span class='pull-right text-muted small'>{$time}</span>
                     </div>
                 </a>
             </li>
             <li class='divider'></li>";
-            
             
         }
 
