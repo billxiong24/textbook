@@ -29,38 +29,19 @@ include "./php/functions.php";
     <body class='top-navigation'>
         <div id="wrapper">
             <div id="page-wrapper">
-                 <div class="row">
-                    <nav class="navbar navbar-static-top" role="navigation">
-                        <div class="navbar-header">
-                            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-                                <i class="fa fa-reorder"></i>
-                            </button>
-                            <a href="home.php" class="navbar-brand">Duke 
-                        <span class="smaller">EXCHANGE</span></a>
-                        </div>
-                        <div class="navbar-collapse collapse" id="navbar">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="oauth.php">
-                                        <i class="fa fa-sign-in" aria-hidden="true"></i>Log in
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-                 <div class="title" style="text-align: center; margin-top: 100px">
-                        <h3 style="font-weight: 400;">You must <a href="oauth.php">log in</a> to make this purchase.</h3>
+                <?php include 'logged_out_navbar.php'; ?>
+                    <div class="title" style="text-align: center; margin-top: 100px">
+                        <h3 style="font-weight: 400;">You must <a href="oauth.php">log in</a> to buy or sell.</h3>
                     </div>
                     <div class="wrapper wrapper-content animated fadeInRight expose">
                         <div class="row content">
-                           
+
                         </div>
                     </div>
-                </div>
-               
+                    <?php include 'footer.php'; ?>
+
             </div>
+        </div>
 
         <!-- Mainly scripts -->
 

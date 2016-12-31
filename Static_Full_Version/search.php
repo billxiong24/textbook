@@ -29,6 +29,8 @@ else {
         <link href="css/style.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
         <link href="css/search.css" rel="stylesheet">
+        <!-- Customizes Navbar Breakpoint-->
+        <link href="css/navbar.css" rel="stylesheet">
 
     </head>
 
@@ -196,6 +198,9 @@ else {
                         </div>
 
                     </div>
+
+                    <?php include 'footer.php'; ?>
+
             </div>
 
         </div>
@@ -209,7 +214,7 @@ else {
 
         <!-- Custom and plugin javascript -->
         <script src="js/inspinia.js"></script>
-         <script src="js/plugins/pace/pace.min.js"></script> 
+        <script src="js/plugins/pace/pace.min.js"></script>
 
         <!-- jQuery UI -->
         <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>

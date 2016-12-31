@@ -15,12 +15,13 @@ $user = getUser($_SESSION['username']);
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Duke Exchange</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
-
+        <!-- Customizes Navbar Breakpoint-->
+        <link href="css/navbar.css" rel="stylesheet">
     </head>
 
     <body class="top-navigation">
@@ -50,7 +51,7 @@ $user = getUser($_SESSION['username']);
                                     <ul class="list-unstyled m-t-md">
                                         <li>
                                             <span class="fa fa-envelope m-r-xs"></span>
-                                            <label>Email:</label>   
+                                            <label>Email:</label>
                                             <?php echo $user['email']; ?>
                                         </li>
                                         <li>
@@ -58,7 +59,7 @@ $user = getUser($_SESSION['username']);
                                             <label>Contact:</label>
                                             <?php echo $user['phone_num']; ?>
                                         </li>
-<!--
+                                        <!--
                                         <li class="pull-right">
                                             <a class="btn btn-xs btn-white"><i class="fa fa-pencil-square"></i> Update Info</a>
                                         </li>
@@ -136,11 +137,8 @@ $user = getUser($_SESSION['username']);
                         </div>
                     </div>
 
+                    <?php include 'footer.php'; ?>
 
-            <div class="footer">
-                <span><a href="#" class="footer-tag">About us</a></span>
-                <span class="pull-right"><a href="#" class="footer-tag">Contact us</a></span>
-            </div>
             </div>
         </div>
         <!-- <div id="overlay"></div> -->
@@ -165,18 +163,16 @@ $user = getUser($_SESSION['username']);
                 var width = $(window).width();
                 if ($(window).width() < 360) {
                     $('.title h1').css("font-size", "20px");
-                }
-                else if ($(window).width() < 630) {
+                } else if ($(window).width() < 630) {
                     $('.title h1').css("font-size", "25px");
                 }
                 $(window).resize(function () {
                     if ($(window).width() < 360) {
                         $('.title h1').css("font-size", "20px");
-                    }
-                    else if ($(window).width() < 630) {
+                    } else if ($(window).width() < 630) {
                         $('.title h1').css("font-size", "25px");
                     } else {
-                       $('.title h1').css("font-size", "45px");
+                        $('.title h1').css("font-size", "45px");
                     }
                 });
 

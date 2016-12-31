@@ -12,7 +12,7 @@ echo '
                         <div class="navbar-collapse collapse" id="navbar">
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a aria-expanded="false" role="button" href="home.php"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+                                    <a aria-expanded="false" role="button" href="home.php"><i class="fa fa-shopping-bag" aria-hidden="true"></i>Buy</a>
                                 </li>
                                 <li>
                                     <a aria-expanded="false" role="button" href="sell.php"><i class="fa fa-tag" aria-hidden="true"></i>Sell</a>
@@ -27,10 +27,15 @@ echo '
                                         <i class="fa fa-bell"></i> <span id="unreadNotifications" class="label label-danger"></span> 
                                         Notifications
                                     </a>
-                                    <ul id="notifications" class="dropdown-menu" style="width: 300%; background-color: white">
+                                     <ul id="notifications" class="dropdown-menu" style="width: 300%; background-color: white;">
 
                                     </ul>
 
+                                </li>
+                                <li>
+                                    <a href="./help.php">
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>Help
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="./php/logout.php">

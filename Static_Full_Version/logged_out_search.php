@@ -33,142 +33,122 @@ else {
     <body class='top-navigation'>
         <div id="wrapper">
             <div id="page-wrapper">
-                <div class="row">
-                    <nav class="navbar navbar-static-top" role="navigation">
-                        <div class="navbar-header">
-                            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-                                <i class="fa fa-reorder"></i>
-                            </button>
-                            <a href="home.php" class="navbar-brand">Duke 
-                        <span class="smaller">EXCHANGE</span></a>
-                        </div>
-                        <div class="navbar-collapse collapse" id="navbar">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="oauth.php">
-                                        <i class="fa fa-sign-in" aria-hidden="true"></i>Log in
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-                <!-- <div class="recommend rec-message">
+                <?php include 'logged_out_navbar.php'; ?>
+                    <!-- <div class="recommend rec-message">
             <span>Search Results for "Some search"</span>
         </div> -->
-                <div class="wrapper wrapper-content animated fadeInRight">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-content">
-                                    <h2>
+                    <div class="wrapper wrapper-content animated fadeInRight">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-content">
+                                        <h2>
                                 <span id="numResults"></span> results found for: <span style="color: #001A57"><?php echo $_POST['search']; ?></span>
                             </h2>
 
-                                    <div class="search-form">
-                                        <form action="logged_out_search.php" method="post">
-                                            <div class="input-group">
-                                                <input type="text" placeholder="Search ISBN, Title, Author, or Class" name="search" class="form-control input-lg">
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-lg btn-primary space" type="submit">
-                                                        <i class="fa fa-search"></i>
-                                                    </button>
-                                                    <li class="dropdown" style="display: inline; margin-left: 5px;">
-                                                        <a class="dropdown-toggle count-info btn btn-lg btn-primary space" id="filter" data-toggle="dropdown" href="#">
-                                                            <i class="fa fa-filter"></i>
-                                                        </a>
-                                                        <ul class="dropdown-menu dropdown-alerts pull-right todo-list m-t" style=" margin-top: 20px;  width: 250px; padding-top: 5px;">
-                                                            <span class="labels">Price: </span>
-                                                            <li class="price">
-                                                                <label>
-                                                                    <input type="checkbox" value="" name="" class="i-checks" />
-                                                                    <span class="m-l-xs">Under $5</span>
-                                                                </label>
-                                                            </li>
-                                                            <li class="price">
-                                                                <label>
-                                                                    <input type="checkbox" value="" name="" class="i-checks" />
-                                                                    <span class="m-l-xs">Under $10</span>
-                                                                </label>
-                                                            </li>
-                                                            <li class="price">
-                                                                <label>
-                                                                    <input type="checkbox" value="" name="" class="i-checks" />
-                                                                    <span class="m-l-xs">Under $20</span>
-                                                                </label>
-                                                            </li>
-                                                            <li class="price">
-                                                                <label>
-                                                                    <input type="checkbox" value="" name="" class="i-checks" />
-                                                                    <span class="m-l-xs">Under $30</span>
-                                                                </label>
+                                        <div class="search-form">
+                                            <form action="logged_out_search.php" method="post">
+                                                <div class="input-group">
+                                                    <input type="text" placeholder="Search ISBN, Title, Author, or Class" name="search" class="form-control input-lg">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-lg btn-primary space" type="submit">
+                                                            <i class="fa fa-search"></i>
+                                                        </button>
+                                                        <li class="dropdown" style="display: inline; margin-left: 5px;">
+                                                            <a class="dropdown-toggle count-info btn btn-lg btn-primary space" id="filter" data-toggle="dropdown" href="#">
+                                                                <i class="fa fa-filter"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-alerts pull-right todo-list m-t" style=" margin-top: 20px;  width: 250px; padding-top: 5px;">
+                                                                <span class="labels">Price: </span>
+                                                                <li class="price">
+                                                                    <label>
+                                                                        <input type="checkbox" value="" name="" class="i-checks" />
+                                                                        <span class="m-l-xs">Under $5</span>
+                                                                    </label>
+                                                                </li>
+                                                                <li class="price">
+                                                                    <label>
+                                                                        <input type="checkbox" value="" name="" class="i-checks" />
+                                                                        <span class="m-l-xs">Under $10</span>
+                                                                    </label>
+                                                                </li>
+                                                                <li class="price">
+                                                                    <label>
+                                                                        <input type="checkbox" value="" name="" class="i-checks" />
+                                                                        <span class="m-l-xs">Under $20</span>
+                                                                    </label>
+                                                                </li>
+                                                                <li class="price">
+                                                                    <label>
+                                                                        <input type="checkbox" value="" name="" class="i-checks" />
+                                                                        <span class="m-l-xs">Under $30</span>
+                                                                    </label>
 
-                                                            </li>
-                                                            <li class="price">
-                                                                <label>
-                                                                    <input type="checkbox" value="" name="" class="i-checks" checked/>
-                                                                    <span class="m-l-xs">Any</span>
-                                                                </label>
+                                                                </li>
+                                                                <li class="price">
+                                                                    <label>
+                                                                        <input type="checkbox" value="" name="" class="i-checks" checked/>
+                                                                        <span class="m-l-xs">Any</span>
+                                                                    </label>
 
-                                                            </li>
-                                                            <span class="labels">Condition:</span>
-                                                            <li class="cond">
-                                                                <label>
-                                                                    <input type="checkbox" value="" name="" class="i-checks" />
-                                                                    <span class="m-l-xs">New</span>
-                                                                </label>
+                                                                </li>
+                                                                <span class="labels">Condition:</span>
+                                                                <li class="cond">
+                                                                    <label>
+                                                                        <input type="checkbox" value="" name="" class="i-checks" />
+                                                                        <span class="m-l-xs">New</span>
+                                                                    </label>
 
-                                                            </li>
-                                                            <li class="cond">
-                                                                <label>
-                                                                    <input type="checkbox" value="" name="" class="i-checks" />
-                                                                    <span class="m-l-xs">Almost New</span>
-                                                                </label>
-                                                            </li>
-                                                            <li class="cond">
-                                                                <label>
-                                                                    <input type="checkbox" value="" name="" class="i-checks" />
-                                                                    <span class="m-l-xs">Good</span>
-                                                                </label>
-                                                            </li>
-                                                            <li class="cond">
-                                                                <label>
-                                                                    <input type="checkbox" value="" name="" class="i-checks" />
-                                                                    <span class="m-l-xs">Fair</span>
-                                                                </label>
+                                                                </li>
+                                                                <li class="cond">
+                                                                    <label>
+                                                                        <input type="checkbox" value="" name="" class="i-checks" />
+                                                                        <span class="m-l-xs">Almost New</span>
+                                                                    </label>
+                                                                </li>
+                                                                <li class="cond">
+                                                                    <label>
+                                                                        <input type="checkbox" value="" name="" class="i-checks" />
+                                                                        <span class="m-l-xs">Good</span>
+                                                                    </label>
+                                                                </li>
+                                                                <li class="cond">
+                                                                    <label>
+                                                                        <input type="checkbox" value="" name="" class="i-checks" />
+                                                                        <span class="m-l-xs">Fair</span>
+                                                                    </label>
 
-                                                            </li>
-                                                            <li class="cond">
-                                                                <label>
-                                                                    <input type="checkbox" value="" name="" class="i-checks" />
-                                                                    <span class="m-l-xs">UNC Crapple Hill</span>
-                                                                </label>
-                                                            </li>
-                                                            <li class="cond">
-                                                                <label>
-                                                                    <input type="checkbox" value="" name="" class="i-checks" checked/>
-                                                                    <span class="m-l-xs">Any</span>
-                                                                </label>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
+                                                                </li>
+                                                                <li class="cond">
+                                                                    <label>
+                                                                        <input type="checkbox" value="" name="" class="i-checks" />
+                                                                        <span class="m-l-xs">UNC Crapple Hill</span>
+                                                                    </label>
+                                                                </li>
+                                                                <li class="cond">
+                                                                    <label>
+                                                                        <input type="checkbox" value="" name="" class="i-checks" checked/>
+                                                                        <span class="m-l-xs">Any</span>
+                                                                    </label>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div id="display_books">
-                    </div>
+                        <div id="display_books">
+                        </div>
 
-                </div>
+                    </div>
+                    <?php include 'footer.php'; ?>
             </div>
-
         </div>
 
         <!-- Mainly scripts -->
@@ -180,7 +160,7 @@ else {
 
         <!-- Custom and plugin javascript -->
         <script src="js/inspinia.js"></script>
-        <script src="js/plugins/pace/pace.min.js"></script> 
+        <script src="js/plugins/pace/pace.min.js"></script>
 
         <!-- jQuery UI -->
         <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>

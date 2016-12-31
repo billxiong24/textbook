@@ -367,7 +367,7 @@ function getNotificationArray($username){
         $time = time_elapsed_string($notif['timestamp']);
         $icon = '';
         $color = "#00B16A";
-        $link = '/textbook/Static_Full_Version/myAccount.php#purchase-history';
+        $link = './myAccount.php#purchase-history';
         $header=$notif['action'];
         if($notif['action'] == 'Bought'){
             $icon = 'fa fa-shopping-cart';
@@ -377,13 +377,13 @@ function getNotificationArray($username){
         else if($notif['action'] == 'Someone bought'){
             $icon = 'fa fa-usd';
             $header = 'Sold';
-            $link='/textbook/Static_Full_Version/myAccount.php#sold';
+            $link='./myAccount.php#sold';
         }
         else if (trim($notif['action']) == 'Added listing'){
             $icon = 'fa fa-plus';
             $header = 'Added Listing';
             $color = "#19B5FE"; //light blue
-            $link='/textbook/Static_Full_Version/myAccount.php#listings';
+            $link='./myAccount.php#listings';
         }
 
         echo"               <div class='vertical-timeline-block'>
@@ -420,7 +420,7 @@ function getNotifications($username){
     while ($notif = mysqli_fetch_assoc($result)){
         
         $info = "{$notif['action']} {$notif['title']} for \${$notif['price']}";
-        $link = '/textbook/Static_Full_Version/myAccount.php';
+        $link = './myAccount.php';
         if(strlen($info)>=39){ // cuts off the notification string if it is too long so it can fit in the notifications box
             $info = substr($info,0,38);
             $info = $info.'...'; 
@@ -446,8 +446,8 @@ function getNotifications($username){
                     $formattedNotification = $formattedNotification."
                <li>
                 <a href='$link'>
-                    <div style='color: darkred; background-color: white'>
-                       <i class='$icon fa-fw'></i> {$info}
+                    <div style='color: darkred; background-color: white;'>
+                        <i class='$icon fa-fw'></i> {$info}
                         <span style='color: red;'class='pull-right text-muted small'>{$time}</span>
                     </div>
                 </a>
@@ -460,13 +460,14 @@ function getNotifications($username){
             $formattedNotification = $formattedNotification."
                <li>
                 <a href='$link'>
-                    <div style='color:#535353; background-color: white'>
+                    <div style='color:#535353; background-color: white;'>
                         <i class='$icon fa-fw'></i> {$info}
                         <span class='pull-right text-muted small'>{$time}</span>
                     </div>
                 </a>
             </li>
             <li class='divider'></li>";
+            
             
         }
 
@@ -477,15 +478,12 @@ function getNotifications($username){
             
     }
     $formattedNotification = $formattedNotification." 
-            <li>
                 <li>
                     <div class='text-center link-block notif-color' style='background-color: #001A57; opacity: 0.9'>
-                        <form method ='post' action='notifications.php'>
                         <a href='notifications.php'>
                             <strong>See All Alerts</strong>
                             <i class='fa fa-angle-right'></i>
                         </a>
-                        </form>
                     </div>
                 </li>";                               
     

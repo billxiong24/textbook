@@ -22,11 +22,13 @@ if(!isset($_SESSION['username'])){
         <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
         <!-- for dropdown -->
         <link href="css/plugins/chosen/bootstrap-chosen.css" rel="stylesheet">
-        <!-- Bill custom stylesheet -->
         <link href="css/sell.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
         <!-- Input Mask -->
         <link href="css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+        <!-- Customizes Navbar Breakpoint-->
+        <link href="css/navbar.css" rel="stylesheet">
+
         <style>
             .wizard {
                 margin: 20px auto;
@@ -273,7 +275,8 @@ if(!isset($_SESSION['username'])){
                                                                     <input id="isbn" name="isbn" type="text" class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label><label style="color:red">*</label> Title of Book </label>
+                                                                    <label>
+                                                                        <label style="color:red">*</label> Title of Book </label>
 
                                                                     <input id="title" name="title" type="text" class="form-control required">
                                                                 </div>
@@ -282,15 +285,17 @@ if(!isset($_SESSION['username'])){
                                                                     <input id="publishDate" name="publishDate" type="text" class="form-control" data-mask="9999-99">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label><label style="color:red">*</label> Author(s) </label>
+                                                                    <label>
+                                                                        <label style="color:red">*</label> Author(s) </label>
                                                                     <input id="authors" name="authors" type="text" class="form-control required">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Book Cover Url</label>
                                                                     <input id="coverURL" name="coverURL" type="text" class="form-control">
                                                                 </div>
-                                                                <div class="cover"> <!--cover picture is displayed in the form for the user and is set in javascript based on what the user types-->
-                                                        
+                                                                <div class="cover">
+                                                                    <!--cover picture is displayed in the form for the user and is set in javascript based on what the user types-->
+
                                                                 </div>
                                                                 <ul class="list-inline pull-right">
                                                                     <li>
@@ -323,7 +328,8 @@ if(!isset($_SESSION['username'])){
                                                             <div class="tab-pane" role="tabpanel" id="step3">
                                                                 <h3>Book Condition</h3>
                                                                 <div class="form-group">
-                                                                    <label><label style="color:red">*</label> Condition</label>
+                                                                    <label>
+                                                                        <label style="color:red">*</label> Condition</label>
                                                                     <div>
                                                                         <select name='bookCondition' data-placeholder="Choose some condition" class="chosen-select form-control" tabindex="1">
                                                                             <option value="New">New</option>
@@ -349,7 +355,8 @@ if(!isset($_SESSION['username'])){
                                                             </div>
                                                             <div class="tab-pane" role="tabpanel" id="step4">
                                                                 <div class="form-group">
-                                                                    <label><label style="color:red">*</label> Price</label>
+                                                                    <label>
+                                                                        <label style="color:red">*</label> Price</label>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon">$</span>
                                                                         <input id="price" name="price" type="text" class="form-control"><span class="input-group-addon">.00</span>
@@ -390,16 +397,7 @@ if(!isset($_SESSION['username'])){
                         </div>
 
                     </div>
-                    <div class="footer">
-                        <!--
-                <div class="pull-right">
-                    10GB of <strong>250GB</strong> Free.
-                </div>
-                <div>
-                    <strong>Copyright</strong> Example Company &copy; 2014-2017
-                </div>
--->
-                    </div>
+                    <?php include 'footer.php'; ?>
 
             </div>
         </div>
@@ -494,7 +492,7 @@ if(!isset($_SESSION['username'])){
                     var inputs = $('#step1').find('input');
                     //dont want to include the search input
                     var flip = true;
-                    for (var i = 2; i < inputs.length; i=i+2) {
+                    for (var i = 2; i < inputs.length; i = i + 2) {
                         if ($(inputs[i]).val().length == 0) {
                             flip = false;
                             var parent = $(inputs[i]).parent();
@@ -515,24 +513,24 @@ if(!isset($_SESSION['username'])){
                 $('#step2 ul li .btn-info-full').click(function (e) {
                     e.preventDefault();
                     var inputs = $('#step2').find('input');
-//                    var flip = true; // form validation is removed because class is not required
-//                    for (var i = 0; i < inputs.length; i++) {
-//                        if ($(inputs[i]).val().length == 0) {
-//                            flip = false;
-//                            var parent = $(inputs[i]).parent();
-//                            if (parent.children().length < 3) {
-//                                parent.children("label").after("<label class='pull-right warning' style = 'color: darkred; font-weight: normal'>You must fill this out</label>");
-//                            }
-//                        }
-//
-//                    }
-//                    if (flip) {
-//                        var parent = $(inputs[i]).parent();
-//                        $('.warning').remove();
-                        var $active = $('.wizard .nav-tabs li.active');
-                        $active.next().removeClass('disabled');
-                        nextTab($active);
-//                    }
+                    //                    var flip = true; // form validation is removed because class is not required
+                    //                    for (var i = 0; i < inputs.length; i++) {
+                    //                        if ($(inputs[i]).val().length == 0) {
+                    //                            flip = false;
+                    //                            var parent = $(inputs[i]).parent();
+                    //                            if (parent.children().length < 3) {
+                    //                                parent.children("label").after("<label class='pull-right warning' style = 'color: darkred; font-weight: normal'>You must fill this out</label>");
+                    //                            }
+                    //                        }
+                    //
+                    //                    }
+                    //                    if (flip) {
+                    //                        var parent = $(inputs[i]).parent();
+                    //                        $('.warning').remove();
+                    var $active = $('.wizard .nav-tabs li.active');
+                    $active.next().removeClass('disabled');
+                    nextTab($active);
+                    //                    }
 
                 });
                 $('#step3 ul li .btn-info-full').click(function (e) {
