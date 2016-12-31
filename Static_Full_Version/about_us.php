@@ -41,7 +41,7 @@ session_start();
                     <div class="wrapper wrapper-content animated fadeInRight">
 
                         <h2 class="text-center">Founders: Sujay Garlanka and Bill Xiong </h2>
-                        <h2 class="text-center">Thanks to everyone who has sacrificed their time to test, give advice, and help in building this website, especially those below.</h2>
+                        <h2 class="text-center">Thanks to everyone who has contributed their time to test, give advice, and help in building this website, especially those below.</h2>
                         <h2 class="text-center">Harshil Garg | 2019 </h2>
                         <h2 class="text-center">Nipun Hewage | 2019 </h2>
                         <h2 class="text-center">Vishal Mummareddy | 2020 </h2>
