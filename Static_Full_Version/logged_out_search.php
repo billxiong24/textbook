@@ -43,7 +43,7 @@ else {
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-content">
                                         <h2>
-                                <span id="numResults"></span> results found for: <span style="color: #001A57"><?php echo $_POST['search']; ?></span>
+                                <span id="numResults"></span><span style="color: #001A57"><?php echo $_POST['search']; ?></span>
                             </h2>
 
                                         <div class="search-form">
