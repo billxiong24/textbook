@@ -3563,6 +3563,8 @@ ol.unstyled {
 .footer{
     height: 37px;
     padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     background-color: transparent;
     border-top: solid #D8D8D8 1px;
 

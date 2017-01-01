@@ -74,9 +74,10 @@ else {
 
                     </div>
 
-                    <?php include 'footer.php'; ?>
+                    
 
             </div>
+            <?php include 'footer.php'; ?>
         </div>
 
         <!-- Mainly scripts -->

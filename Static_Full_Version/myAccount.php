@@ -331,10 +331,12 @@ $account = accountOverview($_SESSION['username']);
                         </div>
                     </div>
 
-                    <?php include 'footer.php'; ?>
+                    
 
             </div>
+            <?php include 'footer.php'; ?>
         </div>
+        
 
         <!-- Mainly scripts -->
         <script src="js/jquery-2.1.1.js"></script>
