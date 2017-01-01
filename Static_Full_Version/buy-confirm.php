@@ -25,6 +25,8 @@ else {
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
+        <!-- Customizes Navbar Breakpoint-->
+        <link href="css/navbar.css" rel="stylesheet">
 
     </head>
 
@@ -72,11 +74,10 @@ else {
 
                     </div>
 
-
+                    <?php include 'footer.php'; ?>
 
             </div>
         </div>
-        <div id="overlay"></div>
 
         <!-- Mainly scripts -->
         <script src="js/jquery-2.1.1.js"></script>
@@ -87,9 +88,6 @@ else {
         <!-- Custom and plugin javascript -->
         <script src="js/inspinia.js"></script>
         <script src="js/plugins/pace/pace.min.js"></script>
-
-        <!-- FooTable -->
-        <script src="js/plugins/footable/footable.all.min.js"></script>
 
 
         <script>
@@ -104,7 +102,7 @@ else {
                     var postData = $(this).serialize(); // postData is POST data with the string name of form elements
                     var url = $(this).attr('action'); // in form html code as add_book.php
                     $.post(url, postData, function (data) {
-                        window.location.replace('myAccount.php#sold');
+                        window.location.replace('myAccount.php#purchase-history');
                     });
 
                 });

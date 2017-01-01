@@ -39,9 +39,9 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                         <h4 class="modal-title">About Us</h4>
                     </div>
                     <div class="modal-body">
-                        Hey everyone. We built this website this past semester to make buying and selling books easier and cheaper for Duke students. Right now, we need your help to add books to this marketplace so it can become useful for everyone when second semester rolls around. If you have any books you want to sell, you can login at the top right and sell the book. Feel free to leave feedback at dukeexchange@gmail.com. Thanks for the help!
-                        <br><br>
-                        Sujay Garlanka and Bill Xiong
+                        Hey everyone. We built this website this past semester to make buying and selling books easier and cheaper for Duke students. Right now, we need your help to add books to this exchange so it can become useful for everyone when spring semester rolls around. If you have any books you want to sell, you can login with your net id at the top right and sell the book. Feel free to leave feedback at <a href='mailto:dukeexchange@gmail.com'>dukeexchange@gmail.com</a>. Thanks for the help!
+                        <br>
+                        <br> Sujay Garlanka and Bill Xiong
 
                     </div>
 
@@ -89,38 +89,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
 
         <div id="wrapper">
             <div id="page-wrapper">
-                <div class="row">
-                    <nav class="navbar navbar-static-top" role="navigation">
-                        <div class="navbar-header">
-                            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" style="background-color: transparent" type="button">
-                                <i class="fa fa-reorder"></i>
-                            </button>
-                            <span>
-                        <a href="#" class="navbar-brand">Duke 
-                        <span class="smaller">EXCHANGE</span></a>
-                            </span>
-                        </div>
-                        <div class="navbar-collapse collapse" id="navbar">
-                            <ul class="nav navbar-nav navbar-right">
-                                <!--  <li>
-                                <a aria-expanded="false" role="button" href="index2.html"> Home</a>
-                            </li>
-                            <li>
-                                <a aria-expanded="false" role="button" href="dashboard_4_sell.php"> Sell</a>
-                            </li>
-                            <li>
-                                <a aria-expanded="false" role="button" href="data.html"> My Account</a>
-                            </li> -->
-                                <li>
-                                    <a href="oauth.php">
-                                        <i class="fa fa-sign-in"></i>Log in
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
+                <?php include 'logged_out_navbar.php'; ?>
                 <div class="foobar">
                     <div>
                         <span>Duke Book Exchange</span>
@@ -232,11 +201,6 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                         <strong>Copyright</strong> Duke Exchange &copy; 2016
                     </div>
                 </div> -->
-
-            <div class="footer">
-                <span><a href="#" class="footer-tag">About us</a></span>
-                <span class="pull-right"><a href="#" class="footer-tag">Contact us</a></span>
-            </div>
 
             </div>
         </div>

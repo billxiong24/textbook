@@ -26,6 +26,8 @@ $account = accountOverview($_SESSION['username']);
         <link href="css/style.css" rel="stylesheet">
         <link href="css/myAccount.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
+        <!-- Customizes Navbar Breakpoint-->
+        <link href="css/navbar.css" rel="stylesheet">
 
         <!-- FooTable -->
         <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
@@ -63,20 +65,19 @@ $account = accountOverview($_SESSION['username']);
         <div id="wrapper">
             <div id="page-wrapper">
                 <?php include 'navbar.php' ?>
-                    <div id="page-wrapper">
-                        <div class="title col-lg-15">
-                            <h1> Account History</h1></div>
-                        <div class="wrapper wrapper-content ecommerce animated fadeInRight">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="ibox float-e-margins">
-                                        <div class="ibox-title">
-                                            <h5>Spent</h5>
-                                        </div>
-                                        <div class="ibox-content">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <h1 class="no-margins">
+                    <div class="title col-lg-15">
+                        <h1> Account History</h1></div>
+                    <div class="wrapper wrapper-content ecommerce animated fadeInRight">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5>Spent</h5>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h1 class="no-margins">
                                             <?php if($account['profit'] < 0){
                                                 echo '-$'.abs($account['profit']);   
                                             }
@@ -84,85 +85,85 @@ $account = accountOverview($_SESSION['username']);
                                                 echo '$'.$account['profit'];
                                             }
                                             ?></h1>
-                                                    <div class="font-bold text-success">Total Spent</div>
-                                                </div>
+                                                <div class="font-bold text-success">Total Spent</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="col-md-4">
-                                    <div class="ibox float-e-margins">
-                                        <div class="ibox-title">
-                                            <h5>Sold</h5>
-                                        </div>
-                                        <div class="ibox-content">
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <h1 class="no-margins">$<?php echo $account['money_made'];?></h1>
-                                                    <div class="font-bold text-success">Amount Sold</div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <h1 class="no-margins"><?php echo $account['books_sold'];?></h1>
-                                                    <div class="font-bold text-success">Number Sold</div>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
+                            <div class="col-md-4">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5>Sold</h5>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="ibox float-e-margins">
-                                        <div class="ibox-title">
-                                            <h5>Bought</h5>
-                                        </div>
-                                        <div class="ibox-content">
+                                    <div class="ibox-content">
 
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <h1 class="no-margins">$<?php echo $account['spent'];?></h1>
-                                                    <div class="font-bold text-success">Amount Bought</div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <h1 class="no-margins"><?php echo $account['books_bought'];?></h1>
-                                                    <div class="font-bold text-success">Number Bought</div>
-                                                </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h1 class="no-margins">$<?php echo $account['money_made'];?></h1>
+                                                <div class="font-bold text-success">Amount Sold</div>
                                             </div>
-
-
+                                            <div class="col-md-6">
+                                                <h1 class="no-margins"><?php echo $account['books_sold'];?></h1>
+                                                <div class="font-bold text-success">Number Sold</div>
+                                            </div>
                                         </div>
+
 
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="purchase col-lg-2"></div>
-                                <div class="col-lg-12">
-                                    <a class="col-lg-8 purchase" name="listings" href="#listings">
-                                        <div class="col-lg-8 purchase">CURRENT LISTINGS</div>
-                                    </a>
-                                    <div class="ibox">
-                                        <div class="ibox-content">
+                            <div class="col-md-4">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5>Bought</h5>
+                                    </div>
+                                    <div class="ibox-content">
 
-                                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-                                                <thead>
-                                                    <tr>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h1 class="no-margins">$<?php echo $account['spent'];?></h1>
+                                                <div class="font-bold text-success">Amount Bought</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h1 class="no-margins"><?php echo $account['books_bought'];?></h1>
+                                                <div class="font-bold text-success">Number Bought</div>
+                                            </div>
+                                        </div>
 
-                                                        <th data-toggle="true">Title</th>
-                                                        <th data-hide="phone" data-sort-ignore="true">ISBN</th>
-                                                        <th data-hide="phone" data-sort-ignore="true">Course</th>
-                                                        <th>Price</th>
-                                                        <th data-sort-ignore="true" class="text-right">Remove</th>
-                                                        <th data-hide="all">Author(s)</th>
-                                                        <th data-hide="all">Book Condition</th>
-                                                        <th data-hide="all">Notes</th>
 
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="purchase col-lg-2"></div>
+                            <div class="col-lg-12">
+                                <a class="col-lg-8 purchase" name="listings" href="#listings">
+                                    <div class="col-lg-8 purchase">CURRENT LISTINGS</div>
+                                </a>
+                                <div class="ibox">
+                                    <div class="ibox-content">
+
+                                        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                            <thead>
+                                                <tr>
+
+                                                    <th data-toggle="true">Title</th>
+                                                    <th data-hide="phone" data-sort-ignore="true">ISBN</th>
+                                                    <th data-hide="phone" data-sort-ignore="true">Course</th>
+                                                    <th>Price</th>
+                                                    <th data-sort-ignore="true" class="text-right">Remove</th>
+                                                    <th data-hide="all">Author(s)</th>
+                                                    <th data-hide="all">Book Condition</th>
+                                                    <th data-hide="all">Notes</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
                                             
                                             foreach ($currentListings as $listing){
                                                 echo "<tr>";
@@ -181,50 +182,50 @@ $account = accountOverview($_SESSION['username']);
                                             
                                             ?>
 
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <td colspan="6">
-                                                            <ul class="pagination pull-right"></ul>
-                                                        </td>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="6">
+                                                        <ul class="pagination pull-right"></ul>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
 
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="purchase col-lg-2" style="margin-top: 5px;"></div>
+                        </div>
+                        <div class="row">
+                            <div class="purchase col-lg-2" style="margin-top: 5px;"></div>
 
-                                <div class="col-lg-12">
-                                    <a name="purchase-history" href="#purchase-history">
-                                        <div class="col-lg-8 purchase">PURCHASE HISTORY</div>
-                                    </a>
-                                    <div class="ibox tab">
-                                        <div class="ibox-content">
+                            <div class="col-lg-12">
+                                <a name="purchase-history" href="#purchase-history">
+                                    <div class="col-lg-8 purchase">PURCHASE HISTORY</div>
+                                </a>
+                                <div class="ibox tab">
+                                    <div class="ibox-content">
 
-                                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-                                                <thead>
-                                                    <tr>
+                                        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                            <thead>
+                                                <tr>
 
-                                                        <th data-toggle="true">Title</th>
-                                                        <th data-hide="phone" data-sort-ignore="true">ISBN</th>
-                                                        <th data-hide="phone" data-sort-ignore="true">Course</th>
-                                                        <th>Price</th>
-                                                        <th class="text-right">Transaction Date</th>
-                                                        <th data-hide="all">Author(s)</th>
-                                                        <th data-hide="all">Book Condition</th>
-                                                        <th data-hide="all">Notes</th>
-                                                        <th data-hide="all">Seller Name</th>
-                                                        <th data-hide="all">Seller Email</th>
-                                                        <th data-hide="all">Seller Phone</th>
+                                                    <th data-toggle="true">Title</th>
+                                                    <th data-hide="phone" data-sort-ignore="true">ISBN</th>
+                                                    <th data-hide="phone" data-sort-ignore="true">Course</th>
+                                                    <th>Price</th>
+                                                    <th class="text-right">Transaction Date</th>
+                                                    <th data-hide="all">Author(s)</th>
+                                                    <th data-hide="all">Book Condition</th>
+                                                    <th data-hide="all">Notes</th>
+                                                    <th data-hide="all">Seller Name</th>
+                                                    <th data-hide="all">Seller Email</th>
+                                                    <th data-hide="all">Seller Phone</th>
 
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
                                             
                                             foreach ($boughtBooks as $book){
                                                 echo "<tr>";
@@ -248,49 +249,49 @@ $account = accountOverview($_SESSION['username']);
                                             
                                             ?>
 
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <td colspan="6">
-                                                            <ul class="pagination pull-right"></ul>
-                                                        </td>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="6">
+                                                        <ul class="pagination pull-right"></ul>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
 
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="purchase col-lg-2"></div>
-                                <div class="col-lg-12">
-                                    <a class="col-lg-8 purchase" name="sold" href="#sold">
-                                        <div class="col-lg-8 purchase">SELL HISTORY</div>
-                                    </a>
-                                    <div class="ibox">
-                                        <div class="ibox-content">
+                        </div>
+                        <div class="row">
+                            <div class="purchase col-lg-2"></div>
+                            <div class="col-lg-12">
+                                <a class="col-lg-8 purchase" name="sold" href="#sold">
+                                    <div class="col-lg-8 purchase">SELL HISTORY</div>
+                                </a>
+                                <div class="ibox">
+                                    <div class="ibox-content">
 
-                                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-                                                <thead>
-                                                    <tr>
+                                        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                            <thead>
+                                                <tr>
 
-                                                        <th data-toggle="true">Title</th>
-                                                        <th data-hide="phone" data-sort-ignore="true">ISBN</th>
-                                                        <th data-hide="phone" data-sort-ignore="true">Course</th>
-                                                        <th>Price</th>
-                                                        <th class="text-right">Transaction Date</th>
-                                                        <th data-hide="all">Author(s)</th>
-                                                        <th data-hide="all">Book Condition</th>
-                                                        <th data-hide="all">Notes</th>
-                                                        <th data-hide="all">Buyer Name</th>
-                                                        <th data-hide="all">Buyer Email</th>
-                                                        <th data-hide="all">Buyer Phone</th>
+                                                    <th data-toggle="true">Title</th>
+                                                    <th data-hide="phone" data-sort-ignore="true">ISBN</th>
+                                                    <th data-hide="phone" data-sort-ignore="true">Course</th>
+                                                    <th>Price</th>
+                                                    <th class="text-right">Transaction Date</th>
+                                                    <th data-hide="all">Author(s)</th>
+                                                    <th data-hide="all">Book Condition</th>
+                                                    <th data-hide="all">Notes</th>
+                                                    <th data-hide="all">Buyer Name</th>
+                                                    <th data-hide="all">Buyer Email</th>
+                                                    <th data-hide="all">Buyer Phone</th>
 
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
                                             
                                             foreach ($soldBooks as $book){
                                                 echo "<tr>";
@@ -314,23 +315,24 @@ $account = accountOverview($_SESSION['username']);
                                             
                                             ?>
 
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <td colspan="6">
-                                                            <ul class="pagination pull-right"></ul>
-                                                        </td>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="6">
+                                                        <ul class="pagination pull-right"></ul>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
 
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
+
+                    <?php include 'footer.php'; ?>
+
             </div>
         </div>
 

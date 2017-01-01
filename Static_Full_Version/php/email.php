@@ -37,7 +37,7 @@ function sendListEmail($isbn, $title, $publish_date, $authors, $course, $book_co
         
         global $mail;
         $mail->addAddress($user['email'], $user['name']);     // Add a recipient
-        $mail->Subject = "Added \"" . $title . "\" to the marketplace";
+        $mail->Subject = "Added \"" . $title . "\" to the exchange";
         $mail->Body    =   '<table class="body-wrap" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;background-color: #f6f6f6;width: 100%;">
     <tr style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">
         <td style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;vertical-align: top;"></td>
@@ -49,7 +49,7 @@ function sendListEmail($isbn, $title, $publish_date, $authors, $course, $book_co
                             <table width="100%" cellpadding="0" cellspacing="0" style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">
                                 <tr style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">
                                     <td class="content-block" style="margin: 0;padding: 0 0 20px;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;vertical-align: top;">
-                                        <h2 style="margin: 40px 0 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida Grande&quot;, sans-serif;box-sizing: border-box;font-size: 24px;color: #000;line-height: 1.2;font-weight: 400;">'."You have posted \"" . $title . "\" to the marketplace. We will notify you when your item has been bought, so you can contact the buyer.".'</h2>
+                                        <h2 style="margin: 40px 0 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida Grande&quot;, sans-serif;box-sizing: border-box;font-size: 24px;color: #000;line-height: 1.2;font-weight: 400;">'."You have posted \"" . $title . "\" to the exchange. We will notify you when your item has been bought, so you can contact the buyer.".'</h2>
                                     </td>
                                 </tr>
                                 <tr style="margin: 0;padding: 0;font-family: &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;box-sizing: border-box;font-size: 14px;">

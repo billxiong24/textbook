@@ -25,7 +25,8 @@ $user = getUser($_SESSION['username']);
         <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
         <link href="css/home.css" rel="stylesheet">
         <link href="css/notifications.css" rel="stylesheet">
-        <!--                <link href="css/data.css" rel="stylesheet">-->
+        <!-- Customizes Navbar Breakpoint-->
+        <link href="css/navbar.css" rel="stylesheet">
 
     </head>
 
@@ -33,19 +34,19 @@ $user = getUser($_SESSION['username']);
         <div id="wrapper">
             <div id="page-wrapper">
                 <?php include 'navbar.php'; ?>
-                            <div class="row animated fadeInRight">
-                <div class="col-lg-2" style="">&nbsp;</div>
-                <div class="col-lg-8">
-                <div class="ibox float-e-margins">
-                    <div class="text-center float-e-margins p-md">
-                    <h1  style="font-size: 45px;">Notifications</h1>
-                    <a href="#" class="btn btn-xs btn-primary" id="leftVersion">Timeline View</a>
-                    </div>
-                    <div class="ibox-content" id="ibox-content">
+                    <div class="row animated fadeInRight">
+                        <div class="col-lg-2" style="">&nbsp;</div>
+                        <div class="col-lg-8">
+                            <div class="ibox float-e-margins">
+                                <div class="text-center float-e-margins p-md">
+                                    <h1 style="font-size: 45px;">Notifications</h1>
+                                    <a href="#" class="btn btn-xs btn-primary" id="leftVersion">Timeline View</a>
+                                </div>
+                                <div class="ibox-content" id="ibox-content">
 
-                        <div id="vertical-timeline" class="vertical-container dark-timeline">
+                                    <div id="vertical-timeline" class="vertical-container dark-timeline">
 
-<!--                             <div class="vertical-timeline-block">
+                                        <!--                             <div class="vertical-timeline-block">
                                 <div class="vertical-timeline-icon navy-bg">
                                     <i class="fa fa-briefcase"></i>
                                 </div>
@@ -61,13 +62,15 @@ $user = getUser($_SESSION['username']);
                                     </span>
                                 </div>
                             </div> -->
-                            <?php getNotificationArray($_SESSION['username']); ?>
-                        </div>
+                                        <?php getNotificationArray($_SESSION['username']); ?>
+                                    </div>
 
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            </div>
+                    <?php include 'footer.php'; ?>
+
             </div>
         </div>
 
@@ -92,19 +95,22 @@ $user = getUser($_SESSION['username']);
 
                 }, 1000);
 
-                $('.clear-notif').click(function(){
-                 /*   console.log($('.vertical-timeline-block').index($(this).parent().parent()));
-                    $(this).parent().parent().remove();*/
+                $('.clear-notif').click(function () {
+                    /*   console.log($('.vertical-timeline-block').index($(this).parent().parent()));
+                       $(this).parent().parent().remove();*/
                 });
-                $('.clear-notif').click(function(){
+                $('.clear-notif').click(function () {
                     $.ajax({
-                    type: "POST",
-                    url: "./php/removeNotifications.php",
-                    data:  {'ind': 56},
-                    }).done(function(msg) {
-                    //alert( "Data Saved: " + msg );
-                    });    
+                        type: "POST",
+                        url: "./php/removeNotifications.php",
+                        data: {
+                            'ind': 56
+                        },
+                    }).done(function (msg) {
+                        //alert( "Data Saved: " + msg );
+                    });
                 });
+
                 function refreshNotifications() {
                     $.ajax({
                         url: './php/refreshNotifications.php',
@@ -138,10 +144,10 @@ $user = getUser($_SESSION['username']);
 
                 });
 
-            $('#leftVersion').click(function(event) {
-                event.preventDefault()
-                $('#vertical-timeline').toggleClass('center-orientation');
-            });
+                $('#leftVersion').click(function (event) {
+                    event.preventDefault()
+                    $('#vertical-timeline').toggleClass('center-orientation');
+                });
 
                 $('.footable').footable();
             });
