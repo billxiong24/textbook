@@ -189,7 +189,7 @@ else {
                         success: function (data) {
                             if (!data.error) { // this sort of json accessing data only works in ajax
                                 if (data.numResults == 0) {
-                                    $('#numResults').html('No related books currently selling for: ');
+                                    $('#numResults').html('No one currently selling books for: ');
                                 } else {
                                     $('#numResults').html(data.numResults + ' results found for: ');
                                 }

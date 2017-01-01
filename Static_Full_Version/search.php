@@ -31,6 +31,9 @@ else {
         <link href="css/search.css" rel="stylesheet">
         <!-- Customizes Navbar Breakpoint-->
         <link href="css/navbar.css" rel="stylesheet">
+        <!-- Ladda style -->
+        <link href="css/plugins/ladda/ladda-themeless.min.css" rel="stylesheet">
+
 
     </head>
 
@@ -77,8 +80,8 @@ else {
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                        <button id="buy" type="button" class="btn btn-white buy-modal-button">Buy</button>
+                        <button class="btn btn-white" data-dismiss="modal">Close</button>
+                        <button id="buy" class="btn btn-success buy-modal-button ladda-button" data-style="expand-left"><span class="ladda-label">Buy</span></button>
                     </div>
                 </div>
             </div>
@@ -219,6 +222,13 @@ else {
         <!-- jQuery UI -->
         <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
+        <!-- Ladda -->
+        <script src="js/plugins/ladda/spin.min.js"></script>
+        <script src="js/plugins/ladda/ladda.min.js"></script>
+        <script src="js/plugins/ladda/ladda.jquery.min.js"></script>
+
+
+
         <script>
             $(document).ready(function () {
 
@@ -238,7 +248,7 @@ else {
                         success: function (data) {
                             if (!data.error) { // this sort of json accessing data only works in ajax
                                 if (data.numResults == 0) {
-                                    $('#numResults').html('No related books currently selling for: ');
+                                    $('#numResults').html('No one currently selling books for: ');
                                 } else {
                                     $('#numResults').html(data.numResults + ' results found for: ');
                                 }
@@ -341,6 +351,8 @@ else {
                 });
 
                 $('#buy').click(function (evt) {
+                    var l = Ladda.create(this);
+                    l.start();
                     $.ajax({
                         type: 'POST',
                         data: {
@@ -351,6 +363,7 @@ else {
                         dataType: "text",
                         success: function (data) {
                             if (!data.error) {
+                                l.stop();
                                 window.location.replace('buy-confirm.php');
 
                             }

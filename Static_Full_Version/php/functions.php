@@ -295,6 +295,16 @@ function buyBook($buyer,$book_id){
     $notes = $book['notes'];
     $price = $book['price'];
     
+    $buyer = mysqli_real_escape_string($connection, $buyer);
+    $seller = mysqli_real_escape_string($connection, $seller);
+    $isbn = mysqli_real_escape_string($connection, $isbn);
+    $title = mysqli_real_escape_string($connection, $title);
+    $authors = mysqli_real_escape_string($connection, $authors);
+    $course_url = mysqli_real_escape_string($connection, $course_url);
+    $course_name = mysqli_real_escape_string($connection, $course_name);
+    $course_num = mysqli_real_escape_string($connection, $course_num);
+    $notes = mysqli_real_escape_string($connection, $notes);
+    
     $query = 'INSERT INTO transaction_history(id,buyer,seller,trans_date,isbn,title,publish_date,authors,cover_url,course_name,course_num,book_condition,notes,price) ';
     $query .= "VALUES($book_id,'$buyer','$seller',$trans_date,'$isbn','$title',$publish_date,'$authors','$cover_url','$course_name','$course_num','$book_condition','$notes',$price)";
     $result = mysqli_query($connection,$query);
