@@ -135,20 +135,11 @@ $user = getUser($_SESSION['username']);
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
-                    </div>   
-=======
                     </div>
 
-                    <?php include 'footer.php'; ?>
->>>>>>> 9cf03c4382291b3a6dc3b3e126437a6c2ab1c2d7
+                    <?php //include 'footer.php'; ?>
 
-            <!--<div class="footer">
-                <span><a href="#" class="footer-tag">About us</a></span>
-                <div class="pull-right"><a href="#" class="footer-tag">Contact us</a></div>
-            </div>--!>
             </div>
-            <?php include 'footer.php'; ?>
         </div>
 <!--         <div id="overlay"></div> -->
 
