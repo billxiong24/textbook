@@ -367,11 +367,6 @@ backface-visibility: hidden;
     background: transparent;
     color: #fff;
 }
-.footer {
-    color: white;
-    border: none;
-    background-color: transparent;
-}
 
 .navbar-right li a {
     font-weight: normal;
@@ -381,12 +376,5 @@ backface-visibility: hidden;
     color: white;
 }
 
-.footer {
-    padding-left: 10px;
-}
-.footer-tag{
-    color: #F5F5F5;
-}
-.footer-tag:hover{
-    color: #D3D3D3;
-}
+
+

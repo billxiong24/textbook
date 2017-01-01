@@ -235,18 +235,11 @@ body {
   background: transparent;
   color: #001A57;
 }
-.footer{
-  border: none;
-  background-color: transparent;
-}
 .navbar-right li a{
   font-weight: normal;
 }
 .about{
   color: #515151;
-}
-.footer{
-  padding-left: 10px;
 }
 
 

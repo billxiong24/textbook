@@ -137,14 +137,15 @@ $user = getUser($_SESSION['username']);
                         </div>
                     </div>
 
+                    <?php include 'footer.php'; ?>
 
-            <div class="footer">
+            <!--<div class="footer">
                 <span><a href="#" class="footer-tag">About us</a></span>
                 <div class="pull-right"><a href="#" class="footer-tag">Contact us</a></div>
-            </div>
+            </div>--!>
             </div>
         </div>
-        <!-- <div id="overlay"></div> -->
+<!--         <div id="overlay"></div> -->
 
         <!-- Mainly scripts -->
         <script src="js/jquery-2.1.1.js"></script>
