@@ -139,7 +139,7 @@ $user = getUser($_SESSION['username']);
 
             <div class="footer">
                 <span><a href="#" class="footer-tag">About us</a></span>
-                <span class="pull-right"><a href="#" class="footer-tag">Contact us</a></span>
+                <div class="pull-right"><a href="#" class="footer-tag">Contact us</a></div>
             </div>
             </div>
         </div>
