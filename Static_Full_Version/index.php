@@ -85,6 +85,40 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                     </div>
                 </div>
             </div>
+        </div>      <div id="modal-form" class="modal fade" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row" style="background-color: white">
+                            <h3 class="m-t-none m-b">Create an Account</h3>
+                            <div class="hr-line-dashed"></div>
+                            <form role="form" method='post' action='index.php'>
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input name='first_name' type="text" placeholder="First Name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input name='last_name' type="text" placeholder="Last Name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input name='phone_num' type="text" class="form-control" data-mask="(999) 999-9999" placeholder="" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input id='email' name='email' type="email" placeholder="Enter email" class="form-control" required>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div>
+                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Log in</strong></button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="wrapper">
@@ -107,7 +141,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                                 <div class="search-form animated fadeInDown">
                                     <form action="logged_out_search.php" method="post">
                                         <div class="input-group" style="font-weight: normal">
-                                            <input type="text" name="search" class="form-control input-lg foc" autocomplete="off" placeholder="Search Class, Title, Author, or ISBN">
+                                            <input type="text" name="search" class="form-control input-lg foc" autocomplete="off" placeholder="Search All, Class, Title, Author, or ISBN">
                                             <div class="input-group-btn">
                                                 <button class="btn btn-lg btn-primary" type="submit">
                                                     <i class="fa fa-search"></i>

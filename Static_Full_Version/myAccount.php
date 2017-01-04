@@ -62,6 +62,24 @@ $account = accountOverview($_SESSION['username']);
                 </div>
             </div>
         </div>
+        <div id="removePurchaseModal" class="modal inmodal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Cancel Purchase</h4>
+                    </div>
+                    <div class="modal-body text-center">
+                        Are you sure you would like to cancel the following purchase?
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                        <button id="cancelPurchase" type="button" class="btn btn-white buy-modal-button">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="wrapper">
             <div id="page-wrapper">
                 <?php include 'navbar.php' ?>
@@ -72,7 +90,7 @@ $account = accountOverview($_SESSION['username']);
                             <div class="col-md-4">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
-                                        <h5>Spent</h5>
+                                        <h5>Made</h5>
                                     </div>
                                     <div class="ibox-content">
                                         <div class="row">
@@ -85,7 +103,7 @@ $account = accountOverview($_SESSION['username']);
                                                 echo '$'.$account['profit'];
                                             }
                                             ?></h1>
-                                                <div class="font-bold text-success">Total Spent</div>
+                                                <div class="font-bold text-success">Total Made</div>
                                             </div>
                                         </div>
                                     </div>
@@ -214,7 +232,8 @@ $account = accountOverview($_SESSION['username']);
                                                     <th data-hide="phone" data-sort-ignore="true">ISBN</th>
                                                     <th data-hide="phone" data-sort-ignore="true">Course</th>
                                                     <th>Price</th>
-                                                    <th class="text-right">Transaction Date</th>
+                                                    <th data-hide="phone,tablet"class="text-right">Transaction Date</th>
+                                                    <th data-sort-ignore="true" class="text-right">Cancel</th>
                                                     <th data-hide="all">Author(s)</th>
                                                     <th data-hide="all">Book Condition</th>
                                                     <th data-hide="all">Notes</th>
@@ -235,6 +254,7 @@ $account = accountOverview($_SESSION['username']);
                                                 echo "<td>".'$'."{$book['price']}.00</td>";
                                                 $date = date("m/d/y",$book['trans_date']);
                                                 echo "<td class='text-right'> {$date}</td>";
+                                                echo "<td class='text-right'><i data-id='{$book['id']}' data-toggle='modal' data-target='#removePurchaseModal' class='fa fa-trash text-danger delete_purchase'></i></td>";
                                                 echo "<td> {$book['authors']}</td>";
                                                 echo "<td> {$book['book_condition']}</td>";
                                                 echo "<td> {$book['notes']}</td>";
@@ -358,6 +378,11 @@ $account = accountOverview($_SESSION['username']);
                 $('.delete_listing').click(function (evt) {
                     listingID = $(this).data("id");
                 });
+                
+                var purchaseID; // used to store the transaction id for other functions on this page
+                $('.delete_purchase').click(function (evt) {
+                    purchaseID = $(this).data("id");
+                });
 
                 $('#removeListing').click(function (evt) {
 
@@ -367,6 +392,22 @@ $account = accountOverview($_SESSION['username']);
                             listingID: listingID
                         },
                         url: './php/removeListing.php',
+                        success: function (data) {
+                            location.reload();
+                        }
+
+                    });
+
+                });
+                
+                $('#cancelPurchase').click(function (evt) {
+
+                    $.ajax({
+                        type: 'POST',
+                        data: {
+                            purchaseID: purchaseID
+                        },
+                        url: './php/cancelPurchase.php',
                         success: function (data) {
                             location.reload();
                         }

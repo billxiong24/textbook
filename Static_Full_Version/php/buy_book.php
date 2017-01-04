@@ -2,7 +2,7 @@
 include 'email.php';
 //include 'functions.php'; included in email.php
 //session_start();
-if(isset($_POST['bookID'])){
+if(isset($_POST['bookID']) && isset($_SESSION['username'])){
     buyBook($_SESSION['username'],$_POST['bookID']);
 	$book = findBookHistory($_POST['bookID']);
 	sendBoughtEmail($book);

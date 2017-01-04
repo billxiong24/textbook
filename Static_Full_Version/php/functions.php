@@ -6,6 +6,7 @@ date_default_timezone_set('America/New_York');
 function addBook($username,$isbn,$title,$publish_date,$authors,$cover_url,$course_name,$course_num,$book_condition,$notes,$price){
     global $connection;
     
+    $title_no_escape = $title;
     $isbn = mysqli_real_escape_string($connection, $isbn);
     $title = mysqli_real_escape_string($connection, $title);
     $publish_date = mysqli_real_escape_string($connection, $publish_date);
@@ -23,7 +24,7 @@ function addBook($username,$isbn,$title,$publish_date,$authors,$cover_url,$cours
     if(!$result){
         die('Query Failed' . mysqli_error($connection));
     }
-    addNotification($username,'Added listing',$title,$price);
+    addNotification($username,'Added listing',$title_no_escape,$price); // title_no_escape is passed because the function addNotification escapes its inputs. Escaping twice adds an extra slash
 }
 
 function getBook($id){
@@ -88,7 +89,25 @@ function search ($search, $price, $condition){
 //    $search4 = substr($search4, 0, -4);
 //    $search5 = substr($search5, 0, -4);
 //    $query = "SELECT * FROM books WHERE ($search1 OR $search2 OR $search3 OR $search4 OR $search5) $price_search $condition_search ORDER BY price ASC";
-    $query = "SELECT * FROM books WHERE MATCH(isbn,title,authors,course_name,course_num) AGAINST('$search') $price_search $condition_search";
+    if (strtolower($search) == 'all' || $search == ''){
+        if ($price != 'Any' && $condition != 'Any'){
+            $query = "SELECT * FROM books WHERE price < $price AND book_condition = '$condition'";     
+        }
+        else if ($price != 'Any'){
+            $query = "SELECT * FROM books WHERE price < $price";
+        }
+        else if ($condition != 'Any'){
+            $query = "SELECT * FROM books WHERE book_condition = '$condition'";
+        }
+
+        else {
+            $query = "SELECT * FROM books";
+        }
+        
+    }
+    else {
+        $query = "SELECT * FROM books WHERE MATCH(isbn,title,authors,course_name,course_num) AGAINST('$search') $price_search $condition_search";
+    }
     
     //$search = '%'.$search.'%';
 //    $query = "SELECT * FROM books WHERE isbn LIKE '$search' OR title LIKE '$search' OR authors LIKE '$search' OR course_name LIKE '$search' OR course_num LIKE '$search' ORDER BY price ASC";
@@ -127,8 +146,16 @@ function search ($search, $price, $condition){
                                 <span class="product-price">';
                                  $books_displayed = $books_displayed .'$'.$books[$i]['price'];
                                 $books_displayed = $books_displayed . '</span>
-                                <small class="text-muted">'; $books_displayed = $books_displayed . $books[$i]['isbn']; $books_displayed = $books_displayed . '</small>
-                                <a data-id=' . "\"{$books[$i]['id']}\"" . 'data-toggle="modal" data-target="#buyModal" class="product-name bought">'; 
+                                <small class="text-muted">'; 
+                            if ($books[$i]['isbn'] == null){
+                                $books_displayed = $books_displayed . "No ISBN"; 
+                            }
+                            else {
+                                $books_displayed = $books_displayed . $books[$i]['isbn']; 
+                            }
+                
+                $books_displayed = $books_displayed . '</small>
+                                <a data-id=' . "\"{$books[$i]['id']}\"" . 'data-toggle="modal" data-target="#buyModal" class="product-name bought" style="font-size:14px">'; 
                                 $str = $books[$i]['title'];
                                 if(strlen($str) > 24){
                                     $cut = substr($str, 0, 24). "...";
@@ -142,8 +169,8 @@ function search ($search, $price, $condition){
                                 $books_displayed = $books_displayed . '</a>';
                                     $books_displayed = $books_displayed . '<div class="small m-t-xs"> Author(s): ';
                                     $authors = $books[$i]['authors'];
-                                    if(strlen($authors) > 20){
-                                        $books_displayed = $books_displayed . substr($authors, 0, 20) . "...";
+                                    if(strlen($authors) > 25){
+                                        $books_displayed = $books_displayed . substr($authors, 0, 25) . "...";
                                     }
                                     else{
                                         $books_displayed = $books_displayed . $authors;
@@ -191,6 +218,18 @@ function addUser($username,$name,$phone_num,$email){
     if(!$result){
         die('Query Failed' . mysqli_error($connection));
     }
+    
+}
+
+function updateUser($username, $name, $phone_num, $email){
+    
+    global $connection;
+    $query = "UPDATE users SET name = '$name', phone_num = '$phone_num', email = '$email' WHERE username = '$username' ";
+    $result = mysqli_query($connection,$query);
+    if(!$result){
+        die('Query Failed' . mysqli_error($connection));
+    }   
+    
     
 }
 
@@ -278,6 +317,24 @@ function removeListing($book_id){
     
 }
 
+function cancelPurchase($purchase_id){
+    $transaction = findBookHistory($purchase_id);
+   
+    addNotification($transaction['seller'],'Canceled purchase',$transaction['title'],$transaction['price']);
+    addNotification($transaction['buyer'],'Canceled purchase',$transaction['title'],$transaction['price']);
+    addBook($transaction['seller'],$transaction['isbn'],$transaction['title'],$transaction['publish_date'],$transaction['authors'],$transaction['cover_url'],$transaction['course_name'],$transaction['course_num'],$transaction['book_condition'],$transaction['notes'],$transaction['price']);
+    
+    global $connection;
+    $query = "DELETE FROM transaction_history ";
+    $query .= "WHERE id = $purchase_id ";
+    $result = mysqli_query($connection, $query); //making it a variable to check if it works
+    if(!$result){
+        die('Query Failed' . mysqli_error($connection));
+    }  
+    
+     
+}
+
 function buyBook($buyer,$book_id){
     global $connection;
     $book = getBook($book_id);
@@ -322,6 +379,7 @@ function buyBook($buyer,$book_id){
 function addNotification($username,$action,$title,$price){
     global $connection;
     $timestamp = time();
+    $title = mysqli_real_escape_string($connection, $title);
     $query = "INSERT INTO notifications(username,action,timestamp,title,price) ";
     $query .= "VALUES('$username','$action',$timestamp,'$title',$price)";
     $result = mysqli_query($connection,$query);
@@ -382,7 +440,7 @@ function getNotificationArray($username){
         if($notif['action'] == 'Bought'){
             $icon = 'fa fa-shopping-cart';
             $header = 'Bought';
-            $color = "#EF4836"; //red
+            $color = "#FFCC11"; //red
         }
         else if($notif['action'] == 'Someone bought'){
             $icon = 'fa fa-usd';
@@ -394,6 +452,13 @@ function getNotificationArray($username){
             $header = 'Added Listing';
             $color = "#19B5FE"; //light blue
             $link='./myAccount.php#listings';
+        }
+        else {
+            $icon = 'fa fa-ban';
+            $header = 'Canceled purchase';
+            $color = "#EF4836"; //light blue
+            $link='./myAccount.php#listings';
+            
         }
 
         echo"               <div class='vertical-timeline-block'>
@@ -431,8 +496,8 @@ function getNotifications($username){
         
         $info = "{$notif['action']} {$notif['title']} for \${$notif['price']}";
         $link = './myAccount.php';
-        if(strlen($info)>=39){ // cuts off the notification string if it is too long so it can fit in the notifications box
-            $info = substr($info,0,38);
+        if(strlen($info)>=38){ // cuts off the notification string if it is too long so it can fit in the notifications box
+            $info = substr($info,0,37);
             $info = $info.'...'; 
         }
         $time = time_elapsed_string($notif['timestamp']);
@@ -447,6 +512,10 @@ function getNotifications($username){
         }
         else if ($notif['action'] == 'Added listing'){
             $icon = 'fa fa-plus';
+            $link .= '#listings';
+        }
+        else {
+            $icon = 'fa fa-ban';
             $link .= '#listings';
         }
         

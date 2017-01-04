@@ -27,7 +27,7 @@ echo '
                                         <i class="fa fa-bell"></i> <span id="unreadNotifications" class="label label-danger"></span> 
                                         Notifications
                                     </a>
-                                     <ul id="notifications" class="dropdown-menu dropdown-alerts" style="width: 380px; background-color: white;">
+                                     <ul id="notifications" class="dropdown-menu dropdown-alerts" style="width: 400px; background-color: white;">
 
                                     </ul>
 
