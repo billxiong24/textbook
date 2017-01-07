@@ -3,5 +3,5 @@ files=$(find -name "*.php" -print)
 
 for i in $files; do
     echo $i
-    cat $i | grep "width: 300%"
+    cat $i | grep -F "$1";
 done

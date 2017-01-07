@@ -3,7 +3,7 @@ include "connection.php";
 date_default_timezone_set('America/New_York');
 
 
-function addBook($username,$isbn,$title,$publish_date,$authors,$cover_url,$course_name,$course_num,$book_condition,$notes,$price){
+/*function addBook($username,$isbn,$title,$publish_date,$authors,$cover_url,$course_name,$course_num,$book_condition,$notes,$price){
     global $connection;
     
     $title_no_escape = $title;
@@ -25,9 +25,9 @@ function addBook($username,$isbn,$title,$publish_date,$authors,$cover_url,$cours
         die('Query Failed' . mysqli_error($connection));
     }
     addNotification($username,'Added listing',$title_no_escape,$price); // title_no_escape is passed because the function addNotification escapes its inputs. Escaping twice adds an extra slash
-}
+}*/
 
-function getBook($id){
+/*function getBook($id){
     $id = intval($id);
     global $connection;
     $query = "SELECT * FROM books WHERE id = $id";
@@ -38,7 +38,7 @@ function getBook($id){
     $book = mysqli_fetch_assoc($book);
     return $book;
     
-}
+}*/
 
 function search ($search, $price, $condition){
     $price_search = '';
@@ -210,10 +210,7 @@ function addUser($username,$name,$phone_num,$email){
     $name = mysqli_real_escape_string($connection, $name);
     $phone_num = mysqli_real_escape_string($connection, $phone_num);
     $email = mysqli_real_escape_string($connection, $email);
-    
-    $query = 'INSERT INTO users(username,name,phone_num,email) ';
-    $query .= "VALUES ('$username','$name','$phone_num','$email')";
-    
+    $query = 'INSERT INTO users(username,name,phone_num,email) '; $query .= "VALUES ('$username','$name','$phone_num','$email')"; 
     $result = mysqli_query($connection,$query);
     if(!$result){
         die('Query Failed' . mysqli_error($connection));
@@ -233,7 +230,7 @@ function updateUser($username, $name, $phone_num, $email){
     
 }
 
-function getCurrentListings($username){
+/*function getCurrentListings($username){
     global $connection;
     $listings = array();
     $query = "SELECT * FROM books WHERE username = '$username' ";
@@ -258,7 +255,6 @@ function boughtBooks($username){
     return $boughtBooks; 
     
     
-    
 }
 
 function soldBooks($username){
@@ -272,16 +268,16 @@ function soldBooks($username){
     }
     return $soldBooks; 
         
-}
+}*/
 
-function findBookHistory($id){
+/*function findBookHistory($id){
     global $connection;
     $query = "SELECT * FROM transaction_history WHERE id = $id";
     $result = mysqli_query($connection, $query);
     return mysqli_fetch_assoc($result);    
-}
+}*/
 
-function accountOverview($username){
+/*function accountOverview($username){
     $info = array();
     $boughtBooks = boughtBooks($username);
     $soldBooks = soldBooks($username);
@@ -304,9 +300,9 @@ function accountOverview($username){
     
     return $info;
 
-}
+}*/
 
-function removeListing($book_id){
+/*function removeListing($book_id){
     global $connection;
     $query = "DELETE FROM books ";
     $query .= "WHERE id = $book_id ";
@@ -315,9 +311,9 @@ function removeListing($book_id){
         die('Query Failed' . mysqli_error($connection));
     }   
     
-}
+}*/
 
-function cancelPurchase($purchase_id){
+/*function cancelPurchase($purchase_id){
     $transaction = findBookHistory($purchase_id);
    
     addNotification($transaction['seller'],'Canceled purchase',$transaction['title'],$transaction['price']);
@@ -333,9 +329,9 @@ function cancelPurchase($purchase_id){
     }  
     
      
-}
+}*/
 
-function buyBook($buyer,$book_id){
+/*function buyBook($buyer,$book_id){
     global $connection;
     $book = getBook($book_id);
     
@@ -357,7 +353,7 @@ function buyBook($buyer,$book_id){
     $isbn = mysqli_real_escape_string($connection, $isbn);
     $title = mysqli_real_escape_string($connection, $title);
     $authors = mysqli_real_escape_string($connection, $authors);
-    $course_url = mysqli_real_escape_string($connection, $course_url);
+    //$course_url = mysqli_real_escape_string($connection, $course_url);
     $course_name = mysqli_real_escape_string($connection, $course_name);
     $course_num = mysqli_real_escape_string($connection, $course_num);
     $notes = mysqli_real_escape_string($connection, $notes);
@@ -374,9 +370,9 @@ function buyBook($buyer,$book_id){
     addNotification($seller,'Someone bought',$title,$price);
     
     
-}
+}*/
 
-function addNotification($username,$action,$title,$price){
+/*function addNotification($username,$action,$title,$price){
     global $connection;
     $timestamp = time();
     $title = mysqli_real_escape_string($connection, $title);
@@ -387,7 +383,7 @@ function addNotification($username,$action,$title,$price){
         die('Query Failed' . mysqli_error($connection));
     }  
     
-}
+}*/
 function time_elapsed_string($ptime)// time elapsed function from stackoverflow http://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago
 {
     $etime = time() - $ptime;

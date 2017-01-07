@@ -1,13 +1,28 @@
 <?php
 include "./php/functions.php";
+include_once "./model/AccountManager.class.php";
+include_once "./model/UserManager.class.php";
+require_once("./controller/BookController.class.php");
+//include "./controller/BookController.class.php";
 session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
-$account = accountOverview($_SESSION['username']);
-$user = getUser($_SESSION['username']);
+
+$_SESSION['book_controller'] = new BookController($_SESSION['username']);
+if(!isset($_SESSION['info_controller'])){
+
+}
+if(!isset($_SESSION['notif_controller'])){
+
+}
+$account_manager = new AccountManager($_SESSION['username']);
+$account = $account_manager->accountOverview();
+$usermanager = new UserManager($_SESSION['username']);
+$user = $usermanager->getUserInfo($_SESSION['username']);
 if (isset($_POST['name'])){
-    updateUser($_SESSION['username'],$_POST['name'],$_POST['phone_num'],$_POST['email']);
+    $usermanager->updateUserInfo($_POST['name'], $_POST['phone_num'], $_POST['email']);
+    //updateUser($_SESSION['username'],$_POST['name'],$_POST['phone_num'],$_POST['email']);
     header('Location: home.php');
 }
 ?>

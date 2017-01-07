@@ -1,14 +1,19 @@
 <?php
 include "./php/functions.php";
+include "./model/AccountManager.class.php";
+require_once('./controller/BookController.class.php');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
-$currentListings = getCurrentListings($_SESSION['username']);
-$soldBooks = soldBooks($_SESSION['username']);
-$boughtBooks = boughtBooks($_SESSION['username']);
-$account = accountOverview($_SESSION['username']);
 
+$account_manager = new AccountManager($_SESSION['username']);
+$currentListings = $_SESSION['book_controller']->getCurrentListings();
+$soldBooks = $_SESSION['book_controller']->getSoldBooks();
+$boughtBooks = $_SESSION['book_controller']->getBoughtBooks();
+$account = $account_manager->accountOverview($boughtBooks, $soldBooks);
 ?>
 
     <!DOCTYPE html>
