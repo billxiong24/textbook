@@ -1,16 +1,15 @@
 <?php
 include "./php/functions.php";
 //include "./model/ProductManager.class.php";
-include "./model/AccountManager.class.php";
 require_once('./controller/BookController.class.php');
+require_once('./controller/InfoController.class.php');
 session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
 $soldBooks = $_SESSION['book_controller']->getSoldBooks();
-$account_manager = new AccountManager($_SESSION['username']);
-$account = $account_manager->accountOverview();
-$user = getUser($_SESSION['username']);
+$account = $_SESSION['info_controller']->getAccountOverview();
+$user = $_SESSION['info_controller']->getUserInfo();
 ?>
     <!DOCTYPE html>
     <html>

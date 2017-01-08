@@ -1,18 +1,24 @@
 <?php
+require_once("Action.class.php");
 class Display{
 
-    public function displayNotification($read, $link, $icon, $info, $time){
-        $colors = $read ? '#535353' : 'darkred';
+    public function displayNotification($action, $title, $price){
+        $act = $action->getAction();
+        $info = "{$act} {$title} for \${$price}";
+        if(strlen($info) >= 38){
+            $info = substr($info, 0, 37);
+            $info = $info . '...';
+        }
+        $color = $action->getLooked() ? '#535353' : 'darkred';
         return "<li>
-                <a href='$link'>
+                <a href='".$action->getLink()."'>
                     <div style='color: ".$color."; background-color: white;'>
-                        <i class='$icon fa-fw'></i> {$info}
-                        <span style='color: ".$color.";'class='pull-right text-muted small'>{$time}</span>
+                        <i class='".$action->getIcon()." fa-fw'></i> {$info}
+                        <span style='color: ".$color.";'class='pull-right text-muted small'>{$action->getTime()}</span>
                     </div>
                 </a>
             </li>
             <li class='divider'></li>";
-        
     }
     public function displaySeeAll(){
         return "<li>

@@ -203,7 +203,7 @@ function getUser($username){
     $result = mysqli_query($connection, $query);
     return mysqli_fetch_assoc($result);
 }
-function addUser($username,$name,$phone_num,$email){
+/*function addUser($username,$name,$phone_num,$email){
     global $connection;
     
     $username = mysqli_real_escape_string($connection, $username);
@@ -216,9 +216,9 @@ function addUser($username,$name,$phone_num,$email){
         die('Query Failed' . mysqli_error($connection));
     }
     
-}
+}*/
 
-function updateUser($username, $name, $phone_num, $email){
+/*function updateUser($username, $name, $phone_num, $email){
     
     global $connection;
     $query = "UPDATE users SET name = '$name', phone_num = '$phone_num', email = '$email' WHERE username = '$username' ";
@@ -228,7 +228,7 @@ function updateUser($username, $name, $phone_num, $email){
     }   
     
     
-}
+}*/
 
 /*function getCurrentListings($username){
     global $connection;
@@ -477,7 +477,7 @@ function getNotificationArray($username){
     }
 
 }
-function getNotifications($username){
+/*function getNotifications($username){
     
     global $connection;
     $query = "SELECT * FROM notifications WHERE username = '$username' ORDER BY timestamp DESC";
@@ -563,9 +563,7 @@ function getNotifications($username){
                 </li>";                               
     
     return array("unread"=>$unread,"notifications"=>$formattedNotification);
-    
-    
-}
+}*/
 
 function readNotifications($username){ //called when a user clicks on the notifications tab and all are checked as read
     global $connection;

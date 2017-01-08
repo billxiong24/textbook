@@ -26,11 +26,9 @@ class NotificationManager extends SuperManager{
     public function time_elapsed_string($ptime)// time elapsed function from stackoverflow http://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago
     {
         $etime = time() - $ptime;
-
         if ($etime < 1){
             return '0 seconds';
         }
-
         $a = array( 365 * 24 * 60 * 60  =>  'year',
                      30 * 24 * 60 * 60  =>  'month',
                           24 * 60 * 60  =>  'day',
@@ -45,7 +43,6 @@ class NotificationManager extends SuperManager{
                            'minute' => 'minutes',
                            'second' => 'seconds'
                     );
-
         foreach ($a as $secs => $str){
             $d = $etime / $secs;
             if ($d >= 1){

@@ -13,6 +13,12 @@ class UserManager extends SuperManager{
         $result = DataBase::make_query($query);
         return mysqli_fetch_assoc($result);
     }
+    public function getSellerInfo($seller){
+        DataBase::init();
+        $query = "SELECT * FROM users WHERE username = '".$seller."' ";
+        $result = DataBase::make_query($query);
+        return mysqli_fetch_assoc($result);
+    }
     public function addUser($name,$phone_num,$email){
         DataBase::init();
         $username =  DataBase::escape(parent::getUser());

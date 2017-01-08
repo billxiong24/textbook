@@ -1,12 +1,14 @@
 <?php
-include './php/functions.php';
+//include './php/functions.php';
+require_once("./controller/InfoController.class.php");
 session_start();
 if (isset($_POST['first_name'])){ // add users once they add their information in the create account modal
     
     $first_name = trim($_POST['first_name']);
     $last_name = trim($_POST['last_name']);
     $name = $first_name . ' ' . $last_name;
-    addUser($_SESSION['username'],$name,$_POST['phone_num'],$_POST['email']);
+    $info = new InfoController($_SESSION['username']);
+    $info->addUser($_SESSION['username'],$name,$_POST['phone_num'],$_POST['email']);
     header('Location: home.php');
 }
 
@@ -258,7 +260,8 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
         <?php
     
         if(isset($_SESSION['username'])){
-            $user = getUser($_SESSION['username']);
+            $info = new InfoController($_SESSION['username']);
+            $user = $info->getUserInfo();
             if (count($user) == 0){
 
                 $email = $_SESSION['username'] . '@duke.edu';

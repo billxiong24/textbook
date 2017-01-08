@@ -2,15 +2,18 @@
 require_once ("TransactionManager.class.php");
 require_once('ProductManager.class.php');
 require_once("UserManager.class.php");
+require_once("NotificationManager.class.php");
 class BookController{
 
     const DEFAULT_URL = 'http://www.clipartkid.com/images/815/blank-book-cover-clip-art-book-covers-szPmIv-clipart.png'; 
     private $trans_manager;
     private $product_manager; 
+    private $notif_manager;
     private $user;
     public function __construct($user){
         $this->trans_manager = new TransactionManager($user);
         $this->product_manager = new ProductManager($user);
+        $this->notif_manager = new NotificationManager($user);
         $this->user = $user;
     }
     public function addBook(){
@@ -31,6 +34,7 @@ class BookController{
         $notes = $_POST['notes'];
         $price = floatval($_POST['price']);
         $this->trans_manager->addBook($isbn,$title,$publish_date,$authors,$cover_url,$course_name,$course_number,$book_condition,$notes,$price);
+        $this->notif_manager->addNotification($this->user,'Added listing',$title,$price); // title_no_escape is passed because the function addNotification escapes its inputs. Escaping twice adds an extra slash
         //sendListEmail($isbn, $title, $publish_date, $authors, $course1, $book_condition, $notes, $price);
             
     }
@@ -44,14 +48,21 @@ class BookController{
         return $this->product_manager->boughtBooks();
     }
     public function buyBook($book_id){
-        $this->trans_manager->buyBook($book_id);
-        $book = $this->product_manager->findBookHistory($book_id);
+        $book = $this->product_manager->getBook($book_id);
+        $this->trans_manager->buyBook($book, $book_id);
+        $bookInfo = $this->product_manager->findBookHistory($book_id);
+        $title = $book['title'];
+        $price = $book['price'];
+        $this->notif_manager->addNotification($this->user,'Bought',$title,$price);
+        $this->notif_manager->addNotification($book['username'],'Someone bought',$title,$price);
         //sendBoughtEmail($book);
         //sendSoldEmail($book);
-        return $book;
+        return $bookInfo;
     }
     public function cancelPurchase($purchase_id){
         $transaction = $this->product_manager->findBookHistory($purchase_id);
+        $this->notif_manager->addNotification($transaction['seller'],'Canceled purchase',$transaction['title'],$transaction['price']);
+        $this->notif_manager->addNotification($this->user, 'Canceled purchase',$transaction['title'],$transaction['price']);
         $this->trans_manager->cancelPurchase($transaction, $purchase_id);   
     }
     public function getBookDetails($bookID){
@@ -87,6 +98,5 @@ class BookController{
             $_POST['coverURL'] = 'http://www.clipartkid.com/images/815/blank-book-cover-clip-art-book-covers-szPmIv-clipart.png';
         }
     }
-
 } 
 ?>

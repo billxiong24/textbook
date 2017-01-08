@@ -1,8 +1,10 @@
 <?php
 include "./php/functions.php";
-include_once "./model/AccountManager.class.php";
-include_once "./model/UserManager.class.php";
+//include_once "./model/AccountManager.class.php";
+//include_once "./model/UserManager.class.php";
 require_once("./controller/BookController.class.php");
+require_once("./controller/InfoController.class.php");
+require_once("./controller/NotificationController.class.php");
 //include "./controller/BookController.class.php";
 session_start();
 if(!isset($_SESSION['username'])){
@@ -10,18 +12,21 @@ if(!isset($_SESSION['username'])){
 }
 
 $_SESSION['book_controller'] = new BookController($_SESSION['username']);
+$_SESSION['info_controller'] = new InfoController($_SESSION['username']);
+$_SESSION['notif_controller'] = new NotificationController($_SESSION['username']);
 if(!isset($_SESSION['info_controller'])){
 
 }
 if(!isset($_SESSION['notif_controller'])){
 
 }
-$account_manager = new AccountManager($_SESSION['username']);
-$account = $account_manager->accountOverview();
-$usermanager = new UserManager($_SESSION['username']);
-$user = $usermanager->getUserInfo($_SESSION['username']);
+
+$soldBooks = $_SESSION['book_controller']->getSoldBooks();
+$boughtBooks = $_SESSION['book_controller']->getBoughtBooks();
+$account = $_SESSION['info_controller']->getAccountOverview($boughtBooks, $soldBooks);
+$user = $_SESSION['info_controller']->getUserInfo();
 if (isset($_POST['name'])){
-    $usermanager->updateUserInfo($_POST['name'], $_POST['phone_num'], $_POST['email']);
+    $_SESSION['info_controller']->updateUserInfo($_POST['name'], $_POST['phone_num'], $_POST['email']);
     //updateUser($_SESSION['username'],$_POST['name'],$_POST['phone_num'],$_POST['email']);
     header('Location: home.php');
 }

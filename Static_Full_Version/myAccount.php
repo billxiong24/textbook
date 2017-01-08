@@ -2,6 +2,7 @@
 include "./php/functions.php";
 include "./model/AccountManager.class.php";
 require_once('./controller/BookController.class.php');
+require_once("./controller/InfoController.class.php");
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
@@ -9,11 +10,10 @@ if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
 
-$account_manager = new AccountManager($_SESSION['username']);
 $currentListings = $_SESSION['book_controller']->getCurrentListings();
 $soldBooks = $_SESSION['book_controller']->getSoldBooks();
 $boughtBooks = $_SESSION['book_controller']->getBoughtBooks();
-$account = $account_manager->accountOverview($boughtBooks, $soldBooks);
+$account = $_SESSION['info_controller']->getAccountOverview($boughtBooks, $soldBooks);
 ?>
 
     <!DOCTYPE html>
@@ -263,7 +263,7 @@ $account = $account_manager->accountOverview($boughtBooks, $soldBooks);
                                                 echo "<td> {$book['authors']}</td>";
                                                 echo "<td> {$book['book_condition']}</td>";
                                                 echo "<td> {$book['notes']}</td>";
-                                                $seller = getUser($book['seller']);
+                                                $seller = $_SESSION['info_controller']->getUserInfo($book['seller']);
                                                 echo "<td> {$seller['name']}</td>";
                                                 echo "<td> <a href='mailto:{$seller['email']}'>{$seller['email']}</a></td>";
                                                 echo "<td> {$seller['phone_num']}</td>";
@@ -329,7 +329,7 @@ $account = $account_manager->accountOverview($boughtBooks, $soldBooks);
                                                 echo "<td> {$book['authors']}</td>";
                                                 echo "<td> {$book['book_condition']}</td>";
                                                 echo "<td> {$book['notes']}</td>";
-                                                $buyer = getUser($book['buyer']);
+                                                $buyer = $_SESSION['info_controller']->getUserInfo($book['buyer']);
                                                 echo "<td> {$buyer['name']}</td>";
                                                 echo "<td> <a href='mailto:{$buyer['email']}'>{$buyer['email']}</a></td>";
                                                 echo "<td> {$buyer['phone_num']}</td>";
