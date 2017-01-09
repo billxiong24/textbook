@@ -1,6 +1,9 @@
 <?php
 include_once 'DataBase.class.php';
 include_once 'SuperManager.class.php';
+require_once("Book.class.php");
+require_once("BookBuilder.class.php");
+
 //include_once 'NotificationManager.class.php';
 class TransactionManager extends SuperManager{
     

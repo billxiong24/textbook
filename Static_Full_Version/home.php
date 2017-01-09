@@ -5,6 +5,7 @@ include "./php/functions.php";
 require_once("./controller/BookController.class.php");
 require_once("./controller/InfoController.class.php");
 require_once("./controller/NotificationController.class.php");
+require_once("./controller/SearchController.class.php");
 //include "./controller/BookController.class.php";
 session_start();
 if(!isset($_SESSION['username'])){
@@ -14,6 +15,7 @@ if(!isset($_SESSION['username'])){
 $_SESSION['book_controller'] = new BookController($_SESSION['username']);
 $_SESSION['info_controller'] = new InfoController($_SESSION['username']);
 $_SESSION['notif_controller'] = new NotificationController($_SESSION['username']);
+$_SESSION['search_controller'] = new SearchController($_SESSION['username']);
 if(!isset($_SESSION['info_controller'])){
 
 }

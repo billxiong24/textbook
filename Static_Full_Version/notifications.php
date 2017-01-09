@@ -1,8 +1,9 @@
 <?php
-include "./php/functions.php";
+//include "./php/functions.php";
 //include "./model/ProductManager.class.php";
 require_once('./controller/BookController.class.php');
 require_once('./controller/InfoController.class.php');
+require_once('./controller/NotificationController.class.php');
 session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
@@ -65,7 +66,7 @@ $user = $_SESSION['info_controller']->getUserInfo();
                                     </span>
                                 </div>
                             </div> -->
-                                        <?php getNotificationArray($_SESSION['username']); ?>
+                                        <?php echo $_SESSION['notif_controller']->getColorNotifs(); ?>
                                     </div>
 
                                 </div>
