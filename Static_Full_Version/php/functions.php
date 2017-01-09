@@ -74,9 +74,6 @@ function search ($search, $price, $condition){
         $query = "SELECT * FROM books WHERE MATCH(isbn,title,authors,course_name,course_num) AGAINST('$search') $price_search $condition_search";
     }
     
-    //$search = '%'.$search.'%';
-//    $query = "SELECT * FROM books WHERE isbn LIKE '$search' OR title LIKE '$search' OR authors LIKE '$search' OR course_name LIKE '$search' OR course_num LIKE '$search' ORDER BY price ASC";
-    
     $result = mysqli_query($connection,$query);
     if(!$result){
         die('Query Failed' . mysqli_error($connection));
@@ -84,10 +81,9 @@ function search ($search, $price, $condition){
     $books = array();
     while($row = mysqli_fetch_assoc($result)){
         array_push($books, $row);
-        
     }  
     
-    $books_displayed = '';
+     $books_displayed = '';
     
      $books_displayed = $books_displayed .'<div class="row">';
             for($i=0; $i<count($books); $i++){  

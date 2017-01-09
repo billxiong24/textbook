@@ -1,5 +1,5 @@
 <?php
-include './php/functions.php';
+//include './php/functions.php';
 session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
