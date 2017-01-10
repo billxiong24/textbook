@@ -30,9 +30,8 @@ class BookController{
         $bookbuilder->authors($_POST['authors'])->coverURL($_POST['coverURL'])->courseNum($course_number)->courseName($course_name);
         $bookbuilder->condition($_POST['bookCondition'])->notes($_POST['notes'])->price($price);
         $this->trans_manager->addBook($bookbuilder->createBook());
-        $this->notif_manager->addNotification($this->user,'Added listing',$_POST['title'],$price); // title_no_escape is passed because the function addNotification escapes its inputs. Escaping twice adds an extra slash
+        $this->notif_manager->addNotification($this->user,'Added listing',$_POST['title'],$price); 
         //sendListEmail($isbn, $title, $publish_date, $authors, $course1, $book_condition, $notes, $price);
-            
     }
     public function getCurrentListings(){
         return $this->product_manager->getCurrentListings();
@@ -47,37 +46,37 @@ class BookController{
         $book = $this->product_manager->getBook($book_id);
         $this->trans_manager->buyBook($book, $book_id);
         $bookInfo = $this->product_manager->findBookHistory($book_id);
-        $title = $book['title'];
-        $price = $book['price'];
+        $title = $book->getTitle();
+        $price = $book->getPrice();
         $this->notif_manager->addNotification($this->user,'Bought',$title,$price);
-        $this->notif_manager->addNotification($book['username'],'Someone bought',$title,$price);
+        $this->notif_manager->addNotification($book->getUsername(),'Someone bought',$title,$price);
         //sendBoughtEmail($book);
         //sendSoldEmail($book);
-        return $bookInfo;
+        return $bookInfo->getUsername();
     }
     public function cancelPurchase($purchase_id){
         $transaction = $this->product_manager->findBookHistory($purchase_id);
-        $this->notif_manager->addNotification($transaction['seller'],'Canceled purchase',$transaction['title'],$transaction['price']);
-        $this->notif_manager->addNotification($this->user, 'Canceled purchase',$transaction['title'],$transaction['price']);
+        $this->notif_manager->addNotification($transaction->getUsername(),'Canceled purchase',$transaction->getTitle(),$transaction->getPrice());
+        $this->notif_manager->addNotification($this->user, 'Canceled purchase',$transaction->getTitle(),$transaction->getPrice());
         $this->trans_manager->cancelPurchase($transaction, $purchase_id);   
     }
     public function getBookDetails($bookID){
         $book = $this->product_manager->getBook($bookID);
-        $usermanager = new UserManager($book['username']);
+        $usermanager = new UserManager($book->getUsername());
         $user = $usermanager->getUserInfo();
         $info = array();
         $info['seller'] = $user['name'];
         $info['email'] = $user['email'];
         $info['phone_num'] = $user['phone_num'];
-        $info['pic'] = $book['cover_url'];
-        $info['price'] = $book['price'];
-        $info['title'] = $book['title'];
-        $info['isbn'] = $book['isbn']; 
-        $info['authors'] = $book['authors'];
-        $info['course_num'] = $book['course_num'];
-        $info['book_condition'] = $book['book_condition'];
-        $info['publish_date'] = date('Y',$book['publish_date']);
-        $info['notes'] = $book['notes'];
+        $info['pic'] = $book->getCoverURL();
+        $info['price'] = $book->getPrice();
+        $info['title'] = $book->getTitle();
+        $info['isbn'] = $book->getIsbn(); 
+        $info['authors'] = $book->getAuthors();
+        $info['course_num'] = $book->getCourseNum();
+        $info['book_condition'] = $book->getCondition();
+        $info['publish_date'] = date('Y',$book->getPublishDate());
+        $info['notes'] = $book->getNotes();
         return $info;
     }
     public function removeListing($listing_id){

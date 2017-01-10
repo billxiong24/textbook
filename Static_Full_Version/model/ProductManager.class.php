@@ -2,6 +2,7 @@
 include_once 'DataBase.class.php';
 include_once 'NotificationManager.class.php';
 include_once 'SuperManager.class.php';
+require_once("BookBuilder.class.php");
 /**
  * For now, this is manages books- extensible to other
  * produts as well
@@ -29,9 +30,10 @@ class ProductManager extends SuperManager{
         $id = intval($id);
         $query = "SELECT * FROM books WHERE id = $id";
         $book = DataBase::make_query($query);
-        $book = mysqli_fetch_assoc($book);
-        return $book;
+        $bookbuilder = new BookBuilder();
+        return $bookbuilder->createBookFromQuery(mysqli_fetch_assoc($book));
     }
+    
     public function boughtBooks(){
         DataBase::init();
         $boughtBooks = array();
@@ -53,12 +55,12 @@ class ProductManager extends SuperManager{
         }
         return $boughtBooks; 
     }
-
     public function findBookHistory($id){
         DataBase::init();
         $query = "SELECT * FROM transaction_history WHERE id = $id";
         $result = DataBase::make_query($query);
-        return mysqli_fetch_assoc($result);    
+        $builder = new BookBuilder();
+        return $builder->createBookFromTransaction(mysqli_fetch_assoc($result));    
     }
 }
 ?>

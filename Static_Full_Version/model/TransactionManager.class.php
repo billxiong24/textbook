@@ -30,24 +30,34 @@ class TransactionManager extends SuperManager{
     }
 
     public function buyBook($book, $book_id){
-        $buyer = DataBase::escape(parent::getUser());
-        $seller = DataBase::escape($book['username']);
+        $isbn =  DataBase::escape($book->getIsbn());
+        $title =  DataBase::escape($book->getTitle());
+        $publish_date =  DataBase::escape($book->getPublishDate());
+        $authors =  DataBase::escape($book->getAuthors());
+        $cover_url =  DataBase::escape($book->getCoverURL());
+        $course_name =  DataBase::escape($book->getCourseName());
+        $course_num =  DataBase::escape($book->getCourseNum());
+        $book_condition =  DataBase::escape($book->getCondition());
+        $notes =  DataBase::escape($book->getNotes());
+        $price = $book->getPrice();
         $trans_date = time();
-        $isbn = DataBase::escape($book['isbn']);
-        $title = DataBase::escape($book['title']);
-        $publish_date = $book['publish_date'];
-        $authors = DataBase::escape($book['authors']);
-        $cover_url = $book['cover_url'];
-        $course_name = DataBase::escape($book['course_name']);
-        $course_num = DataBase::escape($book['course_num']);
-        $book_condition = DataBase::escape($book['book_condition']);
-        $notes = DataBase::escape($book['notes']);
-        $price = $book['price'];
+        $buyer = DataBase::escape(parent::getUser());
+        $seller = DataBase::escape($book->getUsername());
+        //$trans_date = time();
+        //$isbn = DataBase::escape($book['isbn']);
+        //$title = DataBase::escape($book['title']);
+        //$publish_date = $book['publish_date'];
+        //$authors = DataBase::escape($book['authors']);
+        //$cover_url = $book['cover_url'];
+        //$course_name = DataBase::escape($book['course_name']);
+        //$course_num = DataBase::escape($book['course_num']);
+        //$book_condition = DataBase::escape($book['book_condition']);
+        //$notes = DataBase::escape($book['notes']);
+        //$price = $book['price'];
         
         $query = 'INSERT INTO transaction_history(id,buyer,seller,trans_date,isbn,title,publish_date,authors,cover_url,course_name,course_num,book_condition,notes,price) ';
         $query .= "VALUES($book_id,'$buyer','$seller',$trans_date,'$isbn','$title',$publish_date,'$authors','$cover_url','$course_name','$course_num','$book_condition','$notes',$price)";
         $result = DataBase::make_query($query);
-        
         $this->removeListing($book_id);
         //$this->notif_manager->addNotification($buyer,'Bought',$title,$price);
         //$this->notif_manager->addNotification($seller,'Someone bought',$title,$price);
@@ -72,9 +82,8 @@ class TransactionManager extends SuperManager{
         DataBase::init(); 
         //$this->notif_manager->addNotification($transaction['seller'],'Canceled purchase',$transaction['title'],$transaction['price']);
         //$this->notif_manager->addNotification(parent::getUser(),'Canceled purchase',$transaction['title'],$transaction['price']);
-        $action = new TransactionManager($transaction['seller']);
-        $action->addBook($transaction['isbn'],$transaction['title'],$transaction['publish_date'],$transaction['authors'],$transaction['cover_url'],$transaction['course_name'],$transaction['course_num'],$transaction['book_condition'],$transaction['notes'],$transaction['price']);
-        
+        $action = new TransactionManager($transaction->getUsername());
+        $action->addBook($transaction);
         $query = "DELETE FROM transaction_history ";
         $query .= "WHERE id = $purchase_id ";
         DataBase::make_query($query);

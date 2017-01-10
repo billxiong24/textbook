@@ -76,5 +76,20 @@ class BookBuilder{
                         $this->notes,
                         $this->price);
     }
+    public function createBookFromQuery($book){
+        $builder = new BookBuilder();
+        $builder->username($book['username'])->isbn($book['isbn'])->title($book['title'])->publishDate($book['publish_date'])->authors($book['authors']);
+        $builder->coverURL($book['cover_url'])->courseName($book['course_name'])->courseNum($book['course_num'])->condition($book['book_condition'])->notes($book['notes']);
+        $builder->price($book['price']);
+        return $builder->createBook();
+    }
+    public function createBookFromTransaction($book){
+        $builder = new BookBuilder();
+        $builder->username($book['seller'])->isbn($book['isbn'])->title($book['title'])->publishDate($book['publish_date'])->authors($book['authors']);
+        $builder->coverURL($book['cover_url'])->courseName($book['course_name'])->courseNum($book['course_num'])->condition($book['book_condition'])->notes($book['notes']);
+        $builder->price($book['price']);
+        return $builder->createBook();
+
+    }
 }
 ?>
