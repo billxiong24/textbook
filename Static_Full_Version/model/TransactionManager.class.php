@@ -26,7 +26,6 @@ class TransactionManager extends SuperManager{
         $query = 'INSERT INTO books(username,isbn,title,publish_date,authors,cover_url,course_name,course_num,book_condition,notes,price) ';
         $query .= "VALUES('".parent::getUser()."','$isbn','$title',$publish_date,'$authors','$cover_url','$course_name','$course_num','$book_condition','$notes',$price)";
         DataBase::make_query($query);
-        //$this->notif_manager->addNotification(parent::getUser(),'Added listing',$title_no_escape,$price); // title_no_escape is passed because the function addNotification escapes its inputs. Escaping twice adds an extra slash
     }
 
     public function buyBook($book, $book_id){
@@ -43,24 +42,10 @@ class TransactionManager extends SuperManager{
         $trans_date = time();
         $buyer = DataBase::escape(parent::getUser());
         $seller = DataBase::escape($book->getUsername());
-        //$trans_date = time();
-        //$isbn = DataBase::escape($book['isbn']);
-        //$title = DataBase::escape($book['title']);
-        //$publish_date = $book['publish_date'];
-        //$authors = DataBase::escape($book['authors']);
-        //$cover_url = $book['cover_url'];
-        //$course_name = DataBase::escape($book['course_name']);
-        //$course_num = DataBase::escape($book['course_num']);
-        //$book_condition = DataBase::escape($book['book_condition']);
-        //$notes = DataBase::escape($book['notes']);
-        //$price = $book['price'];
-        
         $query = 'INSERT INTO transaction_history(id,buyer,seller,trans_date,isbn,title,publish_date,authors,cover_url,course_name,course_num,book_condition,notes,price) ';
         $query .= "VALUES($book_id,'$buyer','$seller',$trans_date,'$isbn','$title',$publish_date,'$authors','$cover_url','$course_name','$course_num','$book_condition','$notes',$price)";
         $result = DataBase::make_query($query);
         $this->removeListing($book_id);
-        //$this->notif_manager->addNotification($buyer,'Bought',$title,$price);
-        //$this->notif_manager->addNotification($seller,'Someone bought',$title,$price);
     }
     public function removeListing($book_id){
         DataBase::init();
@@ -68,20 +53,9 @@ class TransactionManager extends SuperManager{
         $query .= "WHERE id = $book_id ";
         DataBase::make_query($query);
     }
-    private function getBook($id){
-        DataBase::init();
-        $id = intval($id);
-        $query = "SELECT * FROM books WHERE id = $id";
-        $book = DataBase::make_query($query);
-        $book = mysqli_fetch_assoc($book);
-        return $book;
-
-    }
     
     public function cancelPurchase($transaction, $purchase_id){
         DataBase::init(); 
-        //$this->notif_manager->addNotification($transaction['seller'],'Canceled purchase',$transaction['title'],$transaction['price']);
-        //$this->notif_manager->addNotification(parent::getUser(),'Canceled purchase',$transaction['title'],$transaction['price']);
         $action = new TransactionManager($transaction->getUsername());
         $action->addBook($transaction);
         $query = "DELETE FROM transaction_history ";

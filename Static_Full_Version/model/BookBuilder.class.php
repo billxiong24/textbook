@@ -78,18 +78,17 @@ class BookBuilder{
     }
     public function createBookFromQuery($book){
         $builder = new BookBuilder();
-        $builder->username($book['username'])->isbn($book['isbn'])->title($book['title'])->publishDate($book['publish_date'])->authors($book['authors']);
-        $builder->coverURL($book['cover_url'])->courseName($book['course_name'])->courseNum($book['course_num'])->condition($book['book_condition'])->notes($book['notes']);
-        $builder->price($book['price']);
-        return $builder->createBook();
+        return $this->build($builder, $book, 'username');
     }
     public function createBookFromTransaction($book){
         $builder = new BookBuilder();
-        $builder->username($book['seller'])->isbn($book['isbn'])->title($book['title'])->publishDate($book['publish_date'])->authors($book['authors']);
+        return $this->build($builder, $book, 'seller');
+    }
+    private function build($builder, $book, $user){
+        $builder->username($book[$user])->isbn($book['isbn'])->title($book['title'])->publishDate($book['publish_date'])->authors($book['authors']);
         $builder->coverURL($book['cover_url'])->courseName($book['course_name'])->courseNum($book['course_num'])->condition($book['book_condition'])->notes($book['notes']);
         $builder->price($book['price']);
         return $builder->createBook();
-
     }
 }
 ?>
