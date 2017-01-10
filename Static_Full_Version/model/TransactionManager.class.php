@@ -10,18 +10,18 @@ class TransactionManager extends SuperManager{
     public function __construct($user){
         parent::__construct($user);
     }
-    public function addBook($isbn,$title,$publish_date,$authors,$cover_url,$course_name,$course_num,$book_condition,$notes,$price){
+    public function addBook($book){
         DataBase::init(); 
-        $title_no_escape = $title;
-        $isbn =  DataBase::escape($isbn);
-        $title =  DataBase::escape($title);
-        $publish_date =  DataBase::escape($publish_date);
-        $authors =  DataBase::escape($authors);
-        $cover_url =  DataBase::escape($cover_url);
-        $course_name =  DataBase::escape($course_name);
-        $course_num =  DataBase::escape($course_num);
-        $book_condition =  DataBase::escape($book_condition);
-        $notes =  DataBase::escape($notes);
+        $isbn =  DataBase::escape($book->getIsbn());
+        $title =  DataBase::escape($book->getTitle());
+        $publish_date =  DataBase::escape($book->getPublishDate());
+        $authors =  DataBase::escape($book->getAuthors());
+        $cover_url =  DataBase::escape($book->getCoverURL());
+        $course_name =  DataBase::escape($book->getCourseName());
+        $course_num =  DataBase::escape($book->getCourseNum());
+        $book_condition =  DataBase::escape($book->getCondition());
+        $notes =  DataBase::escape($book->getNotes());
+        $price = $book->getPrice();
         
         $query = 'INSERT INTO books(username,isbn,title,publish_date,authors,cover_url,course_name,course_num,book_condition,notes,price) ';
         $query .= "VALUES('".parent::getUser()."','$isbn','$title',$publish_date,'$authors','$cover_url','$course_name','$course_num','$book_condition','$notes',$price)";

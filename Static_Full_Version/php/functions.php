@@ -40,7 +40,7 @@ date_default_timezone_set('America/New_York');
     
 }*/
 
-function search ($search, $price, $condition){
+/*function search ($search, $price, $condition){
     $price_search = '';
     $condition_search = '';
     if ($price != 'Any'){
@@ -150,7 +150,7 @@ function search ($search, $price, $condition){
             $books_displayed = $books_displayed . '</div>';
             $data = array('numResults'=>count($books),'books'=>$books_displayed);
             return $data;
-}
+}*/
 
 function getUser($username){
     global $connection;

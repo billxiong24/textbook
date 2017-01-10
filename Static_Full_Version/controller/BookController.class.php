@@ -3,6 +3,7 @@ require_once ("TransactionManager.class.php");
 require_once('ProductManager.class.php');
 require_once("UserManager.class.php");
 require_once("NotificationManager.class.php");
+require_once("BookBuilder.class.php");
 class BookController{
 
     const DEFAULT_URL = 'http://www.clipartkid.com/images/815/blank-book-cover-clip-art-book-covers-szPmIv-clipart.png'; 
@@ -18,23 +19,18 @@ class BookController{
     }
     public function addBook(){
         $this->checkEmptyParams();
-        $username = $this->user;
-        $isbn = $_POST['isbn'];
-        $title = $_POST['title'];
-        $publish_date = strtotime($_POST['publishDate']);
-        $authors = $_POST['authors'];
-        $cover_url = $_POST['coverURL'];
-        $course1 = $_POST['course'];
-        $course = explode(' - ', $course1);
-        if (count($course)!=0){
-           $course_number = $course[0];
-           $course_name = $course[1]; 
-        }
-        $book_condition = $_POST['bookCondition'];
-        $notes = $_POST['notes'];
+        $course = explode(' - ', $_POST['course']);
+        $course_name = count($course) > 1 ? $course[1] : '';
+        $course_number = count($course) > 1 ? $course[0] : '';
         $price = floatval($_POST['price']);
-        $this->trans_manager->addBook($isbn,$title,$publish_date,$authors,$cover_url,$course_name,$course_number,$book_condition,$notes,$price);
-        $this->notif_manager->addNotification($this->user,'Added listing',$title,$price); // title_no_escape is passed because the function addNotification escapes its inputs. Escaping twice adds an extra slash
+
+
+        $bookbuilder = new BookBuilder();
+        $bookbuilder->isbn($_POST['isbn'])->title($_POST['title'])->publishDate(strtotime($_POST['publishDate']));
+        $bookbuilder->authors($_POST['authors'])->coverURL($_POST['coverURL'])->courseNum($course_number)->courseName($course_name);
+        $bookbuilder->condition($_POST['bookCondition'])->notes($_POST['notes'])->price($price);
+        $this->trans_manager->addBook($bookbuilder->createBook());
+        $this->notif_manager->addNotification($this->user,'Added listing',$_POST['title'],$price); // title_no_escape is passed because the function addNotification escapes its inputs. Escaping twice adds an extra slash
         //sendListEmail($isbn, $title, $publish_date, $authors, $course1, $book_condition, $notes, $price);
             
     }

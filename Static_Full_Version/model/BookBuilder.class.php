@@ -2,6 +2,7 @@
 require_once("Book.class.php");
 class BookBuilder{
     private $id;
+    private $username;
     private $title;
     private $isbn;
     private $publish_date;
@@ -15,6 +16,10 @@ class BookBuilder{
     
     public function id($id){
         $this->id = $id;
+        return $this;
+    }
+    public function username($username){
+        $this->username = $username;
         return $this;
     }
     public function title($title){
@@ -59,6 +64,7 @@ class BookBuilder{
     }
     public function createBook(){
         return new Book($this->id,
+                        $this->username,
                         $this->title, 
                         $this->isbn,
                         $this->publish_date,

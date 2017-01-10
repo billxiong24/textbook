@@ -1,6 +1,7 @@
 <?php
 class Book{
     private $id;
+    private $username;
     private $title;
     private $isbn;
     private $publish_date;
@@ -13,6 +14,7 @@ class Book{
     private $price;
 
     public function __construct($id,
+                                $username,
                                 $title, 
                                 $isbn,
                                 $publish_date,
@@ -24,6 +26,7 @@ class Book{
                                 $notes,
                                 $price){
         $this->id = $id;
+        $this->username = $username;
         $this->title = $title;                            
         $this->isbn = $isbn;                            
         $this->publish_date = $publish_date;                            
@@ -37,6 +40,9 @@ class Book{
     }
     public function getID(){
         return $this->id;
+    }
+    public function getUsername(){
+        return $this->username;
     }
     public function getTitle(){
         return $this->title;
