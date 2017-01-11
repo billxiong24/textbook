@@ -12,6 +12,8 @@ if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 $_SESSION['book_controller'] = new BookController($_SESSION['username']);
 $_SESSION['info_controller'] = new InfoController($_SESSION['username']);
 $_SESSION['notif_controller'] = new NotificationController($_SESSION['username']);

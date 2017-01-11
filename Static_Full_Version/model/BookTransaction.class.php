@@ -5,11 +5,16 @@ class BookTransaction{
     private $book;
     private $buyer;
     private $seller;
-    public function construct($book, $buyer, $seller, $id = -1){
+    private $trans_date;
+    public function __construct($book, $buyer, $seller, $trans_date, $id = -1){
         $this->book = $book;
         $this->buyer = $buyer;
         $this->seller = $seller;
+        $this->trans_date = $trans_date;
         $this->id = $id;
+    }
+    public function getTransDate(){
+        return $this->trans_date;
     }
     public function getBook(){
         return $this->book;
@@ -22,12 +27,6 @@ class BookTransaction{
     }
     public function getID(){
         return $this->id;
-    }
-    public function getTitle(){
-        return $this->book->getTitle();
-    }
-    public function getPrice(){
-        return $this->book->getPrice();
     }
 }
 ?>

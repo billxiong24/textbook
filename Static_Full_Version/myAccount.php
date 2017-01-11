@@ -251,19 +251,19 @@ $account = $_SESSION['info_controller']->getAccountOverview($boughtBooks, $soldB
                                             <tbody>
                                                 <?php
                                             
-                                            foreach ($boughtBooks as $book){
+                                            foreach ($boughtBooks as $trans){
                                                 echo "<tr>";
-                                                echo "<td class='fakeLink'> {$book['title']}</td>";
-                                                echo "<td> {$book['isbn']}</td>";
-                                                echo "<td> <span class='label label-warning'>{$book['course_num']}</span></td>";
-                                                echo "<td>".'$'."{$book['price']}.00</td>";
-                                                $date = date("m/d/y",$book['trans_date']);
+                                                echo "<td class='fakeLink'> {$trans->getBook()->getTitle()}</td>";
+                                                echo "<td> {$trans->getBook()->getIsbn()}</td>";
+                                                echo "<td> <span class='label label-warning'>{$trans->getBook()->getCourseNum()}</span></td>";
+                                                echo "<td>".'$'."{$trans->getBook()->getPrice()}.00</td>";
+                                                $date = date("m/d/y",$trans->getTransDate());
                                                 echo "<td class='text-right'> {$date}</td>";
-                                                echo "<td class='text-right'><i data-id='{$book['id']}' data-toggle='modal' data-target='#removePurchaseModal' class='fa fa-trash text-danger delete_purchase'></i></td>";
-                                                echo "<td> {$book['authors']}</td>";
-                                                echo "<td> {$book['book_condition']}</td>";
-                                                echo "<td> {$book['notes']}</td>";
-                                                $seller = $_SESSION['info_controller']->getUserInfo($book['seller']);
+                                                echo "<td class='text-right'><i data-id='{$trans->getBook()->getID()}' data-toggle='modal' data-target='#removePurchaseModal' class='fa fa-trash text-danger delete_purchase'></i></td>";
+                                                echo "<td> {$trans->getBook()->getAuthors()}</td>";
+                                                echo "<td> {$trans->getBook()->getCondition()}</td>";
+                                                echo "<td> {$trans->getBook()->getNotes()}</td>";
+                                                $seller = $_SESSION['info_controller']->getUserInfo($trans->getSeller());
                                                 echo "<td> {$seller['name']}</td>";
                                                 echo "<td> <a href='mailto:{$seller['email']}'>{$seller['email']}</a></td>";
                                                 echo "<td> {$seller['phone_num']}</td>";
@@ -318,18 +318,18 @@ $account = $_SESSION['info_controller']->getAccountOverview($boughtBooks, $soldB
                                             <tbody>
                                                 <?php
                                             
-                                            foreach ($soldBooks as $book){
+                                            foreach ($soldBooks as $trans){
                                                 echo "<tr>";
-                                                echo "<td class='fakeLink'> {$book['title']}</td>";
-                                                echo "<td> {$book['isbn']}</td>";
-                                                echo "<td> <span class='label label-warning'>{$book['course_num']}</span></td>";
-                                                echo "<td>".'$'."{$book['price']}.00</td>";
-                                                $date = date("m/d/y",$book['trans_date']);
+                                                echo "<td class='fakeLink'> {$trans->getBook()->getTitle()}</td>";
+                                                echo "<td> {$trans->getBook()->getIsbn()}</td>";
+                                                echo "<td> <span class='label label-warning'>{$trans->getBook()->getCourseNum()}</span></td>";
+                                                echo "<td>".'$'."{$trans->getBook()->getPrice()}.00</td>";
+                                                $date = date("m/d/y",$trans->getTransDate());
                                                 echo "<td class='text-right'> {$date}</td>";
-                                                echo "<td> {$book['authors']}</td>";
-                                                echo "<td> {$book['book_condition']}</td>";
-                                                echo "<td> {$book['notes']}</td>";
-                                                $buyer = $_SESSION['info_controller']->getUserInfo($book['buyer']);
+                                                echo "<td> {$trans->getBook()->getAuthors()}</td>";
+                                                echo "<td> {$trans->getBook()->getCondition()}</td>";
+                                                echo "<td> {$trans->getBook()->getNotes()}</td>";
+                                                $buyer = $_SESSION['info_controller']->getUserInfo($trans->getBuyer());
                                                 echo "<td> {$buyer['name']}</td>";
                                                 echo "<td> <a href='mailto:{$buyer['email']}'>{$buyer['email']}</a></td>";
                                                 echo "<td> {$buyer['phone_num']}</td>";

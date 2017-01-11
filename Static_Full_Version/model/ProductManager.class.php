@@ -3,6 +3,7 @@ include_once 'DataBase.class.php';
 include_once 'NotificationManager.class.php';
 include_once 'SuperManager.class.php';
 require_once("BookBuilder.class.php");
+require_once("BookTransaction.class.php");
 /**
  * For now, this is manages books- extensible to other
  * produts as well
@@ -44,6 +45,20 @@ class ProductManager extends SuperManager{
         }
         return $boughtBooks; 
     }
+    public function boughtBooks2(){
+        DataBase::init();
+        $boughtBooks = array();
+        $query = "SELECT * FROM transaction_history WHERE buyer = '".parent::getUser()."' ORDER BY trans_date DESC";
+        $result = DataBase::make_query($query);
+        $bookbuilder = new BookBuilder();
+
+        while ($book = mysqli_fetch_assoc($result)){
+            $book_construct = $bookbuilder->createBookFromTransaction($book);
+            $trans = new BookTransaction($book_construct, $book['buyer'], $book['seller'], $book['trans_date']);
+            array_push($boughtBooks, $trans);
+        }
+        return $boughtBooks; 
+    }
 
     public function soldBooks(){
         DataBase::init();
@@ -54,6 +69,21 @@ class ProductManager extends SuperManager{
             array_push($boughtBooks, $book);
         }
         return $boughtBooks; 
+    }
+    public function soldBooks2(){
+        DataBase::init();
+        $boughtBooks = array();
+        $query = "SELECT * FROM transaction_history WHERE seller = '".parent::getUser()."' ORDER BY trans_date DESC";
+        $result = DataBase::make_query($query);
+        $bookbuilder = new BookBuilder();
+
+        while ($book = mysqli_fetch_assoc($result)){
+            $book_construct = $bookbuilder->createBookFromTransaction($book);
+            $trans = new BookTransaction($book_construct, $book['buyer'], $book['seller'], $book['trans_date']);
+            array_push($boughtBooks, $trans);
+        }
+        return $boughtBooks; 
+
     }
     public function findBookHistory($id){
         DataBase::init();

@@ -24,7 +24,6 @@ class BookController{
         $course_number = count($course) > 1 ? $course[0] : '';
         $price = floatval($_POST['price']);
 
-
         $bookbuilder = new BookBuilder();
         $bookbuilder->isbn($_POST['isbn'])->title($_POST['title'])->publishDate(strtotime($_POST['publishDate']));
         $bookbuilder->authors($_POST['authors'])->coverURL($_POST['coverURL'])->courseNum($course_number)->courseName($course_name);
@@ -37,10 +36,10 @@ class BookController{
         return $this->product_manager->getCurrentListings();
     }
     public function getSoldBooks(){
-        return $this->product_manager->soldBooks();
+        return $this->product_manager->soldBooks2();
     }
     public function getBoughtBooks(){
-        return $this->product_manager->boughtBooks();
+        return $this->product_manager->boughtBooks2();
     }
     public function buyBook($book_id){
         $book = $this->product_manager->getBook($book_id);

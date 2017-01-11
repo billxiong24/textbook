@@ -4,7 +4,7 @@ class DataBase{
     private static $instance;
     private $database;
     private function __construct(){
-        $this->database = mysqli_connect('localhost', 'root', 'Chem1313#', 'textbook_exchange');
+        $this->database = mysqli_connect('localhost', 'root', 'bill1313', 'textbook_exchange');
         if(!$this->database){
             echo mysqli_errno($this->database);
         }
