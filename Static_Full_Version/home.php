@@ -65,15 +65,15 @@ if (isset($_POST['name'])){
                             <form role="form" method='post' action='home.php'>
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input name='name' type="text" placeholder="Name" class="form-control" value="<?php echo $user['name']; ?>" required>
+                                    <input name='name' type="text" placeholder="Name" class="form-control" value="<?php echo $user->getName(); ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Phone Number</label>
-                                    <input name='phone_num' type="text" class="form-control" data-mask="(999) 999-9999" placeholder="" value="<?php echo $user['phone_num']; ?>" >
+                                    <input name='phone_num' type="text" class="form-control" data-mask="(999) 999-9999" placeholder="" value="<?php echo $user->getPhone(); ?>" >
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input id='email' name='email' type="email" placeholder="Enter email" class="form-control" value="<?php echo $user['email']; ?>" required>
+                                    <input id='email' name='email' type="email" placeholder="Enter email" class="form-control" value="<?php echo $user->getEmail(); ?>" required>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div>
@@ -105,7 +105,7 @@ if (isset($_POST['name'])){
                         <div class="row content">
                             <div class="col-lg-3">
                                 <div class="widget ibox-content text-center">
-                                    <h1><?php echo $user['name']; ?></h1>
+                                    <h1><?php echo $user->getName(); ?></h1>
                                     <div class="m-b-sm">
                                         <i class="fa fa-user" style="font-size: 7em"></i>
                                         <!-- <img alt="image" class="img-circle" src="img/a8.jpg"> -->
@@ -114,18 +114,17 @@ if (isset($_POST['name'])){
                                         <li>
                                             <span class="fa fa-envelope m-r-xs"></span>
                                             <label>Email:</label>
-                                            <?php echo $user['email']; ?>
+                                            <?php echo $user->getEmail(); ?>
                                         </li>
                                         <li>
                                             <span class="fa fa-phone m-r-xs"></span>
                                             <label>Contact:</label>
-                                            <?php echo $user['phone_num']; ?>
+                                            <?php echo $user->getPhone(); ?>
                                         </li>
 
                                         <li id='update' class="pull-right">
                                             <a class="btn btn-xs btn-white" data-toggle="modal" data-target="#update_info"><i class="fa fa-pencil-square"></i> Update Info</a>
                                         </li>
-
                                     </ul>
                                 </div>
                             </div>

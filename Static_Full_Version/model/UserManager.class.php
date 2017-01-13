@@ -1,7 +1,7 @@
 <?php
 include_once 'SuperManager.class.php';
 include_once 'DataBase.class.php';
-
+require_once('UserBuilder.class.php');
 class UserManager extends SuperManager{
 
     public function __construct($user){
@@ -11,13 +11,15 @@ class UserManager extends SuperManager{
         DataBase::init();
         $query = "SELECT * FROM users WHERE username = '".parent::getUser()."' ";
         $result = DataBase::make_query($query);
-        return mysqli_fetch_assoc($result);
+        $user = new UserBuilder();
+        return $user->createFromQuery(mysqli_fetch_assoc($result));
     }
     public function getSellerInfo($seller){
         DataBase::init();
         $query = "SELECT * FROM users WHERE username = '".$seller."' ";
         $result = DataBase::make_query($query);
-        return mysqli_fetch_assoc($result);
+        $user = new UserBuilder();
+        return $user->createFromQuery(mysqli_fetch_assoc($result));
     }
     public function addUser($name,$phone_num,$email){
         DataBase::init();

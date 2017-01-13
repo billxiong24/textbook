@@ -36,10 +36,10 @@ class BookController{
         return $this->product_manager->getCurrentListings();
     }
     public function getSoldBooks(){
-        return $this->product_manager->soldBooks2();
+        return $this->product_manager->soldBooks();
     }
     public function getBoughtBooks(){
-        return $this->product_manager->boughtBooks2();
+        return $this->product_manager->boughtBooks();
     }
     public function buyBook($book_id){
         $book = $this->product_manager->getBook($book_id);

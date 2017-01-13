@@ -1,10 +1,9 @@
 <?php
-include "./php/functions.php";
-include "./model/AccountManager.class.php";
+//include "./php/functions.php";
+//include "./model/AccountManager.class.php";
 require_once('./controller/BookController.class.php');
 require_once("./controller/InfoController.class.php");
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+
 session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
@@ -190,14 +189,14 @@ $account = $_SESSION['info_controller']->getAccountOverview($boughtBooks, $soldB
                                             
                                             foreach ($currentListings as $listing){
                                                 echo "<tr>";
-                                                echo "<td class='fakeLink'> {$listing['title']}</td>";
-                                                echo "<td> {$listing['isbn']}</td>";
-                                                echo "<td> <span class='label label-warning'>{$listing['course_num']}</span></td>";
-                                                echo "<td>".'$'."{$listing['price']}.00</td>";
-                                                echo "<td class='text-right'><i data-id='{$listing['id']}' data-toggle='modal' data-target='#removeListingModal' class='fa fa-trash text-danger delete_listing'></i></td>";
-                                                echo "<td> {$listing['authors']}</td>";
-                                                echo "<td> {$listing['book_condition']}</td>";
-                                                echo "<td> {$listing['notes']}</td>";
+                                                echo "<td class='fakeLink'> {$listing->getTitle()}</td>";
+                                                echo "<td> {$listing->getIsbn()}</td>";
+                                                echo "<td> <span class='label label-warning'>{$listing->getCourseNum()}</span></td>";
+                                                echo "<td>".'$'."{$listing->getPrice()}.00</td>";
+                                                echo "<td class='text-right'><i data-id='{$listing->getID()}' data-toggle='modal' data-target='#removeListingModal' class='fa fa-trash text-danger delete_listing'></i></td>";
+                                                echo "<td> {$listing->getAuthors()}</td>";
+                                                echo "<td> {$listing->getCondition()}</td>";
+                                                echo "<td> {$listing->getNotes()}</td>";
                                                 echo "</tr>";
                                             }
                                             
@@ -264,9 +263,9 @@ $account = $_SESSION['info_controller']->getAccountOverview($boughtBooks, $soldB
                                                 echo "<td> {$trans->getBook()->getCondition()}</td>";
                                                 echo "<td> {$trans->getBook()->getNotes()}</td>";
                                                 $seller = $_SESSION['info_controller']->getUserInfo($trans->getSeller());
-                                                echo "<td> {$seller['name']}</td>";
-                                                echo "<td> <a href='mailto:{$seller['email']}'>{$seller['email']}</a></td>";
-                                                echo "<td> {$seller['phone_num']}</td>";
+                                                echo "<td> {$seller->getName()}</td>";
+                                                echo "<td> <a href='mailto:{$seller->getEmail()}'>{$seller->getEmail()}</a></td>";
+                                                echo "<td> {$seller->getPhone()}</td>";
                                                 echo "</tr>";
                                             }
                                             
@@ -330,9 +329,9 @@ $account = $_SESSION['info_controller']->getAccountOverview($boughtBooks, $soldB
                                                 echo "<td> {$trans->getBook()->getCondition()}</td>";
                                                 echo "<td> {$trans->getBook()->getNotes()}</td>";
                                                 $buyer = $_SESSION['info_controller']->getUserInfo($trans->getBuyer());
-                                                echo "<td> {$buyer['name']}</td>";
-                                                echo "<td> <a href='mailto:{$buyer['email']}'>{$buyer['email']}</a></td>";
-                                                echo "<td> {$buyer['phone_num']}</td>";
+                                                echo "<td> {$buyer->getName()}</td>";
+                                                echo "<td> <a href='mailto:{$buyer->getEmail}'>{$buyer->getEmail()}</a></td>";
+                                                echo "<td> {$buyer->getPhone()}</td>";
                                                 echo "</tr>";
                                             }
                                             

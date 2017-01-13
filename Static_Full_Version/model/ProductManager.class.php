@@ -18,10 +18,11 @@ class ProductManager extends SuperManager{
     public function getCurrentListings(){
         DataBase::init();
         $listings = array();
-        $query = "SELECT * FROM books WHERE username = '".parent::getUser()."' ";
+        $query = "SELECT * FROM books WHERE username = '".parent::getUser()."'";
         $result = DataBase::make_query($query);
+        $builder = new BookBuilder();
         while ($book = mysqli_fetch_assoc($result)){
-            array_push($listings, $book);
+            array_push($listings, $builder->createBookFromQuery($book));
         }
         return array_reverse($listings);  // first books are most recent
     }
@@ -40,16 +41,6 @@ class ProductManager extends SuperManager{
         $boughtBooks = array();
         $query = "SELECT * FROM transaction_history WHERE buyer = '".parent::getUser()."' ORDER BY trans_date DESC";
         $result = DataBase::make_query($query);
-        while ($book = mysqli_fetch_assoc($result)){
-            array_push($boughtBooks, $book);
-        }
-        return $boughtBooks; 
-    }
-    public function boughtBooks2(){
-        DataBase::init();
-        $boughtBooks = array();
-        $query = "SELECT * FROM transaction_history WHERE buyer = '".parent::getUser()."' ORDER BY trans_date DESC";
-        $result = DataBase::make_query($query);
         $bookbuilder = new BookBuilder();
 
         while ($book = mysqli_fetch_assoc($result)){
@@ -61,16 +52,6 @@ class ProductManager extends SuperManager{
     }
 
     public function soldBooks(){
-        DataBase::init();
-        $boughtBooks = array();
-        $query = "SELECT * FROM transaction_history WHERE seller = '".parent::getUser()."' ORDER BY trans_date DESC";
-        $result = DataBase::make_query($query);
-        while ($book = mysqli_fetch_assoc($result)){
-            array_push($boughtBooks, $book);
-        }
-        return $boughtBooks; 
-    }
-    public function soldBooks2(){
         DataBase::init();
         $boughtBooks = array();
         $query = "SELECT * FROM transaction_history WHERE seller = '".parent::getUser()."' ORDER BY trans_date DESC";

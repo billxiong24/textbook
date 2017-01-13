@@ -18,12 +18,13 @@ class NotificationController{
         $notifications = "";
         $unread = 0;
         $count = 0;
-        while(($notif = mysqli_fetch_assoc($result)) && $count < 5){
-            $count++;
-            $unread = $notif['looked_at'] == 0 ? $unread + 1 : $unread; 
-            $time = $this->notif_manager->time_elapsed_string($notif['timestamp']);
-            $action = $actionFactory->getAction($notif['action'], $time, $notif['looked_at']);
-            $notifications .= $this->display->displayNotification($action, $notif['title'], $notif['price']);
+        $length = count($result);
+        for ($i = 0, $lim = 0; $i < $length && $lim < 5; $i++){
+            $lim++;
+            $unread = $result[$i]->getLooked()  == 0 ? $unread + 1 : $unread; 
+            $time = $this->notif_manager->time_elapsed_string($result[$i]->getTime());
+            $action = $actionFactory->getAction($result[$i]->getAction(), $time, $result[$i]->getLooked());
+            $notifications .= $this->display->displayNotification($action, $result[$i]->getTitle(), $result[$i]->getPrice());
         }
         $notifications .= $this->display->displaySeeAll();
         return array("unread"=>$unread, "notifications"=>$notifications);

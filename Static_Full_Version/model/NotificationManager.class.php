@@ -1,6 +1,7 @@
 <?php
 include_once 'DataBase.class.php';
 include_once 'SuperManager.class.php';
+require_once("NotificationBuilder.class.php");
 class NotificationManager extends SuperManager{
     public function __construct($user){
         parent::__construct($user);
@@ -21,7 +22,13 @@ class NotificationManager extends SuperManager{
     public function getNotifications(){
         DataBase::init(); 
         $query = "SELECT * FROM notifications WHERE username = '".parent::getUser()."' ORDER BY timestamp DESC";
-        return DataBase::make_query($query);
+        $result = DataBase::make_query($query);
+        $notifications = array();
+        $notif_builder = new NotificationBuilder();
+        while($row = mysqli_fetch_assoc($result)){
+            array_push($notifications, $notif_builder->createFromQuery($row));
+        }
+        return $notifications;
     }
     public function time_elapsed_string($ptime)// time elapsed function from stackoverflow http://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago
     {

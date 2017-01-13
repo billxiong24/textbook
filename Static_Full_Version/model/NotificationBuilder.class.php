@@ -20,7 +20,7 @@ class NotificationBuilder{
         $this->looked = $looked;
         return $this;
     }
-    public function setTime($time){
+    public function timestamp($time){
         $this->time = $time;
         return $this;
     }
@@ -34,6 +34,10 @@ class NotificationBuilder{
     }
     public function create(){
         return new Notification($this->username, $this->action, $this->looked, $this->time, $this->title, $this->price);
+    }
+    public function createFromQuery($query){
+        $this->username($query['username'])->action($query['action'])->looked($query['looked_at'])->timestamp($query['timestamp'])->title($query['title'])->price($query['price']);
+        return $this->create();
     }
 }
 ?>

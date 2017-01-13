@@ -25,5 +25,9 @@ class UserBuilder{
     public function create(){
         return new User($this->username, $this->name, $this->phone, $this->email);
     }
+    public function createFromQuery($query){
+        $this->username($query['username'])->name($query['name'])->email($query['email'])->phone($query['phone_num']);
+        return $this->create();
+    }
 }
 ?>
