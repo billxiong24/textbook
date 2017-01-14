@@ -33,10 +33,10 @@ class NotificationController{
         $result = $this->notif_manager->getNotifications();
         $actionFactory = new ActionFactory();
         $notifications = "";
-        while(($notif = mysqli_fetch_assoc($result))){
-            $time = $this->notif_manager->time_elapsed_string($notif['timestamp']);
-            $action = $actionFactory->getAction($notif['action'], $time, $notif['looked_at'], Action::getColorMap()[$notif['action']]);
-            $notifications .= $this->display->displayAllNotifs($action, $notif['title'], $notif['price']);
+        foreach($result as $notif){
+            $time = $this->notif_manager->time_elapsed_string($notif->getTime());
+            $action = $actionFactory->getAction($notif->getAction(), $time, $notif->getLooked(), Action::getColorMap()[$notif->getAction()]);
+            $notifications .= $this->display->displayAllNotifs($action, $notif->getTitle(), $notif->getPrice());
         }
         return $notifications; 
     } 

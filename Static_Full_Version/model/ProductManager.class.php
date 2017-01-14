@@ -66,6 +66,38 @@ class ProductManager extends SuperManager{
         return $boughtBooks; 
 
     }
+    public function numSoldBooks(){
+        DataBase::init();
+        $query = "SELECT price FROM transaction_history WHERE seller = '".parent::getUser()."'";
+        $result = DataBase::make_query($query);
+        return mysqli_num_rows($result);
+    }
+    public function numBoughtBooks(){
+        DataBase::init();
+        $query = "SELECT price FROM transaction_history WHERE buyer= '".parent::getUser()."'";
+        $result = DataBase::make_query($query);
+        return mysqli_num_rows($result);
+    }
+    public function profit(){
+        DataBase::init();
+        $price = 0;
+        $query = "SELECT price FROM transaction_history WHERE seller= '".parent::getUser()."'";
+        $result = DataBase::make_query($query);
+        while($row = mysqli_fetch_assoc($result)){
+            $price += $row['price'];
+        }
+        return $price;
+    }
+    public function spent(){
+        DataBase::init();
+        $price = 0;
+        $query = "SELECT price FROM transaction_history WHERE buyer= '".parent::getUser()."'";
+        $result = DataBase::make_query($query);
+        while($row = mysqli_fetch_assoc($result)){
+            $price += $row['price'];
+        }
+        return $price;
+    }
     public function findBookHistory($id){
         DataBase::init();
         $query = "SELECT * FROM transaction_history WHERE id = $id";

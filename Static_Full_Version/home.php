@@ -1,5 +1,5 @@
 <?php
-include "./php/functions.php";
+//include "./php/functions.php";
 //include_once "./model/AccountManager.class.php";
 //include_once "./model/UserManager.class.php";
 require_once("./controller/BookController.class.php");
