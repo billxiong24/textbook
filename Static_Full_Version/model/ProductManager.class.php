@@ -22,7 +22,7 @@ class ProductManager extends SuperManager{
         $result = DataBase::make_query($query);
         $builder = new BookBuilder();
         while ($book = mysqli_fetch_assoc($result)){
-            array_push($listings, $builder->createBookFromQuery($book));
+            array_push($listings, $builder->createFromQuery($book));
         }
         return array_reverse($listings);  // first books are most recent
     }
@@ -33,7 +33,7 @@ class ProductManager extends SuperManager{
         $query = "SELECT * FROM books WHERE id = $id";
         $book = DataBase::make_query($query);
         $bookbuilder = new BookBuilder();
-        return $bookbuilder->createBookFromQuery(mysqli_fetch_assoc($book));
+        return $bookbuilder->createFromQuery(mysqli_fetch_assoc($book));
     }
     
     public function boughtBooks(){
@@ -72,6 +72,19 @@ class ProductManager extends SuperManager{
         $result = DataBase::make_query($query);
         $builder = new BookBuilder();
         return $builder->createBookFromTransaction(mysqli_fetch_assoc($result));    
+    }
+    private function transactionQuery($str){
+        DataBase::init();
+        $boughtBooks = array();
+        $query = "SELECT * FROM transaction_history WHERE ".$str."= '".parent::getUser()."' ORDER BY trans_date DESC";
+        $result = DataBase::make_query($query);
+        $bookbuilder = new BookBuilder();
+        while ($book = mysqli_fetch_assoc($result)){
+            $book_construct = $bookbuilder->createBookFromTransaction($book);
+            $trans = new BookTransaction($book_construct, $book['buyer'], $book['seller'], $book['trans_date']);
+            array_push($boughtBooks, $trans);
+        }
+        return $boughtBooks;
     }
 }
 ?>

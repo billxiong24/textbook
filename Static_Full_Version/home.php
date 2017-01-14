@@ -18,12 +18,6 @@ $_SESSION['book_controller'] = new BookController($_SESSION['username']);
 $_SESSION['info_controller'] = new InfoController($_SESSION['username']);
 $_SESSION['notif_controller'] = new NotificationController($_SESSION['username']);
 $_SESSION['search_controller'] = new SearchController($_SESSION['username']);
-if(!isset($_SESSION['info_controller'])){
-
-}
-if(!isset($_SESSION['notif_controller'])){
-
-}
 
 $soldBooks = $_SESSION['book_controller']->getSoldBooks();
 $boughtBooks = $_SESSION['book_controller']->getBoughtBooks();
@@ -267,8 +261,6 @@ if (isset($_POST['name'])){
                             url: './php/readNotifications.php',
                             success: function (data) {}
                         });
-
-
                     });
 
                 });

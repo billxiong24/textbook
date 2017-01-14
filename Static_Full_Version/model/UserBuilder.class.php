@@ -1,6 +1,7 @@
 <?php
 require_once("User.class.php");
-class UserBuilder{
+require_once("Builder.interface.php");
+class UserBuilder implements Builder{
     private $username;
     private $name;
     private $phone;

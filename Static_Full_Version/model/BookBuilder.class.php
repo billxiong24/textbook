@@ -1,6 +1,7 @@
 <?php
 require_once("Book.class.php");
-class BookBuilder{
+require_once("Builder.interface.php");
+class BookBuilder implements Builder{
     private $id;
     private $username;
     private $title;
@@ -62,7 +63,7 @@ class BookBuilder{
         $this->price = $price;
         return $this;
     }
-    public function createBook(){
+    public function create(){
         return new Book($this->id,
                         $this->username,
                         $this->title, 
@@ -76,17 +77,19 @@ class BookBuilder{
                         $this->notes,
                         $this->price);
     }
-    public function createBookFromQuery($book){
+    public function createFromQuery($book){
         return $this->build($book, 'username');
     }
     public function createBookFromTransaction($book){
         return $this->build($book, 'seller');
     }
     private function build($book, $user){
+        //idk why this has to be there but something weird happens if notes is empty 
+        $notes = strlen($book['notes']) == 0 ? " " : $book['notes'];
         $this->username($book[$user])->isbn($book['isbn'])->title($book['title'])->publishDate($book['publish_date'])->authors($book['authors']);
-        $this->coverURL($book['cover_url'])->courseName($book['course_name'])->courseNum($book['course_num'])->condition($book['book_condition'])->notes($book['notes']);
+        $this->coverURL($book['cover_url'])->courseName($book['course_name'])->courseNum($book['course_num'])->condition($book['book_condition'])->notes($notes);
         $this->price($book['price'])->id($book['id']);
-        return $this->createBook();
+        return $this->create();
     }
 }
 ?>

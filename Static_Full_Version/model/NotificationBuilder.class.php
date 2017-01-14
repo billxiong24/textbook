@@ -1,6 +1,7 @@
 <?php
 require_once("Notification.class.php");
-class NotificationBuilder{
+require_once("Builder.interface.php");
+class NotificationBuilder implements Builder{
     private $username;
     private $action;
     private $looked;

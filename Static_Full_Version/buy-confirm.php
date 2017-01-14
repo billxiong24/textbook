@@ -1,5 +1,4 @@
-<?php
-include "./php/functions.php";
+<?php include "./php/functions.php";
 require_once("./controller/InfoController.class.php");
 session_start();
 if(!isset($_SESSION['username'])){
@@ -44,7 +43,7 @@ else {
             </div>
 -->
                     <div class="title" style="text-align: center; margin-top: 100px">
-                        <h3 style="font-weight: 400;">You have purchased a book! You can contact the seller, <?php echo $seller['name']; ?> at <?php echo $seller['phone_num']; ?> or <?php echo "<a href='mailto:{$seller['email']}'>{$seller['email']}</a>";?> to get the book or they will contact you.
+                        <h3 style="font-weight: 400;">You have purchased a book! You can contact the seller, <?php echo $seller->getName(); ?> at <?php echo $seller->getPhone(); ?> or <?php echo "<a href='mailto:{$seller->getEmail()}'>{$seller->getEmail()}</a>";?> to get the book or they will contact you.
                         <br/><br/>You can see the details of your purchase <a href="myAccount.php#purchase-history">here</a>.</h3>
                     </div>
                     <div class="wrapper wrapper-content animated fadeInRight expose">

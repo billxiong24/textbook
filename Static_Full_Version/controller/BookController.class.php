@@ -28,7 +28,7 @@ class BookController{
         $bookbuilder->isbn($_POST['isbn'])->title($_POST['title'])->publishDate(strtotime($_POST['publishDate']));
         $bookbuilder->authors($_POST['authors'])->coverURL($_POST['coverURL'])->courseNum($course_number)->courseName($course_name);
         $bookbuilder->condition($_POST['bookCondition'])->notes($_POST['notes'])->price($price);
-        $this->trans_manager->addBook($bookbuilder->createBook());
+        $this->trans_manager->addBook($bookbuilder->create());
         $this->notif_manager->addNotification($this->user,'Added listing',$_POST['title'],$price); 
         //sendListEmail($isbn, $title, $publish_date, $authors, $course1, $book_condition, $notes, $price);
     }
@@ -64,9 +64,9 @@ class BookController{
         $usermanager = new UserManager($book->getUsername());
         $user = $usermanager->getUserInfo();
         $info = array();
-        $info['seller'] = $user['name'];
-        $info['email'] = $user['email'];
-        $info['phone_num'] = $user['phone_num'];
+        $info['seller'] = $user->getName();
+        $info['email'] = $user->getEmail();
+        $info['phone_num'] = $user->getPhone();
         $info['pic'] = $book->getCoverURL();
         $info['price'] = $book->getPrice();
         $info['title'] = $book->getTitle();

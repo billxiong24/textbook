@@ -19,11 +19,7 @@ class SearchController{
         $books_displayed = '';
         $bookbuilder = new BookBuilder();
         while($row = mysqli_fetch_assoc($result)){
-            $bookbuilder->id($row['id'])->title($row['title'])->isbn($row['isbn']);
-            $bookbuilder->publishDate($row['publish_date'])->authors($row['authors']);
-            $bookbuilder->coverURL($row['cover_url'])->courseName($row['course_name']);
-            $bookbuilder->courseNum($row['course_num'])->condition($row['book_condition'])->notes($row['notes'])->price($row['price']);
-            $book = $bookbuilder->createBook();
+            $book = $bookbuilder->createFromQuery($row);
             $books_displayed .= $this->display->displaySearch($book);
         }
         $books_displayed = $this->display->appendRowClass($books_displayed);
