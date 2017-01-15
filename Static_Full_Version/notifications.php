@@ -1,9 +1,9 @@
 <?php
 //include "./php/functions.php";
 //include "./model/ProductManager.class.php";
-require_once('./controller/BookController.class.php');
-require_once('./controller/InfoController.class.php');
-require_once('./controller/NotificationController.class.php');
+require_once('BookController.class.php');
+require_once('InfoController.class.php');
+require_once('NotificationController.class.php');
 session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
@@ -90,15 +90,9 @@ $user = $_SESSION['info_controller']->getUserInfo();
 
         <!-- FooTable -->
         <script src="js/plugins/footable/footable.all.min.js"></script>
-
-
+        <script src="js/notifications.js"></script>
         <script>
             $(document).ready(function () {
-                refresh = setInterval(function () {
-                    refreshNotifications();
-
-                }, 1000);
-
                 $('.clear-notif').click(function () {
                     /*   console.log($('.vertical-timeline-block').index($(this).parent().parent()));
                        $(this).parent().parent().remove();*/
@@ -114,40 +108,6 @@ $user = $_SESSION['info_controller']->getUserInfo();
                         //alert( "Data Saved: " + msg );
                     });
                 });
-
-                function refreshNotifications() {
-                    $.ajax({
-                        url: './php/refreshNotifications.php',
-                        dataType: "json",
-                        success: function (data) {
-                            if (!data.error) { // this sort of json accessing data only works in ajax
-                                if (data.unread != 0) { // wont display notifications label if none exist
-                                    $('#unreadNotifications').html(data.unread);
-                                    $('#notifications').html(data.notifications);
-                                } else {
-                                    $('#unreadNotifications').html('');
-                                    $('#notifications').html(data.notifications);
-                                }
-
-
-
-                            }
-                        }
-                    });
-                }
-
-                $('#readNotifications').click(function (evt) {
-                    $(document).click(function () {
-                        $.ajax({
-                            url: './php/readNotifications.php',
-                            success: function (data) {}
-                        });
-
-
-                    });
-
-                });
-
                 $('#leftVersion').click(function (event) {
                     event.preventDefault()
                     $('#vertical-timeline').toggleClass('center-orientation');

@@ -22,7 +22,7 @@ else {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>
-            <?php echo $_POST['search'] ?> - Duke Exchange</title>
+        <?php echo $_POST['search'] ?> - Duke Exchange</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="css/animate.css" rel="stylesheet">
@@ -227,9 +227,7 @@ else {
         <script src="js/plugins/ladda/spin.min.js"></script>
         <script src="js/plugins/ladda/ladda.min.js"></script>
         <script src="js/plugins/ladda/ladda.jquery.min.js"></script>
-
-
-
+        <script src="js/notifications.js"></script>
         <script>
             $(document).ready(function () {
 
@@ -372,52 +370,12 @@ else {
                     });
 
                 });
-
-                refresh = setInterval(function () {
-                    refreshNotifications();
-
-                }, 1000);
-
-                function refreshNotifications() {
-                    $.ajax({
-                        url: './php/refreshNotifications.php',
-                        dataType: "json",
-                        success: function (data) {
-                            if (!data.error) { // this sort of json accessing data only works in ajax
-                                if (data.unread != 0) { // wont display notifications label if none exist
-                                    $('#unreadNotifications').html(data.unread);
-                                    $('#notifications').html(data.notifications);
-                                } else {
-                                    $('#unreadNotifications').html('');
-                                    $('#notifications').html(data.notifications);
-                                }
-
-
-
-                            }
-                        }
-                    });
-                }
-
-                $('#readNotifications').click(function (evt) {
-                    $(document).click(function () {
-                        $.ajax({
-                            url: './php/readNotifications.php',
-                            success: function (data) {}
-                        });
-
-
-                    });
-
-                });
                 $('.dropdown .space').focusout(function () {
                     $('#id').css("background-color", "black !important");
                 });
                 $('.dropdown .space').focus(function () {
                     $('#id').css("background-color", "black");
                 });
-
-
             });
         </script>
     </body>

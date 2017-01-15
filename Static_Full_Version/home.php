@@ -2,10 +2,10 @@
 //include "./php/functions.php";
 //include_once "./model/AccountManager.class.php";
 //include_once "./model/UserManager.class.php";
-require_once("./controller/BookController.class.php");
-require_once("./controller/InfoController.class.php");
-require_once("./controller/NotificationController.class.php");
-require_once("./controller/SearchController.class.php");
+require_once("BookController.class.php");
+require_once("InfoController.class.php");
+require_once("NotificationController.class.php");
+require_once("SearchController.class.php");
 //include "./controller/BookController.class.php";
 session_start();
 if(!isset($_SESSION['username'])){
@@ -209,13 +209,9 @@ if (isset($_POST['name'])){
 
         <!-- Input Mask-->
         <script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
-
+        <script src="js/notifications.js"></script>
         <script>
             $(document).ready(function () {
-                refresh = setInterval(function () {
-                    refreshNotifications();
-
-                }, 1000);
                 var width = $(window).width();
                 if ($(window).width() < 360) {
                     $('.title h1').css("font-size", "20px");
@@ -231,41 +227,6 @@ if (isset($_POST['name'])){
                         $('.title h1').css("font-size", "45px");
                     }
                 });
-
-
-                function refreshNotifications() {
-                    $.ajax({
-                        url: './php/refreshNotifications.php',
-                        dataType: "json",
-                        success: function (data) {
-                            if (!data.error) { // this sort of json accessing data only works in ajax
-                                if (data.unread != 0) { // wont display notifications label if none exist
-                                    $('#unreadNotifications').html(data.unread);
-                                    $('title').html('(' + data.unread + ') Duke Exchange');
-                                    $('#notifications').html(data.notifications);
-                                } else {
-                                    $('#unreadNotifications').html('');
-                                    $('#notifications').html(data.notifications);
-                                }
-
-
-
-                            }
-                        }
-                    });
-                }
-
-                $('#readNotifications').click(function (evt) {
-                    $(document).click(function () {
-                        $.ajax({
-                            url: './php/readNotifications.php',
-                            success: function (data) {}
-                        });
-                    });
-
-                });
-
-
                 /*$('.expose').click(function (e) {
                     $(this).css('z-index', '99999');
                     $('#overlay').fadeIn(300);

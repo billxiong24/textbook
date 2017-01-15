@@ -1,5 +1,6 @@
-<?php include "./php/functions.php";
-require_once("./controller/InfoController.class.php");
+<?php 
+//include "./php/functions.php";
+require_once("InfoController.class.php");
 session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
@@ -89,55 +90,16 @@ else {
         <!-- Custom and plugin javascript -->
         <script src="js/inspinia.js"></script>
         <script src="js/plugins/pace/pace.min.js"></script>
-
+        <script src="js/notifications.js"></script>
 
         <script>
             $(document).ready(function () {
-                refresh = setInterval(function () {
-                    refreshNotifications();
-
-                }, 1000);
-
                 $('#send_feedback').submit(function (evt) {
                     evt.preventDefault(); // prevents the form from submitting on top of using this jquery function, so it doesn't send feedback twice
                     var postData = $(this).serialize(); // postData is POST data with the string name of form elements
                     var url = $(this).attr('action'); // in form html code as add_book.php
                     $.post(url, postData, function (data) {
                         window.location.replace('myAccount.php#purchase-history');
-                    });
-
-                });
-
-
-                function refreshNotifications() {
-                    $.ajax({
-                        url: './php/refreshNotifications.php',
-                        dataType: "json",
-                        success: function (data) {
-                            if (!data.error) { // this sort of json accessing data only works in ajax
-                                if (data.unread != 0) { // wont display notifications label if none exist
-                                    $('#unreadNotifications').html(data.unread);
-                                    $('#notifications').html(data.notifications);
-                                } else {
-                                    $('#unreadNotifications').html('');
-                                    $('#notifications').html(data.notifications);
-                                }
-
-
-
-                            }
-                        }
-                    });
-                }
-
-                $('#readNotifications').click(function (evt) {
-                    $(document).click(function () {
-                        $.ajax({
-                            url: './php/readNotifications.php',
-                            success: function (data) {}
-                        });
-
-
                     });
 
                 });

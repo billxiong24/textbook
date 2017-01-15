@@ -1,6 +1,6 @@
 <?php
 //include './php/functions.php';
-require_once("./controller/InfoController.class.php");
+require_once("InfoController.class.php");
 session_start();
 if (isset($_POST['first_name'])){ // add users once they add their information in the create account modal
     
