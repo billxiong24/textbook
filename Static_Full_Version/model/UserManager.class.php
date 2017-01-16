@@ -32,8 +32,11 @@ class UserManager extends SuperManager{
         DataBase::make_query($query);
     }
 
-    public function updateUserInfo($name, $phone_num, $email){
+    public function updateUserInfo($user){
         DataBase::init();
+        $name = $user->getName();
+        $phone_num = $user->getPhone();
+        $email = $user->getEmail();
         $query = "UPDATE users SET name = '$name', phone_num = '$phone_num', email = '$email' WHERE username = '".parent::getUser()."' ";
         DataBase::make_query($query);
     }

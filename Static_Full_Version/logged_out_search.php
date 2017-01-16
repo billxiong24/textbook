@@ -2,13 +2,12 @@
 //include './php/functions.php';
 session_start();
 
-if (isset($_POST['search'])){
-    $_SESSION['search'] = $_POST['search'];
+if (isset($_GET['search'])){
+    $_SESSION['search'] = $_GET['search'];
 }
 else {
     header("Location: index.php");
 }
-
 ?>
 
     <!DOCTYPE html>
@@ -19,7 +18,7 @@ else {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>
-            <?php echo $_POST['search'] ?> - Duke Exchange</title>
+            <?php echo $_GET['search'] ?> - Duke Exchange</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="css/animate.css" rel="stylesheet">
@@ -178,7 +177,7 @@ else {
 
                 function search_and_filter() {
                     $.ajax({
-                        type: "POST",
+                        type: "GET",
                         url: './php/get_search_results.php',
                         dataType: 'json',
                         data: {

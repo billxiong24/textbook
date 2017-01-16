@@ -16,8 +16,8 @@ class InfoController{
     public function getUserInfo($user = null){
         return  $user == null ? $this->user_manager->getUserInfo() : $this->user_manager->getSellerInfo($user);
     }
-    public function updateUserInfo($name, $phone_num, $email){
-        $this->user_manager->updateUserInfo($name, $phone_num, $email);
+    public function updateUserInfo($user){
+        $this->user_manager->updateUserInfo($user);
     }
     public function addUser($name, $phone_num, $email){
         $this->user_manager->addUser($name, $phone_num, $email);

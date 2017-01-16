@@ -579,3 +579,12 @@ h2{
 .footer-tag:hover{
     color: #242424;
 }
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(squares.gif) center no-repeat transparent;
+}

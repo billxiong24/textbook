@@ -2,29 +2,25 @@
 //include "./php/functions.php";
 //include_once "./model/AccountManager.class.php";
 //include_once "./model/UserManager.class.php";
-require_once("BookController.class.php");
-require_once("InfoController.class.php");
-require_once("NotificationController.class.php");
-require_once("SearchController.class.php");
+require('./loader/SessionLoader.class.php');
 //include "./controller/BookController.class.php";
 session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
 
+$_SESSION['loader'] = new SessionLoader($_SESSION['username']);
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-$_SESSION['book_controller'] = new BookController($_SESSION['username']);
-$_SESSION['info_controller'] = new InfoController($_SESSION['username']);
-$_SESSION['notif_controller'] = new NotificationController($_SESSION['username']);
-$_SESSION['search_controller'] = new SearchController($_SESSION['username']);
 
-$soldBooks = $_SESSION['book_controller']->getSoldBooks();
-$boughtBooks = $_SESSION['book_controller']->getBoughtBooks();
-$account = $_SESSION['info_controller']->getAccountOverview($boughtBooks, $soldBooks);
-$user = $_SESSION['info_controller']->getUserInfo();
+$soldBooks = $_SESSION['loader']->getBookController()->getSoldBooks();
+$boughtBooks = $_SESSION['loader']->getBookController()->getBoughtBooks();
+$account = $_SESSION['loader']->getInfoController()->getAccountOverview($boughtBooks, $soldBooks);
+$user = $_SESSION['loader']->getInfoController()->getUserInfo();
 if (isset($_POST['name'])){
-    $_SESSION['info_controller']->updateUserInfo($_POST['name'], $_POST['phone_num'], $_POST['email']);
+    $user = new UserBuilder();
+    $user->name($_POST['name'])->phone($_POST['phone_num'])->email($_POST['email']);
+    $_SESSION['loader']->getInfoController()->updateUserInfo($user->create());
     //updateUser($_SESSION['username'],$_POST['name'],$_POST['phone_num'],$_POST['email']);
     header('Location: home.php');
 }
@@ -49,6 +45,7 @@ if (isset($_POST['name'])){
     </head>
 
     <body class="top-navigation">
+        <div class="se-pre-con"></div>
         <div id="update_info" class="modal fade" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -130,7 +127,7 @@ if (isset($_POST['name'])){
                             </h2>
                                     <div>
                                         <div class="search-form">
-                                            <form action="search.php" method="post">
+                                            <form action="search.php" method="get">
                                                 <div class="input-group">
                                                     <input type="text" placeholder="Search All, Class, Title, Author, or ISBN" name="search" class="form-control input-lg">
                                                     <div class="input-group-btn">
@@ -212,6 +209,7 @@ if (isset($_POST['name'])){
         <script src="js/notifications.js"></script>
         <script>
             $(document).ready(function () {
+                $('.se-pre-con').fadeOut('slow');
                 var width = $(window).width();
                 if ($(window).width() < 360) {
                     $('.title h1').css("font-size", "20px");

@@ -1,16 +1,14 @@
 <?php
 //include "./php/functions.php";
 //include "./model/ProductManager.class.php";
-require_once('BookController.class.php');
-require_once('InfoController.class.php');
-require_once('NotificationController.class.php');
+require('./loader/SessionLoader.class.php');
 session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
-$soldBooks = $_SESSION['book_controller']->getSoldBooks();
-$account = $_SESSION['info_controller']->getAccountOverview();
-$user = $_SESSION['info_controller']->getUserInfo();
+$soldBooks = $_SESSION['loader']->getBookController()->getSoldBooks();
+$boughtBooks = $_SESSION['loader']->getBookController()->getBoughtBooks();
+$account = $_SESSION['loader']->getInfoController()->getAccountOverview($boughtBooks, $soldBooks);
 ?>
     <!DOCTYPE html>
     <html>
@@ -66,7 +64,7 @@ $user = $_SESSION['info_controller']->getUserInfo();
                                     </span>
                                 </div>
                             </div> -->
-                                        <?php echo $_SESSION['notif_controller']->getColorNotifs(); ?>
+                                        <?php echo $_SESSION['loader']->getNotifController()->getColorNotifs(); ?>
                                     </div>
 
                                 </div>

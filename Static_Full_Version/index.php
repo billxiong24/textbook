@@ -94,7 +94,7 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
                         <div class="row" style="background-color: white">
                             <h3 class="m-t-none m-b">Create an Account</h3>
                             <div class="hr-line-dashed"></div>
-                            <form role="form" method='post' action='index.php'>
+                            <form role="form" method='get' action='index.php'>
                                 <div class="form-group">
                                     <label>First Name</label>
                                     <input name='first_name' type="text" placeholder="First Name" class="form-control" required>

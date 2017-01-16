@@ -1,18 +1,17 @@
 <?php
 //include "./php/functions.php";
 //include "./model/AccountManager.class.php";
-require_once('./controller/BookController.class.php');
-require_once("./controller/InfoController.class.php");
+require('./loader/SessionLoader.class.php');
 
 session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
 
-$currentListings = $_SESSION['book_controller']->getCurrentListings();
-$soldBooks = $_SESSION['book_controller']->getSoldBooks();
-$boughtBooks = $_SESSION['book_controller']->getBoughtBooks();
-$account = $_SESSION['info_controller']->getAccountOverview($boughtBooks, $soldBooks);
+$currentListings = $_SESSION['loader']->getBookController()->getCurrentListings();
+$soldBooks = $_SESSION['loader']->getBookController()->getSoldBooks();
+$boughtBooks = $_SESSION['loader']->getBookController()->getBoughtBooks();
+$account = $_SESSION['loader']->getInfoController()->getAccountOverview($boughtBooks, $soldBooks);
 ?>
 
     <!DOCTYPE html>
@@ -262,7 +261,7 @@ $account = $_SESSION['info_controller']->getAccountOverview($boughtBooks, $soldB
                                                 echo "<td> {$trans->getBook()->getAuthors()}</td>";
                                                 echo "<td> {$trans->getBook()->getCondition()}</td>";
                                                 echo "<td> {$trans->getBook()->getNotes()}</td>";
-                                                $seller = $_SESSION['info_controller']->getUserInfo($trans->getSeller());
+                                                $seller = $_SESSION['loader']->getInfoController()->getUserInfo($trans->getSeller());
                                                 echo "<td> {$seller->getName()}</td>";
                                                 echo "<td> <a href='mailto:{$seller->getEmail()}'>{$seller->getEmail()}</a></td>";
                                                 echo "<td> {$seller->getPhone()}</td>";
@@ -328,7 +327,7 @@ $account = $_SESSION['info_controller']->getAccountOverview($boughtBooks, $soldB
                                                 echo "<td> {$trans->getBook()->getAuthors()}</td>";
                                                 echo "<td> {$trans->getBook()->getCondition()}</td>";
                                                 echo "<td> {$trans->getBook()->getNotes()}</td>";
-                                                $buyer = $_SESSION['info_controller']->getUserInfo($trans->getBuyer());
+                                                $buyer = $_SESSION['loader']->getInfoController()->getUserInfo($trans->getBuyer());
                                                 echo "<td> {$buyer->getName()}</td>";
                                                 echo "<td> <a href='mailto:{$buyer->getEmail}'>{$buyer->getEmail()}</a></td>";
                                                 echo "<td> {$buyer->getPhone()}</td>";

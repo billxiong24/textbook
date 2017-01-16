@@ -1,8 +1,8 @@
 <?php
 //include 'functions.php';
-require_once("NotificationController.class.php");
+require_once("SessionLoader.class.php");
 session_start();
-$_SESSION['notif_controller']->readNotifications();
+$_SESSION['loader']->getNotifController()->readNotifications();
 echo '';
 
 ?>

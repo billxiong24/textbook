@@ -1,6 +1,6 @@
 <?php 
 //include "./php/functions.php";
-require_once("InfoController.class.php");
+require_once("SessionLoader.class.php");
 session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
@@ -9,7 +9,7 @@ if (!isset($_SESSION['seller'])){ // seller information is passed via a session 
     header('Location: home.php');
 }
 else {
-    $seller = $_SESSION['info_controller']->getUserInfo($_SESSION['seller']);
+    $seller = $_SESSION['loader']->getInfoController()->getUserInfo($_SESSION['seller']);
 }
 ?>
     <!DOCTYPE html>

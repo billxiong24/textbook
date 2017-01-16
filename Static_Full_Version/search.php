@@ -4,8 +4,8 @@ session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
-if (isset($_POST['search'])){
-    $_SESSION['search'] = $_POST['search'];
+if (isset($_GET['search'])){
+    $_SESSION['search'] = $_GET['search'];
 }
 else {
     header("Location: home.php");
@@ -22,7 +22,7 @@ else {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>
-        <?php echo $_POST['search'] ?> - Duke Exchange</title>
+        <?php echo $_GET['search'] ?> - Duke Exchange</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="css/animate.css" rel="stylesheet">
@@ -33,6 +33,8 @@ else {
         <link href="css/navbar.css" rel="stylesheet">
         <!-- Ladda style -->
         <link href="css/plugins/ladda/ladda-themeless.min.css" rel="stylesheet">
+        <script type="text/javascript" charset="utf-8">
+        </script>
 
 
     </head>
@@ -92,17 +94,18 @@ else {
                     <!-- <div class="recommend rec-message">
             <span>Search Results for "Some search"</span>
         </div> -->
+        <div class="se-pre-con"></div>
                     <div class="wrapper wrapper-content animated fadeInRight">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-content">
                                         <h2>
-                                <span id="numResults"></span><span style="color: #001A57"><?php echo $_POST['search']; ?></span>
+                                <span id="numResults"></span><span style="color: #001A57"><?php echo $_GET['search']; ?></span>
                             </h2>
 
                                         <div class="search-form">
-                                            <form action="search.php" method="post">
+                                            <form action="search.php" method="get">
                                                 <div class="input-group">
                                                     <input type="text" placeholder="Search All, Class, Title, Author, or ISBN" name="search" class="form-control input-lg">
                                                     <div class="input-group-btn">
@@ -207,7 +210,7 @@ else {
             </div>
             <?php include 'footer.php'; ?>
         </div>
-        
+
 
         <!-- Mainly scripts -->
 
@@ -237,7 +240,7 @@ else {
 
                 function search_and_filter() {
                     $.ajax({
-                        type: "POST",
+                        type: "GET",
                         url: './php/get_search_results.php',
                         dataType: 'json',
                         data: {
@@ -258,6 +261,9 @@ else {
                     });
                 }
                 search_and_filter(); // call search on load of page
+                
+        // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
                 ////////////////////
 
                 $('.price label .i-checks').click(function () {
