@@ -15,8 +15,6 @@ class SessionLoader{
         $this->info_controller = new InfoController($user);
         $this->notif_controller = new NotificationController($user);
         $this->search_controller = new SearchController($user);
-        //remove this later
-        $this->setControllers($user);
     }
     public function getBookController(){
         return $this->book_controller;
@@ -30,15 +28,5 @@ class SessionLoader{
     public function getSearchController(){
         return $this->search_controller;
     }
-    public function checkLoggedIn(){
-
-    }
-    private function setControllers($username){
-    //    $_SESSION['book_controller'] = new BookController($username);
-    //    $_SESSION['info_controller'] = new InfoController($username);
-    //    $_SESSION['notif_controller'] = new NotificationController($username);
-    //    $_SESSION['search_controller'] = new SearchController($username);
-    }
-
 }
 ?>

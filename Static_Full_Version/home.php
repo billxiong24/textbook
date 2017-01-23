@@ -72,7 +72,6 @@ if (isset($_POST['name'])){
                                     <button class="btn btn-sm btn-success pull-right m-t-n-xs" type="submit"><strong>Update</strong></button>
                                 </div>
                             </form>
-
                         </div>
                     </div>
                 </div>
@@ -207,9 +206,9 @@ if (isset($_POST['name'])){
         <!-- Input Mask-->
         <script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
         <script src="js/notifications.js"></script>
+        <script src="js/loading.js"></script>
         <script>
             $(document).ready(function () {
-                $('.se-pre-con').fadeOut('slow');
                 var width = $(window).width();
                 if ($(window).width() < 360) {
                     $('.title h1').css("font-size", "20px");

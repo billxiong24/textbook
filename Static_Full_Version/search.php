@@ -231,6 +231,7 @@ else {
         <script src="js/plugins/ladda/ladda.min.js"></script>
         <script src="js/plugins/ladda/ladda.jquery.min.js"></script>
         <script src="js/notifications.js"></script>
+        <script src="js/loading.js"></script>
         <script>
             $(document).ready(function () {
 
@@ -263,7 +264,6 @@ else {
                 search_and_filter(); // call search on load of page
                 
         // Animate loader off screen
-                $(".se-pre-con").fadeOut("slow");
                 ////////////////////
 
                 $('.price label .i-checks').click(function () {

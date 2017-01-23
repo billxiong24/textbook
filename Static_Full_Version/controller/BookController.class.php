@@ -41,6 +41,9 @@ class BookController{
     public function getBoughtBooks(){
         return $this->product_manager->boughtBooks();
     }
+    public function getData($func){
+        return call_user_func(array($this->product_manager, $func));
+    }
     public function buyBook($book_id){
         $book = $this->product_manager->getBook($book_id);
         $this->trans_manager->buyBook($book, $book_id);
