@@ -14,6 +14,11 @@ $currentListings = $_SESSION['loader']->getBookController()->getCurrentListings(
 $soldBooks = $_SESSION['loader']->getBookController()->getSoldBooks();
 $boughtBooks = $_SESSION['loader']->getBookController()->getBoughtBooks();
 $account = $_SESSION['loader']->getInfoController()->getAccountOverview($boughtBooks, $soldBooks);
+
+$numSold = $_SESSION['loader']->getInfoController()->getData('numSoldBooks');
+$numBought = $_SESSION['loader']->getInfoController()->getData('numBoughtBooks');
+$profit = $_SESSION['loader']->getInfoController()->getData('profit');
+$spent = $_SESSION['loader']->getInfoController()->getData('spent');
 ?>
 
     <!DOCTYPE html>

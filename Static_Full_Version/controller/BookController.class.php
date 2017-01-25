@@ -28,7 +28,7 @@ class BookController{
         $bookbuilder->isbn($_POST['isbn'])->title($_POST['title'])->publishDate(strtotime($_POST['publishDate']));
         $bookbuilder->authors($_POST['authors'])->coverURL($_POST['coverURL'])->courseNum($course_number)->courseName($course_name);
         $bookbuilder->condition($_POST['bookCondition'])->notes($_POST['notes'])->price($price);
-        $this->trans_manager->addBook($bookbuilder->create());
+        $this->product_manager->addBook($bookbuilder->create());
         $this->notif_manager->addNotification($this->user,'Added listing',$_POST['title'],$price); 
         //sendListEmail($isbn, $title, $publish_date, $authors, $course1, $book_condition, $notes, $price);
     }
@@ -36,10 +36,10 @@ class BookController{
         return $this->product_manager->getCurrentListings();
     }
     public function getSoldBooks(){
-        return $this->product_manager->soldBooks();
+        return $this->trans_manager->soldBooks();
     }
     public function getBoughtBooks(){
-        return $this->product_manager->boughtBooks();
+        return $this->trans_manager->boughtBooks();
     }
     public function getData($func){
         return call_user_func(array($this->product_manager, $func));
@@ -47,7 +47,8 @@ class BookController{
     public function buyBook($book_id){
         $book = $this->product_manager->getBook($book_id);
         $this->trans_manager->buyBook($book, $book_id);
-        $bookInfo = $this->product_manager->findBookHistory($book_id);
+        $this->product_manager->removeListing($book_id);
+        $bookInfo = $this->trans_manager->findBookHistory($book_id);
         $title = $book->getTitle();
         $price = $book->getPrice();
         $this->notif_manager->addNotification($this->user,'Bought',$title,$price);
@@ -57,9 +58,10 @@ class BookController{
         return $bookInfo->getUsername();
     }
     public function cancelPurchase($purchase_id){
-        $transaction = $this->product_manager->findBookHistory($purchase_id);
+        $transaction = $this->trans_manager->findBookHistory($purchase_id);
         $this->notif_manager->addNotification($transaction->getUsername(),'Canceled purchase',$transaction->getTitle(),$transaction->getPrice());
         $this->notif_manager->addNotification($this->user, 'Canceled purchase',$transaction->getTitle(),$transaction->getPrice());
+        $this->product_manager->addBook($transaction);
         $this->trans_manager->cancelPurchase($transaction, $purchase_id);   
     }
     public function getBookDetails($bookID){
@@ -82,7 +84,7 @@ class BookController{
         return $info;
     }
     public function removeListing($listing_id){
-        $this->trans_manager->removeListing($listing_id);
+        $this->product_manager->removeListing($listing_id);
     }
     private function checkEmptyParams(){
         if (empty($_POST['isbn'])){

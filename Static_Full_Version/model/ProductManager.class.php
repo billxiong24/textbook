@@ -15,6 +15,29 @@ class ProductManager extends SuperManager{
         $this->notif_manager = new NotificationManager($user);
     }
 
+    public function addBook($book){
+        DataBase::init(); 
+        $isbn =  DataBase::escape($book->getIsbn());
+        $title =  DataBase::escape($book->getTitle());
+        $publish_date =  DataBase::escape($book->getPublishDate());
+        $authors =  DataBase::escape($book->getAuthors());
+        $cover_url =  DataBase::escape($book->getCoverURL());
+        $course_name =  DataBase::escape($book->getCourseName());
+        $course_num =  DataBase::escape($book->getCourseNum());
+        $book_condition =  DataBase::escape($book->getCondition());
+        $notes =  DataBase::escape($book->getNotes());
+        $price = $book->getPrice();
+        
+        $query = 'INSERT INTO books(username,isbn,title,publish_date,authors,cover_url,course_name,course_num,book_condition,notes,price) ';
+        $query .= "VALUES('".parent::getUser()."','$isbn','$title',$publish_date,'$authors','$cover_url','$course_name','$course_num','$book_condition','$notes',$price)";
+        DataBase::make_query($query);
+    }
+    public function removeListing($book_id){
+        DataBase::init();
+        $query = "DELETE FROM books ";
+        $query .= "WHERE id = $book_id ";
+        DataBase::make_query($query);
+    }
     public function getCurrentListings(){
         DataBase::init();
         $listings = array();
@@ -34,56 +57,6 @@ class ProductManager extends SuperManager{
         $book = DataBase::make_query($query);
         $bookbuilder = new BookBuilder();
         return $bookbuilder->createFromQuery(mysqli_fetch_assoc($book));
-    }
-    
-    public function boughtBooks(){
-        DataBase::init();
-        $boughtBooks = array();
-        $query = "SELECT * FROM transaction_history WHERE buyer = '".parent::getUser()."' ORDER BY trans_date DESC";
-        $result = DataBase::make_query($query);
-        $bookbuilder = new BookBuilder();
-
-        while ($book = mysqli_fetch_assoc($result)){
-            $book_construct = $bookbuilder->createBookFromTransaction($book);
-            $trans = new BookTransaction($book_construct, $book['buyer'], $book['seller'], $book['trans_date']);
-            array_push($boughtBooks, $trans);
-        }
-        return $boughtBooks; 
-    }
-
-    public function soldBooks(){
-        DataBase::init();
-        $boughtBooks = array();
-        $query = "SELECT * FROM transaction_history WHERE seller = '".parent::getUser()."' ORDER BY trans_date DESC";
-        $result = DataBase::make_query($query);
-        $bookbuilder = new BookBuilder();
-
-        while ($book = mysqli_fetch_assoc($result)){
-            $book_construct = $bookbuilder->createBookFromTransaction($book);
-            $trans = new BookTransaction($book_construct, $book['buyer'], $book['seller'], $book['trans_date']);
-            array_push($boughtBooks, $trans);
-        }
-        return $boughtBooks; 
-    }
-    public function findBookHistory($id){
-        DataBase::init();
-        $query = "SELECT * FROM transaction_history WHERE id = $id";
-        $result = DataBase::make_query($query);
-        $builder = new BookBuilder();
-        return $builder->createBookFromTransaction(mysqli_fetch_assoc($result));    
-    }
-    private function transactionQuery($str){
-        DataBase::init();
-        $boughtBooks = array();
-        $query = "SELECT * FROM transaction_history WHERE ".$str."= '".parent::getUser()."' ORDER BY trans_date DESC";
-        $result = DataBase::make_query($query);
-        $bookbuilder = new BookBuilder();
-        while ($book = mysqli_fetch_assoc($result)){
-            $book_construct = $bookbuilder->createBookFromTransaction($book);
-            $trans = new BookTransaction($book_construct, $book['buyer'], $book['seller'], $book['trans_date']);
-            array_push($boughtBooks, $trans);
-        }
-        return $boughtBooks;
     }
 }
 ?>
