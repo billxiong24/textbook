@@ -4,9 +4,9 @@ include_once 'NotificationManager.class.php';
 include_once 'SuperManager.class.php';
 require_once("BookBuilder.class.php");
 require_once("BookTransaction.class.php");
-
+require_once("api/ITransaction.interface.php");
 //include_once 'NotificationManager.class.php';
-class TransactionManager extends SuperManager{
+class TransactionManager extends SuperManager implements ITransaction{
     
     public function __construct($user){
         parent::__construct($user);
@@ -30,7 +30,7 @@ class TransactionManager extends SuperManager{
         $result = DataBase::make_query($query);
     }
     
-    public function cancelPurchase($transaction, $purchase_id){
+    public function cancelPurchase($purchase_id){
         DataBase::init(); 
         $query = "DELETE FROM transaction_history ";
         $query .= "WHERE id = $purchase_id ";

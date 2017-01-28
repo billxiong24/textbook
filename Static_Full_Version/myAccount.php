@@ -13,7 +13,6 @@ if(!isset($_SESSION['username'])){
 $currentListings = $_SESSION['loader']->getBookController()->getCurrentListings();
 $soldBooks = $_SESSION['loader']->getBookController()->getSoldBooks();
 $boughtBooks = $_SESSION['loader']->getBookController()->getBoughtBooks();
-$account = $_SESSION['loader']->getInfoController()->getAccountOverview($boughtBooks, $soldBooks);
 
 $numSold = $_SESSION['loader']->getInfoController()->getData('numSoldBooks');
 $numBought = $_SESSION['loader']->getInfoController()->getData('numBoughtBooks');
@@ -107,11 +106,11 @@ $spent = $_SESSION['loader']->getInfoController()->getData('spent');
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <h1 class="no-margins">
-                                            <?php if($account['profit'] < 0){
-                                                echo '-$'.abs($account['profit']);   
+                                            <?php if($profit-$spent< 0){
+                                                echo '-$'.abs($profit - $spent);   
                                             }
                                             else{
-                                                echo '$'.$account['profit'];
+                                                echo '$'. $profit - $spent;
                                             }
                                             ?></h1>
                                                 <div class="font-bold text-success">Total Made</div>
@@ -130,11 +129,11 @@ $spent = $_SESSION['loader']->getInfoController()->getData('spent');
 
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <h1 class="no-margins">$<?php echo $account['money_made'];?></h1>
+                                                <h1 class="no-margins">$<?php echo $profit;?></h1>
                                                 <div class="font-bold text-success">Amount Sold</div>
                                             </div>
                                             <div class="col-md-6">
-                                                <h1 class="no-margins"><?php echo $account['books_sold'];?></h1>
+                                                <h1 class="no-margins"><?php echo $numSold;?></h1>
                                                 <div class="font-bold text-success">Number Sold</div>
                                             </div>
                                         </div>
@@ -152,11 +151,11 @@ $spent = $_SESSION['loader']->getInfoController()->getData('spent');
 
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <h1 class="no-margins">$<?php echo $account['spent'];?></h1>
+                                                <h1 class="no-margins">$<?php echo $spent;?></h1>
                                                 <div class="font-bold text-success">Amount Bought</div>
                                             </div>
                                             <div class="col-md-6">
-                                                <h1 class="no-margins"><?php echo $account['books_bought'];?></h1>
+                                                <h1 class="no-margins"><?php echo $numBought;?></h1>
                                                 <div class="font-bold text-success">Number Bought</div>
                                             </div>
                                         </div>

@@ -7,10 +7,10 @@ class NotificationController{
     private $notif_manager;
     private $user;
     private $display;
-    public function __construct($user){
-        $this->notif_manager = new NotificationManager($user);
+    public function __construct($user, $notif_man, $notif_view){
+        $this->notif_manager = $notif_man;
         $this->user = $user;
-        $this->display = new NotificationView();
+        $this->display = $notif_view;
     }
     public function getNotifications(){
         $result = $this->notif_manager->getNotifications();

@@ -13,9 +13,11 @@ $_SESSION['loader'] = new SessionLoader($_SESSION['username']);
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$soldBooks = $_SESSION['loader']->getBookController()->getSoldBooks();
-$boughtBooks = $_SESSION['loader']->getBookController()->getBoughtBooks();
-$account = $_SESSION['loader']->getInfoController()->getAccountOverview($boughtBooks, $soldBooks);
+$numSold = $_SESSION['loader']->getInfoController()->getData('numSoldBooks');
+$numBought = $_SESSION['loader']->getInfoController()->getData('numBoughtBooks');
+$profit = $_SESSION['loader']->getInfoController()->getData('profit');
+$spent = $_SESSION['loader']->getInfoController()->getData('spent');
+
 $user = $_SESSION['loader']->getInfoController()->getUserInfo();
 if (isset($_POST['name'])){
     $user = new UserBuilder();
@@ -154,7 +156,7 @@ if (isset($_POST['name'])){
                                         </div>
                                         <div class="col-xs-8 text-right">
                                             <span> Total Made </span>
-                                            <h2 class="font-bold" style="color: #001A57;"><?php echo $account['profit'];?></h2>
+                                            <h2 class="font-bold" style="color: #001A57;"><?php echo $profit - $spent;?></h2>
                                         </div>
                                     </div>
                                 </div>
@@ -167,7 +169,7 @@ if (isset($_POST['name'])){
                                         </div>
                                         <div class="col-xs-8 text-right">
                                             <span> Books Sold </span>
-                                            <h2 class="font-bold" style="color: #001A57;"><?php echo $account['books_sold'];?></h2>
+                                            <h2 class="font-bold" style="color: #001A57;"><?php echo $numSold;?></h2>
                                         </div>
                                     </div>
                                 </div>
@@ -180,7 +182,7 @@ if (isset($_POST['name'])){
                                         </div>
                                         <div class="col-xs-8 text-right">
                                             <span> Books Bought</span>
-                                            <h2 class="font-bold" style="color: #001A57;"><?php echo $account['books_bought'];?></h2>
+                                            <h2 class="font-bold" style="color: #001A57;"><?php echo $numBought;?></h2>
                                         </div>
                                     </div>
                                 </div>

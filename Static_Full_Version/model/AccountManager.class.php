@@ -2,7 +2,8 @@
 include_once 'SuperManager.class.php';
 require_once("BookTransaction.class.php");
 require_once("BookBuilder.class.php");
-class AccountManager extends SuperManager{
+require_once("api/IAccount.interface.php");
+class AccountManager extends SuperManager implements IAccount{
     public function __construct($user){
         parent::__construct($user);
     }

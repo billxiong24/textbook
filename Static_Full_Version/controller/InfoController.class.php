@@ -7,11 +7,11 @@ class InfoController{
     private $account_manager;
     private $user_manager;
     private $account_view;
-    public function __construct($user){
+    public function __construct($user, $acc, $user_manager, $account_view){
         $this->user = $user;    
-        $this->account_manager = new AccountManager($user);
-        $this->user_manager = new UserManager($user);
-        $this->account_view = new AccountView();
+        $this->account_manager = $acc;
+        $this->user_manager = $user_manager;
+        $this->account_view = $account_view;
     }
     public function getAccountOverview($boughtBooks, $soldBooks){
        return $this->account_manager->accountOverview($boughtBooks, $soldBooks);

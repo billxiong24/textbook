@@ -7,10 +7,10 @@ class SearchController{
     private $user;
     private $search_manager;
     private $display;
-    public function __construct($user){
+    public function __construct($user, $search_man, $search_view){
         $this->user = $user;    
-        $this->search_manager = new SearchManager($user);
-        $this->display = new SearchView();
+        $this->search_manager = $search_man;
+        $this->display = $search_view;
     }
     public function search($search, $price, $condition){
         $result = $this->search_manager->search($search, $price, $condition);

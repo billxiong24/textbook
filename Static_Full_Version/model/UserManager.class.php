@@ -2,7 +2,8 @@
 include_once 'SuperManager.class.php';
 include_once 'DataBase.class.php';
 require_once('UserBuilder.class.php');
-class UserManager extends SuperManager{
+require_once("api/IUser.interface.php");
+class UserManager extends SuperManager implements IUser{
 
     public function __construct($user){
         parent::__construct($user);

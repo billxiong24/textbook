@@ -11,10 +11,10 @@ class BookController{
     private $product_manager; 
     private $notif_manager;
     private $user;
-    public function __construct($user){
-        $this->trans_manager = new TransactionManager($user);
-        $this->product_manager = new ProductManager($user);
-        $this->notif_manager = new NotificationManager($user);
+    public function __construct($user, $trans, $prod, $notif){
+        $this->trans_manager = $trans;
+        $this->product_manager = $prod;
+        $this->notif_manager = $notif;
         $this->user = $user;
     }
     public function addBook(){
@@ -41,9 +41,6 @@ class BookController{
     public function getBoughtBooks(){
         return $this->trans_manager->boughtBooks();
     }
-    public function getData($func){
-        return call_user_func(array($this->product_manager, $func));
-    }
     public function buyBook($book_id){
         $book = $this->product_manager->getBook($book_id);
         $this->trans_manager->buyBook($book, $book_id);
@@ -62,7 +59,7 @@ class BookController{
         $this->notif_manager->addNotification($transaction->getUsername(),'Canceled purchase',$transaction->getTitle(),$transaction->getPrice());
         $this->notif_manager->addNotification($this->user, 'Canceled purchase',$transaction->getTitle(),$transaction->getPrice());
         $this->product_manager->addBook($transaction);
-        $this->trans_manager->cancelPurchase($transaction, $purchase_id);   
+        $this->trans_manager->cancelPurchase($purchase_id);   
     }
     public function getBookDetails($bookID){
         $book = $this->product_manager->getBook($bookID);

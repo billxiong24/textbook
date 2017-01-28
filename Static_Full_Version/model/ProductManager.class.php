@@ -4,15 +4,15 @@ include_once 'NotificationManager.class.php';
 include_once 'SuperManager.class.php';
 require_once("BookBuilder.class.php");
 require_once("BookTransaction.class.php");
+require_once("api/IProduct.interface.php");
 /**
  * For now, this is manages books- extensible to other
  * produts as well
  */
-class ProductManager extends SuperManager{
-    private $notif_manager;
+class ProductManager extends SuperManager implements IProduct{
+
     public function __construct($user){
         parent::__construct($user);
-        $this->notif_manager = new NotificationManager($user);
     }
 
     public function addBook($book){

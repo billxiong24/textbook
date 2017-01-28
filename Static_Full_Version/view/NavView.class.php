@@ -1,6 +1,6 @@
 <?php
 class NavView{
-    public function makeLoggedInNavBar(){
+    public static function makeLoggedInNavBar(){
         return '<div class="row">
                             <nav class="navbar navbar--top" role="navigation">
                                 <div class="navbar-header">
@@ -81,7 +81,7 @@ class NavView{
                         </div>';
 
     } 
-    public function makeFooter(){
+    public static function makeFooter(){
         return '          <br>
                         <div class="footer">
                             <span><a href="about_us.php" class="footer-tag">About us</a></span>
