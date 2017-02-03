@@ -1,7 +1,7 @@
 <?php
 include_once 'DataBase.class.php';
 include_once 'NotificationManager.class.php';
-include_once 'SuperManager.class.php';
+require_once ('SuperManager.class.php');
 require_once("BookBuilder.class.php");
 require_once("BookTransaction.class.php");
 require_once("api/IProduct.interface.php");

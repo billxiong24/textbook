@@ -32,5 +32,8 @@ class Notification{
     public function getPrice(){
         return $this->price;
     }
+    public function changedLooked(){
+        $this->looked = 1;
+    }
 }
 ?>

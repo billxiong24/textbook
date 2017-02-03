@@ -4,6 +4,7 @@ require_once('ProductManager.class.php');
 require_once("UserManager.class.php");
 require_once("NotificationManager.class.php");
 require_once("BookBuilder.class.php");
+require_once("NotificationBuilder.class.php");
 class BookController{
 
     const DEFAULT_URL = 'http://www.clipartkid.com/images/815/blank-book-cover-clip-art-book-covers-szPmIv-clipart.png'; 
@@ -17,19 +18,11 @@ class BookController{
         $this->notif_manager = $notif;
         $this->user = $user;
     }
-    public function addBook(){
-        $this->checkEmptyParams();
-        $course = explode(' - ', $_POST['course']);
-        $course_name = count($course) > 1 ? $course[1] : '';
-        $course_number = count($course) > 1 ? $course[0] : '';
-        $price = floatval($_POST['price']);
-
-        $bookbuilder = new BookBuilder();
-        $bookbuilder->isbn($_POST['isbn'])->title($_POST['title'])->publishDate(strtotime($_POST['publishDate']));
-        $bookbuilder->authors($_POST['authors'])->coverURL($_POST['coverURL'])->courseNum($course_number)->courseName($course_name);
-        $bookbuilder->condition($_POST['bookCondition'])->notes($_POST['notes'])->price($price);
-        $this->product_manager->addBook($bookbuilder->create());
-        $this->notif_manager->addNotification($this->user,'Added listing',$_POST['title'],$price); 
+    public function addBook($product){
+        $this->product_manager->addBook($product);
+        $notif_builder = new NotificationBuilder();
+        $notif_builder->username($this->user)->action('Added listing')->title($product->getTitle())->price($product->getPrice())->timestamp(time());
+        $this->notif_manager->addNotification($notif_builder->create()); 
         //sendListEmail($isbn, $title, $publish_date, $authors, $course1, $book_condition, $notes, $price);
     }
     public function getCurrentListings(){
@@ -46,18 +39,28 @@ class BookController{
         $this->trans_manager->buyBook($book, $book_id);
         $this->product_manager->removeListing($book_id);
         $bookInfo = $this->trans_manager->findBookHistory($book_id);
+
         $title = $book->getTitle();
         $price = $book->getPrice();
-        $this->notif_manager->addNotification($this->user,'Bought',$title,$price);
-        $this->notif_manager->addNotification($book->getUsername(),'Someone bought',$title,$price);
+
+        $notif_builder = new NotificationBuilder();
+        $notif_builder->username($this->user)->action('Bought')->title($title)->price($price)->timestamp(time());
+        $this->notif_manager->addNotification($notif_builder->create());
+        $notif_builder->username($book->getUsername())->action('Someone Bought')->title($title)->price($price)->timestamp(time());
+        $this->notif_manager->addNotification($notif_builder->create());
         //sendBoughtEmail($book);
         //sendSoldEmail($book);
         return $bookInfo->getUsername();
     }
     public function cancelPurchase($purchase_id){
         $transaction = $this->trans_manager->findBookHistory($purchase_id);
-        $this->notif_manager->addNotification($transaction->getUsername(),'Canceled purchase',$transaction->getTitle(),$transaction->getPrice());
-        $this->notif_manager->addNotification($this->user, 'Canceled purchase',$transaction->getTitle(),$transaction->getPrice());
+
+        $notif_builder = new NotificationBuilder();
+        $notif_builder->username($transaction->getUsername())->action('Canceled purchase')->title($transaction->getTitle())->price($transaction->getPrice())->timestamp(time());
+
+        $this->notif_manager->addNotification($notif_builder->create());
+        $notif_builder->username($this->user)->action('Canceled purchase')->title($transaction->getTitle())->price($transaction->getPrice())->timestamp(time());
+        $this->notif_manager->addNotification($notif_builder->create());
         $this->product_manager->addBook($transaction);
         $this->trans_manager->cancelPurchase($purchase_id);   
     }
@@ -82,17 +85,6 @@ class BookController{
     }
     public function removeListing($listing_id){
         $this->product_manager->removeListing($listing_id);
-    }
-    private function checkEmptyParams(){
-        if (empty($_POST['isbn'])){
-            $_POST['isbn'] = '';
-        }
-        if (empty($_POST['publishDate'])){
-            $_POST['publishDate'] = -2147483645;
-        }
-        if (empty($_POST['coverURL'])){
-            $_POST['coverURL'] = 'http://www.clipartkid.com/images/815/blank-book-cover-clip-art-book-covers-szPmIv-clipart.png';
-        }
     }
 } 
 ?>

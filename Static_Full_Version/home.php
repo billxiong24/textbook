@@ -8,7 +8,6 @@ session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
-
 $_SESSION['loader'] = new SessionLoader($_SESSION['username']);
 error_reporting(E_ALL);
 ini_set('display_errors', 1);

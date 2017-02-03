@@ -1,13 +1,13 @@
 <?php
 //include './php/functions.php';
-require_once("InfoController.class.php");
+require_once("SessionLoader.class.php");
 session_start();
 if (isset($_POST['first_name'])){ // add users once they add their information in the create account modal
-    
+    $s_loader = new SessionLoader($_SESSION['username']);
     $first_name = trim($_POST['first_name']);
     $last_name = trim($_POST['last_name']);
     $name = $first_name . ' ' . $last_name;
-    $info = new InfoController($_SESSION['username']);
+    $info = $s_loader->getInfoController();
     $info->addUser($_SESSION['username'],$name,$_POST['phone_num'],$_POST['email']);
     header('Location: home.php');
 }
@@ -260,18 +260,15 @@ if (isset($_POST['first_name'])){ // add users once they add their information i
         <?php
     
         if(isset($_SESSION['username'])){
-            $info = new InfoController($_SESSION['username']);
+            $s_loader = new SessionLoader($_SESSION['username']);
+            $info = $s_loader->getInfoController();
             $user = $info->getUserInfo();
             if (count($user) == 0){
-
                 $email = $_SESSION['username'] . '@duke.edu';
                 echo "<script> $('#modal-form').modal('show'); $('#email').val('$email')</script>";
-
             }
             else {
-
                 echo "<script> window.location.href = 'home.php'; </script>";
-
             }
 
         }

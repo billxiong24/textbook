@@ -9,7 +9,7 @@ class NotificationControllerFactory extends ControllerFactory{
         parent::__construct();
     }
     public function createController($user){
-        $notif_man = new NotificationManager();
+        $notif_man = new NotificationManager($user);
         $notif_view = new NotificationView();
         return new NotificationController($user, $notif_man, $notif_view);
     }

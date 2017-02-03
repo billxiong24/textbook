@@ -6,9 +6,6 @@ session_start();
 if(!isset($_SESSION['username'])){
     header('Location: index.php');
 }
-$soldBooks = $_SESSION['loader']->getBookController()->getSoldBooks();
-$boughtBooks = $_SESSION['loader']->getBookController()->getBoughtBooks();
-$account = $_SESSION['loader']->getInfoController()->getAccountOverview($boughtBooks, $soldBooks);
 ?>
     <!DOCTYPE html>
     <html>

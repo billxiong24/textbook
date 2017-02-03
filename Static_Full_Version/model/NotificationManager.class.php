@@ -2,14 +2,19 @@
 include_once 'DataBase.class.php';
 include_once 'SuperManager.class.php';
 require_once("NotificationBuilder.class.php");
-class NotificationManager extends SuperManager{
+require_once("api/INotification.interface.php");
+class NotificationManager extends SuperManager implements INotification{
     public function __construct($user){
         parent::__construct($user);
     }
-    public function addNotification($user, $action,$title,$price){
+    public function addNotification($notification){
         DataBase::init();
-        $timestamp = time();
-        $title = DataBase::escape($title);
+        $user = $notification->getUsername();
+        $action = $notification->getAction();
+        $timestamp = $notification->getTime();
+        $title = $notification->getTitle();
+        $price = $notification->getPrice();        
+
         $query = "INSERT INTO notifications(username,action,timestamp,title,price) ";
         $query .= "VALUES('".$user."','$action',$timestamp,'$title',$price)";
         DataBase::make_query($query);
