@@ -38,10 +38,21 @@ class ProductControlTest extends PHPUnit_Framework_TestCase{
         $this->assertEquals(1, count($arr));
     }
     public function testSoldProducts(){
-        $this->assertTrue(true);
+        $user = "john";
+        $product_mock = new ProductMock($user);
+        $product_mock->addBook($this->addProduct());
+
+        $trans_mock = new TransactionMock($user);
+        $notif_mock = new NotificationMock($user);
+        $controller = new BookController($user, $trans_mock, $product_mock, $notif_mock);
+        $controller->buyBook(1);
+
+        $result = $controller->getSoldBooks();
+        $this->assertEquals(count($result), 1);
     }
     public function testBoughtProducts(){
-        $this->assertTrue(true);
+        //lmao if you bought, you sold
+        $this->testSoldProducts();
     }
     public function testCancelPurchase(){
         $this->assertTrue(true);
