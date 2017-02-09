@@ -13,7 +13,7 @@ class TransactionMock extends SuperManager implements ITransaction{
         $this->data[$book_id] = $trans;
     }
     public function cancelPurchase($purchase_id){
-        unset($this->data[$book_id]);
+        unset($this->data[$purchase_id]);
     }
     public function boughtBooks(){
         $bought = array();
@@ -35,6 +35,9 @@ class TransactionMock extends SuperManager implements ITransaction{
     }
     public function findBookHistory($id){
         return $this->data[$id]->getBook();
+    }
+    public function getTrans($id){
+        return $this->data[$id];
     }
 }
 ?>

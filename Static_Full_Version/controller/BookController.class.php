@@ -64,6 +64,7 @@ class BookController{
         $this->product_manager->addBook($transaction);
         $this->trans_manager->cancelPurchase($purchase_id);   
     }
+    //TODO make this method unit testable holy
     public function getBookDetails($bookID){
         $book = $this->product_manager->getBook($bookID);
         $usermanager = new UserManager($book->getUsername());

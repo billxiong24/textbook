@@ -38,7 +38,7 @@ class ProductControlTest extends PHPUnit_Framework_TestCase{
         $this->assertEquals(1, count($arr));
     }
     public function testSoldProducts(){
-        $user = "john";
+        $user = "bill";
         $product_mock = new ProductMock($user);
         $product_mock->addBook($this->addProduct());
 
@@ -55,10 +55,34 @@ class ProductControlTest extends PHPUnit_Framework_TestCase{
         $this->testSoldProducts();
     }
     public function testCancelPurchase(){
-        $this->assertTrue(true);
+        $user = "bill";
+        $product_mock = new ProductMock($user);
+        $product_mock->addBook($this->addProduct());
+
+        $trans_mock = new TransactionMock($user);
+        $notif_mock = new NotificationMock($user);
+        $controller = new BookController($user, $trans_mock, $product_mock, $notif_mock);
+        $controller->buyBook(1);
+        $controller->cancelPurchase(1); 
+        
+        $this->assertNotNull($product_mock->getBook(1));
+        $this->checkAddedProduct($product_mock, $product_mock->getBook(1));
+        $this->assertNull($trans_mock->getTrans(1));
+        $this->assertEquals(4, $this->checkNotifications($notif_mock, 'getAllNotifs'));
     }
+    //TODO make this method testable 
     public function testGetProductDetails(){
+        //this is just getters
+        $user = "john";
+        $product_mock = new ProductMock($user);
+        $product_mock->addBook($this->addProduct());
+
+        $trans_mock = new TransactionMock($user);
+        $notif_mock = new NotificationMock($user);
+        $controller = new BookController($user, $trans_mock, $product_mock, $notif_mock);
+         
         $this->assertTrue(true);
+        return $controller;
     }
     public function testBuyProduct(){
         //TODO check buyer is john
@@ -76,12 +100,12 @@ class ProductControlTest extends PHPUnit_Framework_TestCase{
         $this->assertEquals(2, $this->checkNotifications($notif_mock, 'getAllNotifs'));
         $this->assertNotNull($trans_mock->findBookHistory(1));
     } 
-    private function createProductController($user){
+    /*private function createProductController($user){
         $product_mock = new ProductMock($user);
         $trans_mock = new TransactionMock($user);
         $notif_mock = new NotificationMock($user);
         return new BookController($user, $trans_mock, $product_mock, $notif_mock);
-    }
+    }*/
     private function addProduct(){
         $bookbuilder = new BookBuilder();
         $bookbuilder->username("bill")->isbn(253)->title("book1")->publishDate("time1");
